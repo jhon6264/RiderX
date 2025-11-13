@@ -1,0 +1,84 @@
+/* partnerships.css */
+.partnerships {
+    padding: clamp(2rem, 6vw, 4rem) 0;
+    background: var(--pure-white);
+}
+
+.partnerships-container {
+    width: 100%; /* Remove all side margins */
+    margin-inline: 0; /* Remove auto centering */
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: clamp(1.5rem, 4vw, 3rem);
+    color: var(--text-dark);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: clamp(0.5px, 0.3vw, 1px);
+    padding: 0 clamp(0.5rem, 2vw, 1rem); /* Add small padding only to title */
+}
+
+.brands-carousel-container {
+    position: relative;
+    overflow: hidden;
+    padding: clamp(1rem, 3vw, 2rem) 0;
+    /* No side padding - extends edge to edge */
+}
+
+.brands-carousel {
+    display: flex;
+    gap: clamp(2rem, 6vw, 4rem);
+    will-change: transform;
+}
+
+.brand-item {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.brand-item:hover {
+    transform: scale(1.1);
+}
+
+.brand-logo {
+    height: clamp(3rem, 10vw, 5rem);
+    width: auto;
+    max-width: clamp(8rem, 20vw, 12rem);
+    object-fit: contain;
+    transition: all 0.3s ease;
+}
+
+.brand-item:hover .brand-logo {
+    transform: scale(1.05);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .section-title {
+        padding: 0 clamp(0.25rem, 1.5vw, 0.75rem);
+    }
+    
+    .brands-carousel {
+        gap: clamp(1.5rem, 4vw, 2.5rem);
+    }
+    
+    .brand-logo {
+        height: clamp(2.5rem, 8vw, 4rem);
+        max-width: clamp(6rem, 15vw, 9rem);
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .brands-carousel {
+        animation: none;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 0 clamp(1rem, 3vw, 2rem); /* Add padding only when animation is disabled */
+    }
+}

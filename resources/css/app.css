@@ -1,0 +1,271 @@
+/* app.css */
+:root {
+    /* Core Colors */
+    --charcoal-black: #1a1a1a;
+    --pure-white: #ffffff;
+    --racing-red: #e63946;
+    
+    /* Supporting Colors */
+    --dark-gray: #2d2d2d;
+    --medium-gray: #666666;
+    --light-gray: #f8f9fa;
+    --border-gray: #e1e5e9;
+    
+    /* Semantic Colors */
+    --primary: var(--racing-red);
+    --secondary: var(--charcoal-black);
+    --background: var(--pure-white);
+    --text-dark: var(--charcoal-black);
+    --text-light: var(--pure-white);
+    --card-bg: var(--pure-white);
+}
+
+/* ===== GLOBAL OVERFLOW PROTECTION ===== */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    max-width: 100%;
+}
+
+/* ===== BASE CLAMP SYSTEM ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 100%; 
+}
+
+body {
+    background-color: var(--background);
+    color: var(--text-dark);
+    line-height: 1.6;
+    
+    /* Fluid typography */
+    font-size: clamp(0.875rem, 2vw, 1rem); /* 14px - 16px */
+}
+
+
+/* Apply fonts globally */
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Headers use Oswald */
+.h1, .h2, .h3, 
+.section-title,
+.hero-title,
+.hero-subtitle,
+.mobile-nav-title {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Subheader categories use Oswald */
+.category-link,
+.mobile-nav-link {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Buttons use Oswald for impact */
+.btn {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Keep search and normal text in Inter */
+.search-bar,
+.search-bar::placeholder,
+.footer-text,
+.shipping-text,
+.promo-slide,
+.text-lg, .text-base, .text-sm {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== CLAMP SPACING SYSTEM ===== */
+.container {
+    width: min(100% - clamp(1rem, 4vw, 2rem), clamp(20rem, 90vw, 75rem));
+    margin-inline: auto;
+}
+
+.section-spacing {
+    padding-block: clamp(2rem, 6vw, 4rem);
+}
+
+/* ===== CLAMP TYPOGRAPHY SYSTEM ===== */
+.h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: uppercase;
+    letter-spacing: clamp(1px, 0.5vw, 2px);
+}
+
+.h2 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: clamp(0.5px, 0.3vw, 1px);
+}
+
+.h3 {
+    font-size: clamp(1.25rem, 3vw, 1.8rem);
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.text-lg {
+    font-size: clamp(1.125rem, 2.5vw, 1.3rem);
+    line-height: 1.6;
+}
+
+.text-base {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.6;
+}
+
+.text-sm {
+    font-size: clamp(0.875rem, 1.8vw, 1rem);
+    line-height: 1.5;
+}
+
+/* ===== CLAMP BUTTON SYSTEM ===== */
+.btn {
+    padding: clamp(0.75rem, 2vw, 0.85rem) clamp(1.5rem, 4vw, 2rem);
+    border: none;
+    border-radius: clamp(4px, 1vw, 6px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    letter-spacing: clamp(0.3px, 0.2vw, 0.5px);
+}
+
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--text-light);
+}
+
+.btn-primary:hover {
+    background-color: #d32f2f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background-color: var(--primary);
+}
+
+/* ===== SMART GRID CONTAINERS ===== */
+.grid-auto-fit {
+    display: grid;
+    gap: clamp(1rem, 3vw, 2rem);
+    grid-template-columns: repeat(auto-fit, minmax(clamp(16rem, 30vw, 20rem), 1fr));
+}
+
+.grid-auto-fill {
+    display: grid;
+    gap: clamp(1rem, 3vw, 2rem);
+    grid-template-columns: repeat(auto-fill, minmax(clamp(15rem, 25vw, 18rem), 1fr));
+}
+
+.flex-responsive {
+    display: flex;
+    gap: clamp(1rem, 3vw, 2rem);
+    flex-wrap: wrap;
+}
+
+/* ===== RESPONSIVE UTILITY CLASSES ===== */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mb-1 { margin-bottom: clamp(0.5rem, 1.5vw, 1rem); }
+.mb-2 { margin-bottom: clamp(1rem, 2.5vw, 1.5rem); }
+.mb-3 { margin-bottom: clamp(1.5rem, 3.5vw, 2rem); }
+
+.p-1 { padding: clamp(0.5rem, 1.5vw, 1rem); }
+.p-2 { padding: clamp(1rem, 2.5vw, 1.5rem); }
+.p-3 { padding: clamp(1.5rem, 3.5vw, 2rem); }
+
+/* ===== EXTRA SMALL SCREEN SUPPORT ===== */
+@media (max-width: 350px) {
+    .container {
+        width: min(100% - 0.5rem, 100%);
+    }
+    
+    .header-container {
+        width: min(100% - 0.5rem, 100%);
+        gap: 0.5rem;
+    }
+    
+    .search-container {
+        min-width: auto;
+        max-width: none;
+    }
+    
+    .search-bar {
+        padding: 0.5rem 0.25rem;
+        font-size: 0.8rem;
+    }
+    
+    .logo-img {
+        height: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 1.25rem;
+        line-height: 1.1;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+    
+    .categories {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .category-card {
+        padding: 1rem;
+    }
+}
+
+/* ===== MINIMAL MEDIA QUERIES (Only for major layout shifts) ===== */
+
+/* Mobile menu toggle (we'll add hamburger later) */
+@media (max-width: 768px) {
+    .mobile-hidden {
+        display: none;
+    }
+}
+
+/* Large screen optimizations */
+@media (min-width: 1200px) {
+    .grid-auto-fit {
+        grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    }
+}
+
+/* ===== IMPORT COMPONENT STYLES ===== */
+@import 'home/header.css';
+@import 'home/hero.css';
+@import 'home/footer.css';
+@import 'home/partnership.css';
+@import 'products/product-grid.css';
+@import 'products/product-card.css';
+@import 'auth-modal.css';

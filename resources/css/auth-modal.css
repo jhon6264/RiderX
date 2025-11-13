@@ -1,0 +1,373 @@
+/* Auth Modal Styles - Redesigned */
+.auth-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.auth-modal-content {
+    background: var(--pure-white);
+    border-radius: 0; /* No corner radius */
+    width: min(90vw, 400px);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: modalSlideIn 0.3s ease-out;
+    border: 1px solid var(--border-gray);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header - Charcoal Background */
+.auth-modal-header {
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background: var(--charcoal-black); /* Charcoal background */
+    border-bottom: 1px solid var(--dark-gray);
+    position: relative;
+}
+
+.auth-modal-header h2 {
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(1.1rem, 3vw, 1.3rem);
+    font-weight: 600;
+    color: var(--pure-white); /* White text on charcoal */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.auth-modal-close {
+    background: none;
+    border: none;
+    color: var(--pure-white); /* White close button */
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-modal-close:hover {
+    color: var(--racing-red);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* Form Body - White Background */
+.auth-form-body {
+    padding: clamp(1.5rem, 4vw, 2rem);
+    background: var(--pure-white); /* White background */
+}
+
+/* Professional Input Styles */
+.form-group {
+    margin-bottom: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    font-weight: 500;
+    color: var(--charcoal-black);
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: clamp(0.75rem, 2vw, 0.875rem);
+    border: 1px solid var(--border-gray);
+    border-radius: 0; /* No corner radius */
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.875rem, 2vw, 1rem);
+    background: var(--pure-white);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--charcoal-black);
+    background: var(--light-gray);
+}
+
+/* Password Input Container */
+.password-input-container {
+    position: relative;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    background: none;
+    border: none;
+    color: var(--medium-gray);
+    cursor: pointer;
+    padding: 0 0.75rem;
+    border-radius: 0;
+    transition: color 0.3s ease;
+    border-left: 1px solid var(--border-gray);
+}
+
+.password-toggle:hover {
+    color: var(--charcoal-black);
+    background: var(--light-gray);
+}
+
+/* Forgot Password - Left Aligned */
+.forgot-password {
+    text-align: left; /* Left aligned */
+    margin: -0.5rem 0 clamp(1rem, 3vw, 1.5rem) 0;
+}
+
+.forgot-password a {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    color: var(--medium-gray);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.forgot-password a:hover {
+    color: var(--racing-red);
+}
+
+/* Submit Button */
+.auth-submit-btn {
+    width: 100%;
+    margin-bottom: clamp(1rem, 3vw, 1.5rem);
+    padding: clamp(0.875rem, 2.5vw, 1rem);
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    border-radius: 0; /* No corner radius */
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Divider */
+.divider {
+    position: relative;
+    text-align: center;
+    margin: clamp(1.5rem, 3vw, 2rem) 0;
+    color: var(--medium-gray);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--border-gray);
+}
+
+.divider span {
+    background: var(--pure-white);
+    padding: 0 1rem;
+}
+
+/* Social Login Buttons - Uppercase Text */
+.social-login {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(0.75rem, 2vw, 1rem);
+}
+
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(0.75rem, 2vw, 1rem);
+    padding: clamp(0.75rem, 2vw, 0.875rem);
+    border: 1px solid var(--border-gray);
+    border-radius: 0; /* No corner radius */
+    background: var(--pure-white);
+    font-family: 'Roboto', sans-serif;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    font-weight: 600;
+    cursor: not-allowed;
+    opacity: 0.6;
+    transition: all 0.3s ease;
+    position: relative;
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 0.5px;
+}
+
+.social-btn:hover {
+    background: var(--light-gray);
+    transform: translateY(-1px);
+}
+
+.social-btn:hover::after {
+    content: 'Unavailable';
+    position: absolute;
+    top: -35px;
+    background: var(--charcoal-black);
+    color: var(--pure-white);
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    z-index: 10;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.social-btn:hover::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: var(--charcoal-black);
+}
+
+/* Terms Checkbox */
+.terms-checkbox {
+    margin: clamp(1rem, 3vw, 1.5rem) 0;
+}
+
+.terms-checkbox label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    color: var(--medium-gray);
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+.terms-checkbox input[type="checkbox"] {
+    margin-top: 0.2rem;
+    transform: scale(1.2);
+}
+
+.terms-link {
+    color: var(--racing-red);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.terms-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer - Charcoal Background */
+.auth-modal-footer {
+    padding: clamp(1rem, 3vw, 1.5rem);
+    border-top: 1px solid var(--border-gray);
+    text-align: center;
+    background: var(--charcoal-black); /* Charcoal background */
+}
+
+.auth-modal-footer p {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    color: var(--pure-white); /* White text on charcoal */
+    margin: 0;
+}
+
+.switch-link {
+    color: var(--racing-red) !important;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.switch-link:hover {
+    text-decoration: underline;
+}
+
+/* User Icon Button */
+.user-icon-btn {
+    background: none;
+    border: none;
+    color: var(--charcoal-black);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-icon-btn:hover {
+    color: var(--racing-red);
+    background: var(--light-gray);
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .auth-modal-content {
+        width: 95vw;
+        margin: 1rem;
+    }
+    
+    .auth-form-body {
+        padding: 1.25rem;
+    }
+    
+    .auth-modal-header {
+        padding: 0 1rem;
+    }
+    
+    .social-btn {
+        padding: 0.75rem 0.5rem;
+    }
+}
+
+/* Scrollbar Styling */
+.auth-modal-content::-webkit-scrollbar {
+    width: 6px;
+}
+
+.auth-modal-content::-webkit-scrollbar-track {
+    background: var(--light-gray);
+}
+
+.auth-modal-content::-webkit-scrollbar-thumb {
+    background: var(--medium-gray);
+}
+
+.auth-modal-content::-webkit-scrollbar-thumb:hover {
+    background: var(--charcoal-black);
+}
+
+/* Body overflow fix */
+body.modal-open {
+    overflow: hidden;
+}
