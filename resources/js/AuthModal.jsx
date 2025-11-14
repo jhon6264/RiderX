@@ -1,33 +1,153 @@
 import React, { useState } from 'react';
 
+
 const AuthModal = ({ isOpen, onClose }) => {
     const [isLoginView, setIsLoginView] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState('');
+
+    // Form data states
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: ''
+    });
+
+    const [signupData, setSignupData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        terms: false
+    });
+
+    // CSRF Token function
+    const getCsrfToken = async () => {
+        await fetch('/sanctum/csrf-cookie', {
+            credentials: 'include'
+        });
+    };
 
     // Switch between login and signup
     const switchToSignup = () => {
         setIsLoginView(false);
+        setErrors({});
+        setSuccessMessage('');
     };
 
     const switchToLogin = () => {
         setIsLoginView(true);
+        setErrors({});
+        setSuccessMessage('');
     };
+
+    // Handle input changes
+    const handleLoginChange = (e) => {
+        setLoginData({
+            ...loginData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSignupChange = (e) => {
+        const value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
+        setSignupData({
+            ...signupData,
+            [e.target.name]: value
+        });
+    };
+
+    // Handle form submissions
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setErrors({});
+        setSuccessMessage('');
+
+        try {
+            // Get CSRF token first
+            await getCsrfToken();
+            
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                },
+                body: JSON.stringify(loginData),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                setSuccessMessage('Login successful!');
+                // Close modal after successful login
+                setTimeout(() => {
+                    onClose();
+                    window.location.reload(); // Refresh to update auth state
+                }, 1500);
+            } else {
+                setErrors(data.errors || { message: 'Login failed' });
+            }
+        } catch (error) {
+            setErrors({ message: 'Network error. Please try again.' });
+        } finally {
+            setLoading(false);
+        }
+    };
+
+   const handleSignup = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrors({});
+    setSuccessMessage('');
+    
+    // ADD THIS LINE:
+    console.log('Sending signup data:', signupData);
+
+    try {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(signupData),
+        });
+
+        // ADD THESE TWO LINES:
+        console.log('Response status:', response.status);
+        const data = await response.json();
+        console.log('Response data:', data);
+
+        if (response.ok) {
+            // ADD THIS LINE:
+            console.log('Registration successful!');
+            setSuccessMessage('Registration successful! Please check your email for verification.');
+            setTimeout(() => {
+                switchToLogin();
+            }, 10000);
+        } else {
+            // ADD THIS LINE:
+            console.log('Registration failed:', data);
+            setErrors(data.errors || { message: 'Registration failed' });
+        }
+    } catch (error) {
+        // ADD THIS LINE:
+        console.log('Network error:', error);
+        setErrors({ message: 'Network error. Please try again.' });
+    } finally {
+        setLoading(false);
+    }
+};
 
     // Prevent modal close when clicking inside modal content
     const handleModalClick = (e) => {
         e.stopPropagation();
-    };
-
-    // Handle form submissions
-    const handleLogin = (e) => {
-        e.preventDefault();
-        console.log('Login submitted');
-    };
-
-    const handleSignup = (e) => {
-        e.preventDefault();
-        console.log('Signup submitted');
     };
 
     // Close modal when pressing Escape key
@@ -40,12 +160,12 @@ const AuthModal = ({ isOpen, onClose }) => {
 
         if (isOpen) {
             document.addEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'hidden'; // Prevent background scroll
+            document.body.style.overflow = 'hidden';
         }
 
         return () => {
             document.removeEventListener('keydown', handleEscape);
-            document.body.style.overflow = 'unset'; // Re-enable scroll
+            document.body.style.overflow = 'unset';
         };
     }, [isOpen, onClose]);
 
@@ -70,15 +190,34 @@ const AuthModal = ({ isOpen, onClose }) => {
 
                         {/* Body */}
                         <form onSubmit={handleLogin} className="auth-form-body">
+                            {/* Success Message */}
+                            {successMessage && (
+                                <div className="success-message">
+                                    {successMessage}
+                                </div>
+                            )}
+
+                            {/* Error Messages */}
+                            {errors.message && (
+                                <div className="error-message">
+                                    {errors.message}
+                                </div>
+                            )}
+
                             {/* Email Input */}
                             <div className="form-group">
                                 <label htmlFor="login-email">Email Address</label>
                                 <input
                                     type="email"
                                     id="login-email"
+                                    name="email"
+                                    value={loginData.email}
+                                    onChange={handleLoginChange}
                                     placeholder="Enter your email"
                                     required
+                                    disabled={loading}
                                 />
+                                {errors.email && <span className="field-error">{errors.email[0]}</span>}
                             </div>
 
                             {/* Password Input */}
@@ -88,13 +227,18 @@ const AuthModal = ({ isOpen, onClose }) => {
                                     <input
                                         type={showPassword ? "text" : "password"}
                                         id="login-password"
+                                        name="password"
+                                        value={loginData.password}
+                                        onChange={handleLoginChange}
                                         placeholder="Enter your password"
                                         required
+                                        disabled={loading}
                                     />
                                     <button
                                         type="button"
                                         className="password-toggle"
                                         onClick={() => setShowPassword(!showPassword)}
+                                        disabled={loading}
                                     >
                                         {showPassword ? (
                                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
@@ -109,6 +253,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                                         )}
                                     </button>
                                 </div>
+                                {errors.password && <span className="field-error">{errors.password[0]}</span>}
                             </div>
 
                             {/* Forgot Password */}
@@ -117,8 +262,12 @@ const AuthModal = ({ isOpen, onClose }) => {
                             </div>
 
                             {/* Login Button */}
-                            <button type="submit" className="btn btn-primary auth-submit-btn">
-                                Login
+                            <button 
+                                type="submit" 
+                                className="btn btn-primary auth-submit-btn"
+                                disabled={loading}
+                            >
+                                {loading ? 'Logging in...' : 'Login'}
                             </button>
 
                             {/* Divider */}
@@ -137,7 +286,7 @@ const AuthModal = ({ isOpen, onClose }) => {
                                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                                         <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
                                     </svg>
-                                   <span>LOG IN WITH FACEBOOK</span>
+                                    <span>LOG IN WITH FACEBOOK</span>
                                 </button>
 
                                 <button 
@@ -182,15 +331,50 @@ const AuthModal = ({ isOpen, onClose }) => {
 
                         {/* Body */}
                         <form onSubmit={handleSignup} className="auth-form-body">
+                            {/* Success Message */}
+                            {successMessage && (
+                                <div className="success-message">
+                                    {successMessage}
+                                </div>
+                            )}
+
+                            {/* Error Messages */}
+                            {errors.message && (
+                                <div className="error-message">
+                                    {errors.message}
+                                </div>
+                            )}
+
+                            {/* Name Input */}
+                            <div className="form-group">
+                                <label htmlFor="signup-name">Full Name</label>
+                                <input
+                                    type="text"
+                                    id="signup-name"
+                                    name="name"
+                                    value={signupData.name}
+                                    onChange={handleSignupChange}
+                                    placeholder="Enter your full name"
+                                    required
+                                    disabled={loading}
+                                />
+                                {errors.name && <span className="field-error">{errors.name[0]}</span>}
+                            </div>
+
                             {/* Email Input */}
                             <div className="form-group">
                                 <label htmlFor="signup-email">Email Address</label>
                                 <input
                                     type="email"
                                     id="signup-email"
+                                    name="email"
+                                    value={signupData.email}
+                                    onChange={handleSignupChange}
                                     placeholder="Enter your email"
                                     required
+                                    disabled={loading}
                                 />
+                                {errors.email && <span className="field-error">{errors.email[0]}</span>}
                             </div>
 
                             {/* Password Input */}
@@ -200,17 +384,23 @@ const AuthModal = ({ isOpen, onClose }) => {
                                     <input
                                         type={showPassword ? "text" : "password"}
                                         id="signup-password"
+                                        name="password"
+                                        value={signupData.password}
+                                        onChange={handleSignupChange}
                                         placeholder="Create a password"
                                         required
+                                        disabled={loading}
                                     />
                                     <button
                                         type="button"
                                         className="password-toggle"
                                         onClick={() => setShowPassword(!showPassword)}
+                                        disabled={loading}
                                     >
                                         {showPassword ? 'Hide' : 'Show'}
                                     </button>
                                 </div>
+                                {errors.password && <span className="field-error">{errors.password[0]}</span>}
                             </div>
 
                             {/* Confirm Password Input */}
@@ -220,13 +410,18 @@ const AuthModal = ({ isOpen, onClose }) => {
                                     <input
                                         type={showConfirmPassword ? "text" : "password"}
                                         id="confirm-password"
+                                        name="password_confirmation"
+                                        value={signupData.password_confirmation}
+                                        onChange={handleSignupChange}
                                         placeholder="Confirm your password"
                                         required
+                                        disabled={loading}
                                     />
                                     <button
                                         type="button"
                                         className="password-toggle"
                                         onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                                        disabled={loading}
                                     >
                                         {showConfirmPassword ? 'Hide' : 'Show'}
                                     </button>
@@ -236,7 +431,14 @@ const AuthModal = ({ isOpen, onClose }) => {
                             {/* Terms Checkbox */}
                             <div className="terms-checkbox">
                                 <label>
-                                    <input type="checkbox" required />
+                                    <input 
+                                        type="checkbox" 
+                                        name="terms"
+                                        checked={signupData.terms}
+                                        onChange={handleSignupChange}
+                                        required 
+                                        disabled={loading}
+                                    />
                                     <span>
                                         I agree to the{' '}
                                         <a href="#terms" className="terms-link">Terms and Conditions</a>
@@ -244,11 +446,16 @@ const AuthModal = ({ isOpen, onClose }) => {
                                         <a href="#privacy" className="terms-link">Privacy Policy</a>
                                     </span>
                                 </label>
+                                {errors.terms && <span className="field-error">{errors.terms[0]}</span>}
                             </div>
 
                             {/* Signup Button */}
-                            <button type="submit" className="btn btn-primary auth-submit-btn">
-                                Create Account
+                            <button 
+                                type="submit" 
+                                className="btn btn-primary auth-submit-btn"
+                                disabled={loading}
+                            >
+                                {loading ? 'Creating Account...' : 'Create Account'}
                             </button>
                         </form>
 
