@@ -34922,7 +34922,7 @@ var AuthModal = function AuthModal(_ref) {
   // Handle form submissions
   var handleLogin = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(e) {
-      var response, data, _t;
+      var response, data, userResponse, userData, _t;
       return _regenerator().w(function (_context2) {
         while (1) switch (_context2.p = _context2.n) {
           case 0:
@@ -34932,9 +34932,6 @@ var AuthModal = function AuthModal(_ref) {
             setSuccessMessage('');
             _context2.p = 1;
             _context2.n = 2;
-            return getCsrfToken();
-          case 2:
-            _context2.n = 3;
             return fetch('/api/login', {
               method: 'POST',
               headers: {
@@ -34944,40 +34941,69 @@ var AuthModal = function AuthModal(_ref) {
               },
               body: JSON.stringify(loginData)
             });
-          case 3:
+          case 2:
             response = _context2.v;
-            _context2.n = 4;
+            _context2.n = 3;
             return response.json();
-          case 4:
+          case 3:
             data = _context2.v;
-            if (response.ok) {
-              setSuccessMessage('Login successful!');
-              // Close modal after successful login
-              setTimeout(function () {
-                onClose();
-                window.location.reload(); // Refresh to update auth state
-              }, 1500);
-            } else {
-              setErrors(data.errors || {
-                message: 'Login failed'
-              });
+            if (!response.ok) {
+              _context2.n = 9;
+              break;
+            }
+            _context2.n = 4;
+            return fetch('/api/user');
+          case 4:
+            userResponse = _context2.v;
+            _context2.n = 5;
+            return userResponse.json();
+          case 5:
+            userData = _context2.v;
+            if (!(userData.authenticated && !userData.user.email_verified)) {
+              _context2.n = 7;
+              break;
             }
             _context2.n = 6;
+            return fetch('/api/logout', {
+              method: 'POST'
+            });
+          case 6:
+            setErrors({
+              message: 'Please verify your email address before logging in.'
+            });
+            _context2.n = 8;
             break;
-          case 5:
-            _context2.p = 5;
+          case 7:
+            // User IS verified - proceed normally
+            setSuccessMessage('Login successful!');
+            setTimeout(function () {
+              onClose();
+              window.location.reload();
+            }, 1500);
+          case 8:
+            _context2.n = 10;
+            break;
+          case 9:
+            setErrors(data.errors || {
+              message: 'Login failed'
+            });
+          case 10:
+            _context2.n = 12;
+            break;
+          case 11:
+            _context2.p = 11;
             _t = _context2.v;
             setErrors({
               message: 'Network error. Please try again.'
             });
-          case 6:
-            _context2.p = 6;
+          case 12:
+            _context2.p = 12;
             setLoading(false);
-            return _context2.f(6);
-          case 7:
+            return _context2.f(12);
+          case 13:
             return _context2.a(2);
         }
-      }, _callee2, null, [[1, 5, 6, 7]]);
+      }, _callee2, null, [[1, 11, 12, 13]]);
     }));
     return function handleLogin(_x) {
       return _ref3.apply(this, arguments);

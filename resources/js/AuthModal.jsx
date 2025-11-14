@@ -60,44 +60,51 @@ const AuthModal = ({ isOpen, onClose }) => {
     };
 
     // Handle form submissions
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setErrors({});
-        setSuccessMessage('');
+   const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrors({});
+    setSuccessMessage('');
 
-        try {
-            // Get CSRF token first
-            await getCsrfToken();
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(loginData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            // CHECK IF USER IS VERIFIED
+            const userResponse = await fetch('/api/user');
+            const userData = await userResponse.json();
             
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                },
-                body: JSON.stringify(loginData),
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
+            if (userData.authenticated && !userData.user.email_verified) {
+                // User is NOT verified - log them out and show error
+                await fetch('/api/logout', { method: 'POST' });
+                setErrors({ message: 'Please verify your email address before logging in.' });
+            } else {
+                // User IS verified - proceed normally
                 setSuccessMessage('Login successful!');
-                // Close modal after successful login
                 setTimeout(() => {
                     onClose();
-                    window.location.reload(); // Refresh to update auth state
+                    window.location.reload();
                 }, 1500);
-            } else {
-                setErrors(data.errors || { message: 'Login failed' });
             }
-        } catch (error) {
-            setErrors({ message: 'Network error. Please try again.' });
-        } finally {
-            setLoading(false);
+        } else {
+            setErrors(data.errors || { message: 'Login failed' });
         }
-    };
+    } catch (error) {
+        setErrors({ message: 'Network error. Please try again.' });
+    } finally {
+        setLoading(false);
+    }
+};
 
    const handleSignup = async (e) => {
     e.preventDefault();
