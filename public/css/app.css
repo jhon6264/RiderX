@@ -1170,7 +1170,7 @@ body {
     letter-spacing: 0.5px;
 }
 
-/* Divider */
+/* Divider - With Cut Lines */
 .divider {
     position: relative;
     text-align: center;
@@ -1189,12 +1189,16 @@ body {
     left: 0;
     right: 0;
     height: 1px;
-    background: var(--border-gray);
+    background: var(--dark-gray);
+    z-index: 1;
 }
 
 .divider span {
     background: var(--pure-white);
-    padding: 0 1rem;
+    padding: 0 1.5rem; /* More padding for bigger gap */
+    position: relative;
+    z-index: 2;
+    display: inline-block;
 }
 
 /* Social Login Buttons - Uppercase Text */
@@ -1402,6 +1406,8 @@ body.modal-open {
     display: block;
     font-family: 'Poppins', sans-serif;
 }
+
+
 /* User Dropdown Styles */
 .user-dropdown {
     position: absolute;

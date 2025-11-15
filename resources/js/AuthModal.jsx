@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 
-const AuthModal = ({ isOpen, onClose, resetData }) => {
+const AuthModal = ({ 
+    isOpen, 
+    onClose, 
+    resetData = { token: '', email: '' }, 
+    verificationData = { verified: false, email: '' } 
+}) => {
     console.log('AuthModal rendered - isOpen:', isOpen, 'resetData:', resetData);
     const [isLoginView, setIsLoginView] = useState(true);
     const [showPassword, setShowPassword] = useState(false);
@@ -12,6 +17,10 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
     const [forgotPasswordEmail, setForgotPasswordEmail] = useState('');
     const [forgotPasswordLoading, setForgotPasswordLoading] = useState(false);
     const [forgotPasswordSuccess, setForgotPasswordSuccess] = useState(false);
+    const [showVerificationSuccess, setShowVerificationSuccess] = useState(false);
+    const [verificationEmail, setVerificationEmail] = useState('');
+    const [countdown, setCountdown] = useState(6);
+    const [verificationCountdown, setVerificationCountdown] = useState(5);
     
     // Reset password states
     const [showResetForm, setShowResetForm] = useState(false);
@@ -34,6 +43,26 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
         password_confirmation: '',
         terms: false
     });
+
+    // Password validation function
+const validatePassword = (password) => {
+    const minLength = 8;
+    const hasUpperCase = /[A-Z]/.test(password);
+    const hasLowerCase = /[a-z]/.test(password);
+    const hasNumbers = /\d/.test(password);
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    
+    return {
+        isValid: password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar,
+        requirements: {
+            minLength: password.length >= minLength,
+            hasUpperCase,
+            hasLowerCase, 
+            hasNumbers,
+            hasSpecialChar
+        }
+    };
+};
 
     // Reset form when modal opens/closes or when reset data is provided
     useEffect(() => {
@@ -60,6 +89,54 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
             resetAllForms();
         }
     }, [isOpen]);
+    // Cleanup countdown interval
+useEffect(() => {
+    return () => {
+        // This will clean up any running intervals when component unmounts
+        setCountdown(5);
+    };
+}, []);
+
+            
+        
+// Handle email verification success
+useEffect(() => {
+    if (verificationData.verified && verificationData.email && isOpen) {
+        console.log('Email verification success for:', verificationData.email);
+        setShowVerificationSuccess(true);
+        setVerificationEmail(verificationData.email);
+        setIsLoginView(false); // Show signup form initially
+        setVerificationCountdown(5); // Reset countdown to 5
+        
+        // Start countdown interval
+        const countdownInterval = setInterval(() => {
+            setVerificationCountdown(prev => {
+                if (prev <= 1) {
+                    clearInterval(countdownInterval);
+                    return 5; // Reset for next time
+                }
+                return prev - 1;
+            });
+        }, 1000);
+        
+        // Auto-switch to login form after 5 seconds
+        const timer = setTimeout(() => {
+            setShowVerificationSuccess(false);
+            setIsLoginView(true);
+            // Pre-fill the login email
+            setLoginData(prev => ({
+                ...prev,
+                email: verificationData.email
+            }));
+            setVerificationCountdown(5); // Reset countdown
+        }, 5000);
+
+        return () => {
+            clearTimeout(timer);
+            clearInterval(countdownInterval);
+        };
+    }
+}, [verificationData, isOpen]);
 
     // Function to reset all form data
     const resetAllForms = () => {
@@ -85,6 +162,8 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
         setShowForgotPassword(false);
         setIsLoginView(true);
         setForgotPasswordSuccess(false);
+        setShowVerificationSuccess(false); // Add this
+        setVerificationEmail(''); // Add this
     };
 
     // CSRF Token function
@@ -157,41 +236,50 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
 
     // Handle Forgot Password Submission
     const handleForgotPasswordSubmit = async (e) => {
-        e.preventDefault();
-        setForgotPasswordLoading(true);
-        setErrors({});
-        setForgotPasswordSuccess(false);
+    e.preventDefault();
+    setForgotPasswordLoading(true);
+    setErrors({});
+    setForgotPasswordSuccess(false);
 
-        try {
-            await getCsrfToken();
-            
-            const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    try {
+        await getCsrfToken();
+        
+        const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-            const response = await fetch('/forgot-password', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-CSRF-TOKEN': csrfToken,
-                },
-                body: JSON.stringify({
-                    email: forgotPasswordEmail
-                }),
-            });
+        const response = await fetch('/forgot-password', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-CSRF-TOKEN': csrfToken,
+            },
+            body: JSON.stringify({
+                email: forgotPasswordEmail
+            }),
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            if (response.ok) {
-                setForgotPasswordSuccess(true);
+        if (response.ok) {
+            setForgotPasswordSuccess(true);
+        } else {
+            // RATE LIMITING ERROR HANDLING ADDED
+            if (response.status === 429) {
+                setErrors({ message: 'Too many password reset attempts. Please try again in a minute.' });
+            } else if (data.message && data.message.includes('not found') || data.message && data.message.includes('not registered')) {
+                setErrors({ message: 'This email address is not registered in our system.' });
+            } else if (data.errors && data.errors.email) {
+                setErrors({ message: data.errors.email[0] });
             } else {
-                setErrors(data.errors || { message: data.message || 'Failed to send reset link' });
+                setErrors({ message: data.message || 'Failed to send reset link. Please try again.' });
             }
-        } catch (error) {
-            setErrors({ message: 'Network error. Please try again.' });
-        } finally {
-            setForgotPasswordLoading(false);
         }
-    };
+    } catch (error) {
+        setErrors({ message: 'Network error. Please try again.' });
+    } finally {
+        setForgotPasswordLoading(false);
+    }
+};
 
     // Handle Reset Password Submission
     const handleResetPassword = async (e) => {
@@ -236,92 +324,115 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
     };
 
     // Handle form submissions
-    const handleLogin = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setErrors({});
-        setSuccessMessage('');
+   const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setErrors({});
+    setSuccessMessage('');
 
-        try {
-            const response = await fetch('/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                },
-                body: JSON.stringify(loginData),
-            });
+    try {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(loginData),
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            if (response.ok) {
-                const userResponse = await fetch('/api/user');
-                const userData = await userResponse.json();
-                
-                if (userData.authenticated && !userData.user.email_verified) {
-                    await fetch('/api/logout', { method: 'POST' });
-                    setErrors({ message: 'Please verify your email address before logging in.' });
-                } else {
-                    setSuccessMessage('Login successful!');
-                    setTimeout(() => {
-                        resetAllForms();
-                        onClose();
-                        window.location.reload();
-                    }, 1500);
-                }
+        if (response.ok) {
+            const userResponse = await fetch('/api/user');
+            const userData = await userResponse.json();
+            
+            if (userData.authenticated && !userData.user.email_verified) {
+                await fetch('/api/logout', { method: 'POST' });
+                setErrors({ message: 'Please verify your email address before logging in.' });
+            } else {
+                setSuccessMessage('Login successful!');
+                setTimeout(() => {
+                    resetAllForms();
+                    onClose();
+                    window.location.reload();
+                }, 1500);
+            }
+        } else {
+            // RATE LIMITING ERROR HANDLING ADDED
+            if (response.status === 429) {
+                setErrors({ message: 'Too many login attempts. Please try again in a minute.' });
             } else {
                 setErrors(data.errors || { message: 'Login failed' });
             }
-        } catch (error) {
-            setErrors({ message: 'Network error. Please try again.' });
-        } finally {
-            setLoading(false);
         }
-    };
+    } catch (error) {
+        setErrors({ message: 'Network error. Please try again.' });
+    } finally {
+        setLoading(false);
+    }
+};
 
     const handleSignup = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        setErrors({});
-        setSuccessMessage('');
+    e.preventDefault();
+    setLoading(true);
+    setErrors({});
+    setSuccessMessage('');
 
-        try {
-            const response = await fetch('/api/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'X-Requested-With': 'XMLHttpRequest',
-                },
-                body: JSON.stringify(signupData),
-            });
+    try {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+            },
+            body: JSON.stringify(signupData),
+        });
 
-            const data = await response.json();
+        const data = await response.json();
 
-            if (response.ok) {
-                setSuccessMessage('Registration successful! Please check your email for verification.');
-                
-                // Clear signup form and switch to login after success
-                setTimeout(() => {
-                    setSignupData({ 
-                        name: '', 
-                        email: '', 
-                        password: '', 
-                        password_confirmation: '', 
-                        terms: false 
-                    });
-                    switchToLogin();
-                }, 3000);
+        if (response.ok) {
+            setSuccessMessage('Registration successful! Please check your email for verification.');
+            setCountdown(6); // Reset countdown to 6
+            
+            // Start countdown interval
+            const countdownInterval = setInterval(() => {
+                setCountdown(prev => {
+                    if (prev <= 1) {
+                        clearInterval(countdownInterval);
+                        return 6; // Reset for next time
+                    }
+                    return prev - 1;
+                });
+            }, 1000);
+            
+            // Clear signup form and switch to login after 6 seconds
+            setTimeout(() => {
+                setSignupData({ 
+                    name: '', 
+                    email: '', 
+                    password: '', 
+                    password_confirmation: '', 
+                    terms: false 
+                });
+                switchToLogin();
+                setCountdown(6); // Reset countdown
+            }, 6000);
+        } else {
+            // RATE LIMITING ERROR HANDLING ADDED
+            if (response.status === 429) {
+                setErrors({ message: 'Too many registration attempts. Please try again in a minute.' });
             } else {
                 setErrors(data.errors || { message: 'Registration failed' });
             }
-        } catch (error) {
-            setErrors({ message: 'Network error. Please try again.' });
-        } finally {
-            setLoading(false);
         }
-    };
+    } catch (error) {
+        setErrors({ message: 'Network error. Please try again.' });
+    } finally {
+        setLoading(false);
+    }
+};
 
     // Prevent modal close when clicking inside modal content
     const handleModalClick = (e) => {
@@ -499,162 +610,191 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
                         </div>
                     </div>
                 ) : !showForgotPassword ? (
-                    /* SIGNUP FORM */
-                    <div className="auth-form">
-                        {/* Header */}
-                        <div className="auth-modal-header">
-                            <h2>Sign up</h2>
-                            <button className="auth-modal-close" onClick={onClose} aria-label="Close modal">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </button>
-                        </div>
+                   /* SIGNUP FORM */
+<div className="auth-form">
+    {/* Header */}
+    <div className="auth-modal-header">
+        <h2>Sign up</h2>
+        <button className="auth-modal-close" onClick={onClose} aria-label="Close modal">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+        </button>
+    </div>
 
-                        {/* Body */}
-                        <form onSubmit={handleSignup} className="auth-form-body">
-                            {/* Success Message */}
-                            {successMessage && (
-                                <div className="success-message">
-                                    {successMessage}
-                                </div>
-                            )}
+    {/* Body */}
+    <form onSubmit={handleSignup} className="auth-form-body">
+        {/* EMAIL VERIFICATION SUCCESS MESSAGE - ADD THIS */}
+        {showVerificationSuccess && (
+            <div className="success-message" style={{background: '#d4edda', color: '#155724', borderColor: '#c3e6cb'}}>
+                <div style={{textAlign: 'center'}}>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{margin: '0 auto 0.5rem', display: 'block'}}>
+                        <path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999" stroke="#155724" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M22 4L12 14.01L9 11.01" stroke="#155724" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
+                    <h3 style={{margin: '0.5rem 0', color: '#155724'}}>Email Verified Successfully!</h3>
+                    <p style={{margin: '0.25rem 0'}}>
+                        Your email <strong>{verificationEmail}</strong> has been verified.
+                    </p>
+                    <p style={{margin: '0.25rem 0 0 0', fontSize: '0.9rem'}}>
+                        Redirecting to login in {verificationCountdown} second{verificationCountdown !== 1 ? 's' : ''}...
+                    </p>
+                </div>
+            </div>
+        )}
 
-                            {/* Error Messages */}
-                            {errors.message && (
-                                <div className="error-message">
-                                    {errors.message}
-                                </div>
-                            )}
+        {/* Success Message */}
+                {successMessage && !showVerificationSuccess && (
+            <div className="success-message" style={{background: '#d4edda', color: '#155724', borderColor: '#c3e6cb', textAlign: 'center'}}>
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style={{margin: '0 auto 0.5rem', display: 'block'}}>
+                    <path d="M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999" stroke="#155724" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M22 4L12 14.01L9 11.01" stroke="#155724" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+                <h3 style={{margin: '0.5rem 0', color: '#155724'}}>Check Your Email!</h3>
+                <p style={{margin: '0.25rem 0'}}>
+                    We've sent a verification link to <strong>{signupData.email}</strong>
+                </p>
+                <p style={{margin: '0.25rem 0 0 0', fontSize: '0.9rem'}}>
+                    Redirecting to login in {countdown} second{countdown !== 1 ? 's' : ''}...
+                </p>
+            </div>
+        )}
+    
+        {/* Error Messages */}
+        {errors.message && (
+            <div className="error-message">
+                {errors.message}
+            </div>
+        )}
 
-                            {/* Name Input */}
-                            <div className="form-group">
-                                <label htmlFor="signup-name">Full Name</label>
-                                <input
-                                    type="text"
-                                    id="signup-name"
-                                    name="name"
-                                    value={signupData.name}
-                                    onChange={handleSignupChange}
-                                    placeholder="Enter your full name"
-                                    required
-                                    disabled={loading}
-                                    autoComplete="name"
-                                />
-                                {errors.name && <span className="field-error">{errors.name[0]}</span>}
-                            </div>
+        {/* Name Input */}
+        <div className="form-group">
+            <label htmlFor="signup-name">Full Name</label>
+            <input
+                type="text"
+                id="signup-name"
+                name="name"
+                value={signupData.name}
+                onChange={handleSignupChange}
+                placeholder="Enter your full name"
+                required
+                disabled={loading || showVerificationSuccess}
+                autoComplete="name"
+            />
+            {errors.name && <span className="field-error">{errors.name[0]}</span>}
+        </div>
 
-                            {/* Email Input */}
-                            <div className="form-group">
-                                <label htmlFor="signup-email">Email Address</label>
-                                <input
-                                    type="email"
-                                    id="signup-email"
-                                    name="email"
-                                    value={signupData.email}
-                                    onChange={handleSignupChange}
-                                    placeholder="Enter your email"
-                                    required
-                                    disabled={loading}
-                                    autoComplete="email"
-                                />
-                                {errors.email && <span className="field-error">{errors.email[0]}</span>}
-                            </div>
+        {/* Email Input */}
+        <div className="form-group">
+            <label htmlFor="signup-email">Email Address</label>
+            <input
+                type="email"
+                id="signup-email"
+                name="email"
+                value={signupData.email}
+                onChange={handleSignupChange}
+                placeholder="Enter your email"
+                required
+                disabled={loading || showVerificationSuccess}
+                autoComplete="email"
+            />
+            {errors.email && <span className="field-error">{errors.email[0]}</span>}
+        </div>
 
-                            {/* Password Input */}
-                            <div className="form-group">
-                                <label htmlFor="signup-password">Password</label>
-                                <div className="password-input-container">
-                                    <input
-                                        type={showPassword ? "text" : "password"}
-                                        id="signup-password"
-                                        name="password"
-                                        value={signupData.password}
-                                        onChange={handleSignupChange}
-                                        placeholder="Create a password"
-                                        required
-                                        disabled={loading}
-                                        autoComplete="new-password"
-                                    />
-                                    <button
-                                        type="button"
-                                        className="password-toggle"
-                                        onClick={() => setShowPassword(!showPassword)}
-                                        disabled={loading}
-                                    >
-                                        {showPassword ? 'Hide' : 'Show'}
-                                    </button>
-                                </div>
-                                {errors.password && <span className="field-error">{errors.password[0]}</span>}
-                            </div>
+        {/* Password Input */}
+        <div className="form-group">
+            <label htmlFor="signup-password">Password</label>
+            <div className="password-input-container">
+                <input
+                    type={showPassword ? "text" : "password"}
+                    id="signup-password"
+                    name="password"
+                    value={signupData.password}
+                    onChange={handleSignupChange}
+                    placeholder="Create a password"
+                    required
+                    disabled={loading || showVerificationSuccess}
+                    autoComplete="new-password"
+                />
+                <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowPassword(!showPassword)}
+                    disabled={loading || showVerificationSuccess}
+                >
+                    {showPassword ? 'Hide' : 'Show'}
+                </button>
+            </div>
+            {errors.password && <span className="field-error">{errors.password[0]}</span>}
+        </div>
 
-                            {/* Confirm Password Input */}
-                            <div className="form-group">
-                                <label htmlFor="confirm-password">Confirm Password</label>
-                                <div className="password-input-container">
-                                    <input
-                                        type={showConfirmPassword ? "text" : "password"}
-                                        id="confirm-password"
-                                        name="password_confirmation"
-                                        value={signupData.password_confirmation}
-                                        onChange={handleSignupChange}
-                                        placeholder="Confirm your password"
-                                        required
-                                        disabled={loading}
-                                        autoComplete="new-password"
-                                    />
-                                    <button
-                                        type="button"
-                                        className="password-toggle"
-                                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                                        disabled={loading}
-                                    >
-                                        {showConfirmPassword ? 'Hide' : 'Show'}
-                                    </button>
-                                </div>
-                            </div>
+        {/* Confirm Password Input */}
+        <div className="form-group">
+            <label htmlFor="confirm-password">Confirm Password</label>
+            <div className="password-input-container">
+                <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirm-password"
+                    name="password_confirmation"
+                    value={signupData.password_confirmation}
+                    onChange={handleSignupChange}
+                    placeholder="Confirm your password"
+                    required
+                    disabled={loading || showVerificationSuccess}
+                    autoComplete="new-password"
+                />
+                <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    disabled={loading || showVerificationSuccess}
+                >
+                    {showConfirmPassword ? 'Hide' : 'Show'}
+                </button>
+            </div>
+        </div>
 
-                            {/* Terms Checkbox */}
-                            <div className="terms-checkbox">
-                                <label>
-                                    <input 
-                                        type="checkbox" 
-                                        name="terms"
-                                        checked={signupData.terms}
-                                        onChange={handleSignupChange}
-                                        required 
-                                        disabled={loading}
-                                    />
-                                    <span>
-                                        I agree to the{' '}
-                                        <a href="#terms" className="terms-link">Terms and Conditions</a>
-                                        {' '}and{' '}
-                                        <a href="#privacy" className="terms-link">Privacy Policy</a>
-                                    </span>
-                                </label>
-                                {errors.terms && <span className="field-error">{errors.terms[0]}</span>}
-                            </div>
+        {/* Terms Checkbox */}
+        <div className="terms-checkbox">
+            <label>
+                <input 
+                    type="checkbox" 
+                    name="terms"
+                    checked={signupData.terms}
+                    onChange={handleSignupChange}
+                    required 
+                    disabled={loading || showVerificationSuccess}
+                />
+                <span>
+                    I agree to the{' '}
+                    <a href="#terms" className="terms-link">Terms and Conditions</a>
+                    {' '}and{' '}
+                    <a href="#privacy" className="terms-link">Privacy Policy</a>
+                </span>
+            </label>
+            {errors.terms && <span className="field-error">{errors.terms[0]}</span>}
+        </div>
 
-                            {/* Signup Button */}
-                            <button 
-                                type="submit" 
-                                className="btn btn-primary auth-submit-btn"
-                                disabled={loading}
-                            >
-                                {loading ? 'Creating Account...' : 'Create Account'}
-                            </button>
-                        </form>
+        {/* Signup Button */}
+        <button 
+            type="submit" 
+            className="btn btn-primary auth-submit-btn"
+            disabled={loading || showVerificationSuccess}
+        >
+            {loading ? 'Creating Account...' : 'Create Account'}
+        </button>
+    </form>
 
-                        {/* Footer */}
-                        <div className="auth-modal-footer">
-                            <p>
-                                Already have an account?{' '}
-                                <a className="switch-link" onClick={switchToLogin}>
-                                    Log in
-                                </a>
-                            </p>
-                        </div>
-                    </div>
+    {/* Footer */}
+    <div className="auth-modal-footer">
+        <p>
+            Already have an account?{' '}
+            <a className="switch-link" onClick={switchToLogin}>
+                Log in
+            </a>
+        </p>
+    </div>
+</div>
                 ) : (
                     /* FORGOT PASSWORD / RESET PASSWORD MODAL */
                     <div className="auth-form">
@@ -875,6 +1015,9 @@ const AuthModal = ({ isOpen, onClose, resetData }) => {
             </div>
         </div>
     );
+
+        
 };
+
 
 export default AuthModal;

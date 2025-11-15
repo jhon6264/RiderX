@@ -9,6 +9,7 @@ import AuthModal from './AuthModal';
 function App() {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [resetData, setResetData] = useState({ token: '', email: '' });
+    const [verificationData, setVerificationData] = useState({ verified: false, email: '' });
 
     const handleAuthModalOpen = () => {
         setIsAuthModalOpen(true);
@@ -16,20 +17,35 @@ function App() {
 
     const handleAuthModalClose = () => {
         setIsAuthModalOpen(false);
-        // Clear reset data when modal closes
+        // Clear all data when modal closes
         setResetData({ token: '', email: '' });
+        setVerificationData({ verified: false, email: '' });
     };
 
-    // Reset password detection
+    // Reset password and email verification detection
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
         const email = urlParams.get('email');
+        const verified = urlParams.get('verified');
+        
+        console.log('URL params:', { token, email, verified });
         
         if (token && email) {
+            // Password reset flow
             setResetData({ 
                 token: token, 
                 email: decodeURIComponent(email) 
+            });
+            setIsAuthModalOpen(true);
+            // Clean the URL
+            window.history.replaceState({}, '', '/');
+        } else if (verified === 'true') {
+            // Email verification success flow
+            const verifiedEmail = urlParams.get('email') || '';
+            setVerificationData({ 
+                verified: true, 
+                email: decodeURIComponent(verifiedEmail) 
             });
             setIsAuthModalOpen(true);
             // Clean the URL
@@ -48,6 +64,7 @@ function App() {
                 isOpen={isAuthModalOpen} 
                 onClose={handleAuthModalClose} 
                 resetData={resetData}
+                verificationData={verificationData} 
             />
         </div>
     );

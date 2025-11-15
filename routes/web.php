@@ -51,12 +51,15 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash) {
         abort(403);
     }
     
-    if (!$user->hasVerifiedEmail()) {
+    $wasVerified = $user->hasVerifiedEmail();
+    
+    if (!$wasVerified) {
         $user->markEmailAsVerified();
         Log::info("User {$id} email verified successfully");
     }
     
-    return redirect('/')->with('verified', true);
+    // Redirect to home with verification success parameters
+    return redirect('/?verified=true&email=' . urlencode($user->email));
 })->middleware(['signed'])->name('verification.verify');
 
 // Success page after verification
@@ -64,7 +67,7 @@ Route::get('/email/verified', function () {
     return view('home')->with('message', 'Email verified successfully!');
 })->name('verification.notice');
 
-// API Routes
+// API Routes with Rate Limiting
 Route::prefix('api')->group(function () {
     // Auth status check
     Route::get('/user', function (Request $request) {
@@ -90,8 +93,18 @@ Route::prefix('api')->group(function () {
         return response()->json(['message' => 'API is working!', 'status' => 'success']);
     });
     
-    // Auth routes
-    Route::post('/register', [RegisteredUserController::class, 'store']);
-    Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+    // Auth routes with RATE LIMITING
+    Route::post('/register', [RegisteredUserController::class, 'store'])
+        ->middleware('throttle:3,1'); // 3 registration attempts per minute
+    
+    Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+        ->middleware('throttle:5,1'); // 5 login attempts per minute
+    
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
+});
+
+// Rate limiting for Fortify routes (additional protection)
+Route::middleware('throttle:5,1')->group(function () {
+    // Fortify's built-in routes are already loaded above, but this adds extra protection
+    // for any additional auth routes you might add
 });

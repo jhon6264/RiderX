@@ -34814,15 +34814,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
+function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
+function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
+function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function ownKeys(e, r) { var t = Object.keys(e); if (Object.getOwnPropertySymbols) { var o = Object.getOwnPropertySymbols(e); r && (o = o.filter(function (r) { return Object.getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
 function _objectSpread(e) { for (var r = 1; r < arguments.length; r++) { var t = null != arguments[r] ? arguments[r] : {}; r % 2 ? ownKeys(Object(t), !0).forEach(function (r) { _defineProperty(e, r, t[r]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function (r) { Object.defineProperty(e, r, Object.getOwnPropertyDescriptor(t, r)); }); } return e; }
 function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
 function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
 function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
-function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
-function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
-function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
-function _asyncToGenerator(n) { return function () { var t = this, e = arguments; return new Promise(function (r, o) { var a = n.apply(t, e); function _next(n) { asyncGeneratorStep(a, r, o, _next, _throw, "next", n); } function _throw(n) { asyncGeneratorStep(a, r, o, _next, _throw, "throw", n); } _next(void 0); }); }; }
 function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
@@ -34834,7 +34834,16 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 var AuthModal = function AuthModal(_ref) {
   var isOpen = _ref.isOpen,
     onClose = _ref.onClose,
-    resetData = _ref.resetData;
+    _ref$resetData = _ref.resetData,
+    resetData = _ref$resetData === void 0 ? {
+      token: '',
+      email: ''
+    } : _ref$resetData,
+    _ref$verificationData = _ref.verificationData,
+    verificationData = _ref$verificationData === void 0 ? {
+      verified: false,
+      email: ''
+    } : _ref$verificationData;
   console.log('AuthModal rendered - isOpen:', isOpen, 'resetData:', resetData);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState2 = _slicedToArray(_useState, 2),
@@ -34876,39 +34885,74 @@ var AuthModal = function AuthModal(_ref) {
     _useState18 = _slicedToArray(_useState17, 2),
     forgotPasswordSuccess = _useState18[0],
     setForgotPasswordSuccess = _useState18[1];
-
-  // Reset password states
   var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
     _useState20 = _slicedToArray(_useState19, 2),
-    showResetForm = _useState20[0],
-    setShowResetForm = _useState20[1];
-  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    showVerificationSuccess = _useState20[0],
+    setShowVerificationSuccess = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState22 = _slicedToArray(_useState21, 2),
+    verificationEmail = _useState22[0],
+    setVerificationEmail = _useState22[1];
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(6),
+    _useState24 = _slicedToArray(_useState23, 2),
+    countdown = _useState24[0],
+    setCountdown = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5),
+    _useState26 = _slicedToArray(_useState25, 2),
+    verificationCountdown = _useState26[0],
+    setVerificationCountdown = _useState26[1];
+
+  // Reset password states
+  var _useState27 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState28 = _slicedToArray(_useState27, 2),
+    showResetForm = _useState28[0],
+    setShowResetForm = _useState28[1];
+  var _useState29 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       email: '',
       password: '',
       password_confirmation: ''
     }),
-    _useState22 = _slicedToArray(_useState21, 2),
-    resetPasswordData = _useState22[0],
-    setResetPasswordData = _useState22[1];
+    _useState30 = _slicedToArray(_useState29, 2),
+    resetPasswordData = _useState30[0],
+    setResetPasswordData = _useState30[1];
 
   // Form data states
-  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState31 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       email: '',
       password: ''
     }),
-    _useState24 = _slicedToArray(_useState23, 2),
-    loginData = _useState24[0],
-    setLoginData = _useState24[1];
-  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState32 = _slicedToArray(_useState31, 2),
+    loginData = _useState32[0],
+    setLoginData = _useState32[1];
+  var _useState33 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       name: '',
       email: '',
       password: '',
       password_confirmation: '',
       terms: false
     }),
-    _useState26 = _slicedToArray(_useState25, 2),
-    signupData = _useState26[0],
-    setSignupData = _useState26[1];
+    _useState34 = _slicedToArray(_useState33, 2),
+    signupData = _useState34[0],
+    setSignupData = _useState34[1];
+
+  // Password validation function
+  var validatePassword = function validatePassword(password) {
+    var minLength = 8;
+    var hasUpperCase = /[A-Z]/.test(password);
+    var hasLowerCase = /[a-z]/.test(password);
+    var hasNumbers = /\d/.test(password);
+    var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+    return {
+      isValid: password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar,
+      requirements: {
+        minLength: password.length >= minLength,
+        hasUpperCase: hasUpperCase,
+        hasLowerCase: hasLowerCase,
+        hasNumbers: hasNumbers,
+        hasSpecialChar: hasSpecialChar
+      }
+    };
+  };
 
   // Reset form when modal opens/closes or when reset data is provided
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
@@ -34935,6 +34979,52 @@ var AuthModal = function AuthModal(_ref) {
       resetAllForms();
     }
   }, [isOpen]);
+  // Cleanup countdown interval
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    return function () {
+      // This will clean up any running intervals when component unmounts
+      setCountdown(5);
+    };
+  }, []);
+
+  // Handle email verification success
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (verificationData.verified && verificationData.email && isOpen) {
+      console.log('Email verification success for:', verificationData.email);
+      setShowVerificationSuccess(true);
+      setVerificationEmail(verificationData.email);
+      setIsLoginView(false); // Show signup form initially
+      setVerificationCountdown(5); // Reset countdown to 5
+
+      // Start countdown interval
+      var countdownInterval = setInterval(function () {
+        setVerificationCountdown(function (prev) {
+          if (prev <= 1) {
+            clearInterval(countdownInterval);
+            return 5; // Reset for next time
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      // Auto-switch to login form after 5 seconds
+      var timer = setTimeout(function () {
+        setShowVerificationSuccess(false);
+        setIsLoginView(true);
+        // Pre-fill the login email
+        setLoginData(function (prev) {
+          return _objectSpread(_objectSpread({}, prev), {}, {
+            email: verificationData.email
+          });
+        });
+        setVerificationCountdown(5); // Reset countdown
+      }, 5000);
+      return function () {
+        clearTimeout(timer);
+        clearInterval(countdownInterval);
+      };
+    }
+  }, [verificationData, isOpen]);
 
   // Function to reset all form data
   var resetAllForms = function resetAllForms() {
@@ -34963,6 +35053,8 @@ var AuthModal = function AuthModal(_ref) {
     setShowForgotPassword(false);
     setIsLoginView(true);
     setForgotPasswordSuccess(false);
+    setShowVerificationSuccess(false); // Add this
+    setVerificationEmail(''); // Add this
   };
 
   // CSRF Token function
@@ -35079,9 +35171,24 @@ var AuthModal = function AuthModal(_ref) {
             if (response.ok) {
               setForgotPasswordSuccess(true);
             } else {
-              setErrors(data.errors || {
-                message: data.message || 'Failed to send reset link'
-              });
+              // RATE LIMITING ERROR HANDLING ADDED
+              if (response.status === 429) {
+                setErrors({
+                  message: 'Too many password reset attempts. Please try again in a minute.'
+                });
+              } else if (data.message && data.message.includes('not found') || data.message && data.message.includes('not registered')) {
+                setErrors({
+                  message: 'This email address is not registered in our system.'
+                });
+              } else if (data.errors && data.errors.email) {
+                setErrors({
+                  message: data.errors.email[0]
+                });
+              } else {
+                setErrors({
+                  message: data.message || 'Failed to send reset link. Please try again.'
+                });
+              }
             }
             _context2.n = 6;
             break;
@@ -35235,9 +35342,16 @@ var AuthModal = function AuthModal(_ref) {
             _context4.n = 10;
             break;
           case 9:
-            setErrors(data.errors || {
-              message: 'Login failed'
-            });
+            // RATE LIMITING ERROR HANDLING ADDED
+            if (response.status === 429) {
+              setErrors({
+                message: 'Too many login attempts. Please try again in a minute.'
+              });
+            } else {
+              setErrors(data.errors || {
+                message: 'Login failed'
+              });
+            }
           case 10:
             _context4.n = 12;
             break;
@@ -35262,7 +35376,7 @@ var AuthModal = function AuthModal(_ref) {
   }();
   var handleSignup = /*#__PURE__*/function () {
     var _ref6 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(e) {
-      var response, data, _t5;
+      var response, data, countdownInterval, _t5;
       return _regenerator().w(function (_context5) {
         while (1) switch (_context5.p = _context5.n) {
           case 0:
@@ -35289,8 +35403,18 @@ var AuthModal = function AuthModal(_ref) {
             data = _context5.v;
             if (response.ok) {
               setSuccessMessage('Registration successful! Please check your email for verification.');
+              setCountdown(6); // Reset countdown to 6
 
-              // Clear signup form and switch to login after success
+              // Start countdown interval
+              countdownInterval = setInterval(function () {
+                setCountdown(function (prev) {
+                  if (prev <= 1) {
+                    clearInterval(countdownInterval);
+                    return 6; // Reset for next time
+                  }
+                  return prev - 1;
+                });
+              }, 1000); // Clear signup form and switch to login after 6 seconds
               setTimeout(function () {
                 setSignupData({
                   name: '',
@@ -35300,11 +35424,19 @@ var AuthModal = function AuthModal(_ref) {
                   terms: false
                 });
                 switchToLogin();
-              }, 3000);
+                setCountdown(6); // Reset countdown
+              }, 6000);
             } else {
-              setErrors(data.errors || {
-                message: 'Registration failed'
-              });
+              // RATE LIMITING ERROR HANDLING ADDED
+              if (response.status === 429) {
+                setErrors({
+                  message: 'Too many registration attempts. Please try again in a minute.'
+                });
+              } else {
+                setErrors(data.errors || {
+                  message: 'Registration failed'
+                });
+              }
             }
             _context5.n = 5;
             break;
@@ -35576,9 +35708,110 @@ var AuthModal = function AuthModal(_ref) {
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
           onSubmit: handleSignup,
           className: "auth-form-body",
-          children: [successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          children: [showVerificationSuccess && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "success-message",
-            children: successMessage
+            style: {
+              background: '#d4edda',
+              color: '#155724',
+              borderColor: '#c3e6cb'
+            },
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              style: {
+                textAlign: 'center'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
+                width: "48",
+                height: "48",
+                viewBox: "0 0 24 24",
+                fill: "none",
+                style: {
+                  margin: '0 auto 0.5rem',
+                  display: 'block'
+                },
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                  d: "M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999",
+                  stroke: "#155724",
+                  strokeWidth: "2",
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                  d: "M22 4L12 14.01L9 11.01",
+                  stroke: "#155724",
+                  strokeWidth: "2",
+                  strokeLinecap: "round",
+                  strokeLinejoin: "round"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+                style: {
+                  margin: '0.5rem 0',
+                  color: '#155724'
+                },
+                children: "Email Verified Successfully!"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                style: {
+                  margin: '0.25rem 0'
+                },
+                children: ["Your email ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                  children: verificationEmail
+                }), " has been verified."]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+                style: {
+                  margin: '0.25rem 0 0 0',
+                  fontSize: '0.9rem'
+                },
+                children: ["Redirecting to login in ", verificationCountdown, " second", verificationCountdown !== 1 ? 's' : '', "..."]
+              })]
+            })
+          }), successMessage && !showVerificationSuccess && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "success-message",
+            style: {
+              background: '#d4edda',
+              color: '#155724',
+              borderColor: '#c3e6cb',
+              textAlign: 'center'
+            },
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
+              width: "48",
+              height: "48",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              style: {
+                margin: '0 auto 0.5rem',
+                display: 'block'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                d: "M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999",
+                stroke: "#155724",
+                strokeWidth: "2",
+                strokeLinecap: "round",
+                strokeLinejoin: "round"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                d: "M22 4L12 14.01L9 11.01",
+                stroke: "#155724",
+                strokeWidth: "2",
+                strokeLinecap: "round",
+                strokeLinejoin: "round"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+              style: {
+                margin: '0.5rem 0',
+                color: '#155724'
+              },
+              children: "Check Your Email!"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+              style: {
+                margin: '0.25rem 0'
+              },
+              children: ["We've sent a verification link to ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                children: signupData.email
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+              style: {
+                margin: '0.25rem 0 0 0',
+                fontSize: '0.9rem'
+              },
+              children: ["Redirecting to login in ", countdown, " second", countdown !== 1 ? 's' : '', "..."]
+            })]
           }), errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
             className: "error-message",
             children: errors.message
@@ -35595,7 +35828,7 @@ var AuthModal = function AuthModal(_ref) {
               onChange: handleSignupChange,
               placeholder: "Enter your full name",
               required: true,
-              disabled: loading,
+              disabled: loading || showVerificationSuccess,
               autoComplete: "name"
             }), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "field-error",
@@ -35614,7 +35847,7 @@ var AuthModal = function AuthModal(_ref) {
               onChange: handleSignupChange,
               placeholder: "Enter your email",
               required: true,
-              disabled: loading,
+              disabled: loading || showVerificationSuccess,
               autoComplete: "email"
             }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "field-error",
@@ -35635,7 +35868,7 @@ var AuthModal = function AuthModal(_ref) {
                 onChange: handleSignupChange,
                 placeholder: "Create a password",
                 required: true,
-                disabled: loading,
+                disabled: loading || showVerificationSuccess,
                 autoComplete: "new-password"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                 type: "button",
@@ -35643,7 +35876,7 @@ var AuthModal = function AuthModal(_ref) {
                 onClick: function onClick() {
                   return setShowPassword(!showPassword);
                 },
-                disabled: loading,
+                disabled: loading || showVerificationSuccess,
                 children: showPassword ? 'Hide' : 'Show'
               })]
             }), errors.password && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
@@ -35665,7 +35898,7 @@ var AuthModal = function AuthModal(_ref) {
                 onChange: handleSignupChange,
                 placeholder: "Confirm your password",
                 required: true,
-                disabled: loading,
+                disabled: loading || showVerificationSuccess,
                 autoComplete: "new-password"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                 type: "button",
@@ -35673,7 +35906,7 @@ var AuthModal = function AuthModal(_ref) {
                 onClick: function onClick() {
                   return setShowConfirmPassword(!showConfirmPassword);
                 },
-                disabled: loading,
+                disabled: loading || showVerificationSuccess,
                 children: showConfirmPassword ? 'Hide' : 'Show'
               })]
             })]
@@ -35686,7 +35919,7 @@ var AuthModal = function AuthModal(_ref) {
                 checked: signupData.terms,
                 onChange: handleSignupChange,
                 required: true,
-                disabled: loading
+                disabled: loading || showVerificationSuccess
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("span", {
                 children: ["I agree to the", ' ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
                   href: "#terms",
@@ -35705,7 +35938,7 @@ var AuthModal = function AuthModal(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
             type: "submit",
             className: "btn btn-primary auth-submit-btn",
-            disabled: loading,
+            disabled: loading || showVerificationSuccess,
             children: loading ? 'Creating Account...' : 'Create Account'
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
@@ -36226,27 +36459,55 @@ function App() {
     _useState4 = _slicedToArray(_useState3, 2),
     resetData = _useState4[0],
     setResetData = _useState4[1];
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      verified: false,
+      email: ''
+    }),
+    _useState6 = _slicedToArray(_useState5, 2),
+    verificationData = _useState6[0],
+    setVerificationData = _useState6[1];
   var handleAuthModalOpen = function handleAuthModalOpen() {
     setIsAuthModalOpen(true);
   };
   var handleAuthModalClose = function handleAuthModalClose() {
     setIsAuthModalOpen(false);
-    // Clear reset data when modal closes
+    // Clear all data when modal closes
     setResetData({
       token: '',
       email: ''
     });
+    setVerificationData({
+      verified: false,
+      email: ''
+    });
   };
 
-  // Reset password detection
+  // Reset password and email verification detection
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var urlParams = new URLSearchParams(window.location.search);
     var token = urlParams.get('token');
     var email = urlParams.get('email');
+    var verified = urlParams.get('verified');
+    console.log('URL params:', {
+      token: token,
+      email: email,
+      verified: verified
+    });
     if (token && email) {
+      // Password reset flow
       setResetData({
         token: token,
         email: decodeURIComponent(email)
+      });
+      setIsAuthModalOpen(true);
+      // Clean the URL
+      window.history.replaceState({}, '', '/');
+    } else if (verified === 'true') {
+      // Email verification success flow
+      var verifiedEmail = urlParams.get('email') || '';
+      setVerificationData({
+        verified: true,
+        email: decodeURIComponent(verifiedEmail)
       });
       setIsAuthModalOpen(true);
       // Clean the URL
@@ -36260,7 +36521,8 @@ function App() {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Hero__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Partnership__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_AuthModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
       isOpen: isAuthModalOpen,
       onClose: handleAuthModalClose,
-      resetData: resetData
+      resetData: resetData,
+      verificationData: verificationData
     })]
   });
 }
