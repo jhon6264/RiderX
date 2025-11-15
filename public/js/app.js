@@ -34833,7 +34833,9 @@ function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
 
 var AuthModal = function AuthModal(_ref) {
   var isOpen = _ref.isOpen,
-    onClose = _ref.onClose;
+    onClose = _ref.onClose,
+    resetData = _ref.resetData;
+  console.log('AuthModal rendered - isOpen:', isOpen, 'resetData:', resetData);
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true),
     _useState2 = _slicedToArray(_useState, 2),
     isLoginView = _useState2[0],
@@ -34858,40 +34860,145 @@ var AuthModal = function AuthModal(_ref) {
     _useState10 = _slicedToArray(_useState1, 2),
     successMessage = _useState10[0],
     setSuccessMessage = _useState10[1];
+  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState12 = _slicedToArray(_useState11, 2),
+    showForgotPassword = _useState12[0],
+    setShowForgotPassword = _useState12[1];
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(''),
+    _useState14 = _slicedToArray(_useState13, 2),
+    forgotPasswordEmail = _useState14[0],
+    setForgotPasswordEmail = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    forgotPasswordLoading = _useState16[0],
+    setForgotPasswordLoading = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState18 = _slicedToArray(_useState17, 2),
+    forgotPasswordSuccess = _useState18[0],
+    setForgotPasswordSuccess = _useState18[1];
+
+  // Reset password states
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState20 = _slicedToArray(_useState19, 2),
+    showResetForm = _useState20[0],
+    setShowResetForm = _useState20[1];
+  var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      email: '',
+      password: '',
+      password_confirmation: ''
+    }),
+    _useState22 = _slicedToArray(_useState21, 2),
+    resetPasswordData = _useState22[0],
+    setResetPasswordData = _useState22[1];
 
   // Form data states
-  var _useState11 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+  var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       email: '',
       password: ''
     }),
-    _useState12 = _slicedToArray(_useState11, 2),
-    loginData = _useState12[0],
-    setLoginData = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    _useState24 = _slicedToArray(_useState23, 2),
+    loginData = _useState24[0],
+    setLoginData = _useState24[1];
+  var _useState25 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
       name: '',
       email: '',
       password: '',
       password_confirmation: '',
       terms: false
     }),
-    _useState14 = _slicedToArray(_useState13, 2),
-    signupData = _useState14[0],
-    setSignupData = _useState14[1];
+    _useState26 = _slicedToArray(_useState25, 2),
+    signupData = _useState26[0],
+    setSignupData = _useState26[1];
+
+  // Reset form when modal opens/closes or when reset data is provided
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (resetData.token && resetData.email && isOpen) {
+      console.log('Setting up reset form with email:', resetData.email);
+      setShowResetForm(true);
+      setShowForgotPassword(true);
+      setResetPasswordData({
+        email: resetData.email,
+        password: '',
+        password_confirmation: ''
+      });
+    } else if (isOpen) {
+      // Reset to login view when opening normally
+      setShowResetForm(false);
+      setShowForgotPassword(false);
+      setIsLoginView(true);
+    }
+  }, [resetData, isOpen]);
+
+  // Clear all forms when modal closes
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (!isOpen) {
+      resetAllForms();
+    }
+  }, [isOpen]);
+
+  // Function to reset all form data
+  var resetAllForms = function resetAllForms() {
+    setLoginData({
+      email: '',
+      password: ''
+    });
+    setSignupData({
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      terms: false
+    });
+    setResetPasswordData({
+      email: '',
+      password: '',
+      password_confirmation: ''
+    });
+    setForgotPasswordEmail('');
+    setErrors({});
+    setSuccessMessage('');
+    setShowPassword(false);
+    setShowConfirmPassword(false);
+    setShowResetForm(false);
+    setShowForgotPassword(false);
+    setIsLoginView(true);
+    setForgotPasswordSuccess(false);
+  };
 
   // CSRF Token function
   var getCsrfToken = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee() {
+      var response, _t;
       return _regenerator().w(function (_context) {
-        while (1) switch (_context.n) {
+        while (1) switch (_context.p = _context.n) {
           case 0:
+            _context.p = 0;
             _context.n = 1;
             return fetch('/sanctum/csrf-cookie', {
-              credentials: 'include'
+              method: 'GET',
+              credentials: 'include',
+              headers: {
+                'Accept': 'application/json'
+              }
             });
           case 1:
+            response = _context.v;
+            if (response.ok) {
+              _context.n = 2;
+              break;
+            }
+            throw new Error('Failed to get CSRF token');
+          case 2:
+            return _context.a(2, true);
+          case 3:
+            _context.p = 3;
+            _t = _context.v;
+            console.error('CSRF token error:', _t);
+            throw _t;
+          case 4:
             return _context.a(2);
         }
-      }, _callee);
+      }, _callee, null, [[0, 3]]);
     }));
     return function getCsrfToken() {
       return _ref2.apply(this, arguments);
@@ -34903,11 +35010,24 @@ var AuthModal = function AuthModal(_ref) {
     setIsLoginView(false);
     setErrors({});
     setSuccessMessage('');
+    // Clear signup form when switching
+    setSignupData({
+      name: '',
+      email: '',
+      password: '',
+      password_confirmation: '',
+      terms: false
+    });
   };
   var switchToLogin = function switchToLogin() {
     setIsLoginView(true);
     setErrors({});
     setSuccessMessage('');
+    // Clear login form when switching
+    setLoginData({
+      email: '',
+      password: ''
+    });
   };
 
   // Handle input changes
@@ -34918,151 +35038,121 @@ var AuthModal = function AuthModal(_ref) {
     var value = e.target.type === 'checkbox' ? e.target.checked : e.target.value;
     setSignupData(_objectSpread(_objectSpread({}, signupData), {}, _defineProperty({}, e.target.name, value)));
   };
+  var handleResetPasswordChange = function handleResetPasswordChange(e) {
+    setResetPasswordData(_objectSpread(_objectSpread({}, resetPasswordData), {}, _defineProperty({}, e.target.name, e.target.value)));
+  };
 
-  // Handle form submissions
-  var handleLogin = /*#__PURE__*/function () {
+  // Handle Forgot Password Submission
+  var handleForgotPasswordSubmit = /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(e) {
-      var response, data, userResponse, userData, _t;
+      var csrfToken, response, data, _t2;
       return _regenerator().w(function (_context2) {
         while (1) switch (_context2.p = _context2.n) {
           case 0:
             e.preventDefault();
-            setLoading(true);
+            setForgotPasswordLoading(true);
             setErrors({});
-            setSuccessMessage('');
+            setForgotPasswordSuccess(false);
             _context2.p = 1;
             _context2.n = 2;
-            return fetch('/api/login', {
+            return getCsrfToken();
+          case 2:
+            csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+            _context2.n = 3;
+            return fetch('/forgot-password', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
+                'X-CSRF-TOKEN': csrfToken
               },
-              body: JSON.stringify(loginData)
+              body: JSON.stringify({
+                email: forgotPasswordEmail
+              })
             });
-          case 2:
-            response = _context2.v;
-            _context2.n = 3;
-            return response.json();
           case 3:
-            data = _context2.v;
-            if (!response.ok) {
-              _context2.n = 9;
-              break;
-            }
+            response = _context2.v;
             _context2.n = 4;
-            return fetch('/api/user');
+            return response.json();
           case 4:
-            userResponse = _context2.v;
-            _context2.n = 5;
-            return userResponse.json();
-          case 5:
-            userData = _context2.v;
-            if (!(userData.authenticated && !userData.user.email_verified)) {
-              _context2.n = 7;
-              break;
+            data = _context2.v;
+            if (response.ok) {
+              setForgotPasswordSuccess(true);
+            } else {
+              setErrors(data.errors || {
+                message: data.message || 'Failed to send reset link'
+              });
             }
             _context2.n = 6;
-            return fetch('/api/logout', {
-              method: 'POST'
-            });
-          case 6:
-            setErrors({
-              message: 'Please verify your email address before logging in.'
-            });
-            _context2.n = 8;
             break;
-          case 7:
-            // User IS verified - proceed normally
-            setSuccessMessage('Login successful!');
-            setTimeout(function () {
-              onClose();
-              window.location.reload();
-            }, 1500);
-          case 8:
-            _context2.n = 10;
-            break;
-          case 9:
-            setErrors(data.errors || {
-              message: 'Login failed'
-            });
-          case 10:
-            _context2.n = 12;
-            break;
-          case 11:
-            _context2.p = 11;
-            _t = _context2.v;
+          case 5:
+            _context2.p = 5;
+            _t2 = _context2.v;
             setErrors({
               message: 'Network error. Please try again.'
             });
-          case 12:
-            _context2.p = 12;
-            setLoading(false);
-            return _context2.f(12);
-          case 13:
+          case 6:
+            _context2.p = 6;
+            setForgotPasswordLoading(false);
+            return _context2.f(6);
+          case 7:
             return _context2.a(2);
         }
-      }, _callee2, null, [[1, 11, 12, 13]]);
+      }, _callee2, null, [[1, 5, 6, 7]]);
     }));
-    return function handleLogin(_x) {
+    return function handleForgotPasswordSubmit(_x) {
       return _ref3.apply(this, arguments);
     };
   }();
-  var handleSignup = /*#__PURE__*/function () {
+
+  // Handle Reset Password Submission
+  var handleResetPassword = /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3(e) {
-      var response, data, _t2;
+      var csrfToken, response, data, _t3;
       return _regenerator().w(function (_context3) {
         while (1) switch (_context3.p = _context3.n) {
           case 0:
             e.preventDefault();
             setLoading(true);
             setErrors({});
-            setSuccessMessage('');
-
-            // ADD THIS LINE:
-            console.log('Sending signup data:', signupData);
             _context3.p = 1;
+            csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
             _context3.n = 2;
-            return fetch('/api/register', {
+            return fetch('/reset-password', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest'
+                'X-CSRF-TOKEN': csrfToken
               },
-              body: JSON.stringify(signupData)
+              body: JSON.stringify(_objectSpread(_objectSpread({}, resetPasswordData), {}, {
+                token: resetData.token
+              }))
             });
           case 2:
             response = _context3.v;
-            // ADD THESE TWO LINES:
-            console.log('Response status:', response.status);
             _context3.n = 3;
             return response.json();
           case 3:
             data = _context3.v;
-            console.log('Response data:', data);
             if (response.ok) {
-              // ADD THIS LINE:
-              console.log('Registration successful!');
-              setSuccessMessage('Registration successful! Please check your email for verification.');
+              setSuccessMessage('Password reset successfully! You can now login with your new password.');
+
+              // Clear reset form and close modal after success
               setTimeout(function () {
-                switchToLogin();
-              }, 10000);
+                resetAllForms();
+                onClose();
+              }, 2000);
             } else {
-              // ADD THIS LINE:
-              console.log('Registration failed:', data);
               setErrors(data.errors || {
-                message: 'Registration failed'
+                message: data.message || 'Failed to reset password'
               });
             }
             _context3.n = 5;
             break;
           case 4:
             _context3.p = 4;
-            _t2 = _context3.v;
-            // ADD THIS LINE:
-            console.log('Network error:', _t2);
+            _t3 = _context3.v;
             setErrors({
               message: 'Network error. Please try again.'
             });
@@ -35075,8 +35165,166 @@ var AuthModal = function AuthModal(_ref) {
         }
       }, _callee3, null, [[1, 4, 5, 6]]);
     }));
-    return function handleSignup(_x2) {
+    return function handleResetPassword(_x2) {
       return _ref4.apply(this, arguments);
+    };
+  }();
+
+  // Handle form submissions
+  var handleLogin = /*#__PURE__*/function () {
+    var _ref5 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee4(e) {
+      var response, data, userResponse, userData, _t4;
+      return _regenerator().w(function (_context4) {
+        while (1) switch (_context4.p = _context4.n) {
+          case 0:
+            e.preventDefault();
+            setLoading(true);
+            setErrors({});
+            setSuccessMessage('');
+            _context4.p = 1;
+            _context4.n = 2;
+            return fetch('/api/login', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              body: JSON.stringify(loginData)
+            });
+          case 2:
+            response = _context4.v;
+            _context4.n = 3;
+            return response.json();
+          case 3:
+            data = _context4.v;
+            if (!response.ok) {
+              _context4.n = 9;
+              break;
+            }
+            _context4.n = 4;
+            return fetch('/api/user');
+          case 4:
+            userResponse = _context4.v;
+            _context4.n = 5;
+            return userResponse.json();
+          case 5:
+            userData = _context4.v;
+            if (!(userData.authenticated && !userData.user.email_verified)) {
+              _context4.n = 7;
+              break;
+            }
+            _context4.n = 6;
+            return fetch('/api/logout', {
+              method: 'POST'
+            });
+          case 6:
+            setErrors({
+              message: 'Please verify your email address before logging in.'
+            });
+            _context4.n = 8;
+            break;
+          case 7:
+            setSuccessMessage('Login successful!');
+            setTimeout(function () {
+              resetAllForms();
+              onClose();
+              window.location.reload();
+            }, 1500);
+          case 8:
+            _context4.n = 10;
+            break;
+          case 9:
+            setErrors(data.errors || {
+              message: 'Login failed'
+            });
+          case 10:
+            _context4.n = 12;
+            break;
+          case 11:
+            _context4.p = 11;
+            _t4 = _context4.v;
+            setErrors({
+              message: 'Network error. Please try again.'
+            });
+          case 12:
+            _context4.p = 12;
+            setLoading(false);
+            return _context4.f(12);
+          case 13:
+            return _context4.a(2);
+        }
+      }, _callee4, null, [[1, 11, 12, 13]]);
+    }));
+    return function handleLogin(_x3) {
+      return _ref5.apply(this, arguments);
+    };
+  }();
+  var handleSignup = /*#__PURE__*/function () {
+    var _ref6 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee5(e) {
+      var response, data, _t5;
+      return _regenerator().w(function (_context5) {
+        while (1) switch (_context5.p = _context5.n) {
+          case 0:
+            e.preventDefault();
+            setLoading(true);
+            setErrors({});
+            setSuccessMessage('');
+            _context5.p = 1;
+            _context5.n = 2;
+            return fetch('/api/register', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest'
+              },
+              body: JSON.stringify(signupData)
+            });
+          case 2:
+            response = _context5.v;
+            _context5.n = 3;
+            return response.json();
+          case 3:
+            data = _context5.v;
+            if (response.ok) {
+              setSuccessMessage('Registration successful! Please check your email for verification.');
+
+              // Clear signup form and switch to login after success
+              setTimeout(function () {
+                setSignupData({
+                  name: '',
+                  email: '',
+                  password: '',
+                  password_confirmation: '',
+                  terms: false
+                });
+                switchToLogin();
+              }, 3000);
+            } else {
+              setErrors(data.errors || {
+                message: 'Registration failed'
+              });
+            }
+            _context5.n = 5;
+            break;
+          case 4:
+            _context5.p = 4;
+            _t5 = _context5.v;
+            setErrors({
+              message: 'Network error. Please try again.'
+            });
+          case 5:
+            _context5.p = 5;
+            setLoading(false);
+            return _context5.f(5);
+          case 6:
+            return _context5.a(2);
+        }
+      }, _callee5, null, [[1, 4, 5, 6]]);
+    }));
+    return function handleSignup(_x4) {
+      return _ref6.apply(this, arguments);
     };
   }();
 
@@ -35086,7 +35334,7 @@ var AuthModal = function AuthModal(_ref) {
   };
 
   // Close modal when pressing Escape key
-  react__WEBPACK_IMPORTED_MODULE_0___default().useEffect(function () {
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     var handleEscape = function handleEscape(e) {
       if (e.key === 'Escape') {
         onClose();
@@ -35108,7 +35356,7 @@ var AuthModal = function AuthModal(_ref) {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
       className: "auth-modal-content",
       onClick: handleModalClick,
-      children: isLoginView ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+      children: isLoginView && !showForgotPassword ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
         className: "auth-form",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
           className: "auth-modal-header",
@@ -35154,7 +35402,8 @@ var AuthModal = function AuthModal(_ref) {
               onChange: handleLoginChange,
               placeholder: "Enter your email",
               required: true,
-              disabled: loading
+              disabled: loading,
+              autoComplete: "email"
             }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "field-error",
               children: errors.email[0]
@@ -35174,7 +35423,8 @@ var AuthModal = function AuthModal(_ref) {
                 onChange: handleLoginChange,
                 placeholder: "Enter your password",
                 required: true,
-                disabled: loading
+                disabled: loading,
+                autoComplete: "current-password"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                 type: "button",
                 className: "password-toggle",
@@ -35225,6 +35475,10 @@ var AuthModal = function AuthModal(_ref) {
             className: "forgot-password",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
               href: "#forgot",
+              onClick: function onClick(e) {
+                e.preventDefault();
+                setShowForgotPassword(true);
+              },
               children: "Forgot password?"
             })
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
@@ -35292,7 +35546,7 @@ var AuthModal = function AuthModal(_ref) {
             })]
           })
         })]
-      }) :
+      }) : !showForgotPassword ?
       /*#__PURE__*/
       /* SIGNUP FORM */
       (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
@@ -35341,7 +35595,8 @@ var AuthModal = function AuthModal(_ref) {
               onChange: handleSignupChange,
               placeholder: "Enter your full name",
               required: true,
-              disabled: loading
+              disabled: loading,
+              autoComplete: "name"
             }), errors.name && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "field-error",
               children: errors.name[0]
@@ -35359,7 +35614,8 @@ var AuthModal = function AuthModal(_ref) {
               onChange: handleSignupChange,
               placeholder: "Enter your email",
               required: true,
-              disabled: loading
+              disabled: loading,
+              autoComplete: "email"
             }), errors.email && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", {
               className: "field-error",
               children: errors.email[0]
@@ -35379,7 +35635,8 @@ var AuthModal = function AuthModal(_ref) {
                 onChange: handleSignupChange,
                 placeholder: "Create a password",
                 required: true,
-                disabled: loading
+                disabled: loading,
+                autoComplete: "new-password"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                 type: "button",
                 className: "password-toggle",
@@ -35408,7 +35665,8 @@ var AuthModal = function AuthModal(_ref) {
                 onChange: handleSignupChange,
                 placeholder: "Confirm your password",
                 required: true,
-                disabled: loading
+                disabled: loading,
+                autoComplete: "new-password"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
                 type: "button",
                 className: "password-toggle",
@@ -35457,6 +35715,294 @@ var AuthModal = function AuthModal(_ref) {
               className: "switch-link",
               onClick: switchToLogin,
               children: "Log in"
+            })]
+          })
+        })]
+      }) :
+      /*#__PURE__*/
+      /* FORGOT PASSWORD / RESET PASSWORD MODAL */
+      (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+        className: "auth-form",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+          className: "auth-modal-header",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h2", {
+            children: showResetForm ? 'Reset Password' : 'Forgot Password'
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+            className: "auth-modal-close",
+            onClick: function onClick() {
+              setShowForgotPassword(false);
+              setShowResetForm(false);
+              resetAllForms();
+            },
+            "aria-label": "Close modal",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("svg", {
+              width: "20",
+              height: "20",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                d: "M18 6L6 18M6 6L18 18",
+                stroke: "currentColor",
+                strokeWidth: "2",
+                strokeLinecap: "round",
+                strokeLinejoin: "round"
+              })
+            })
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+          className: "auth-form-body",
+          children: showResetForm ?
+          /*#__PURE__*/
+          /* RESET PASSWORD FORM */
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+            onSubmit: handleResetPassword,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "success-message",
+              style: {
+                background: '#e3f2fd',
+                color: '#1565c0',
+                borderColor: '#bbdefb'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                style: {
+                  margin: 0,
+                  textAlign: 'center'
+                },
+                children: "Enter your new password below."
+              })
+            }), successMessage && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "success-message",
+              children: successMessage
+            }), errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "error-message",
+              children: errors.message
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-group",
+              style: {
+                marginTop: '1.5rem'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "reset-email",
+                children: "Email Address"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                type: "email",
+                id: "reset-email",
+                name: "email",
+                value: resetPasswordData.email,
+                onChange: handleResetPasswordChange,
+                placeholder: "Enter your email address",
+                required: true,
+                disabled: true,
+                autoComplete: "email",
+                style: {
+                  backgroundColor: '#f5f5f5',
+                  cursor: 'not-allowed'
+                }
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("small", {
+                style: {
+                  color: '#666',
+                  fontSize: '0.8rem',
+                  marginTop: '0.25rem'
+                },
+                children: "This email is locked for security reasons."
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "reset-password",
+                children: "New Password"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "password-input-container",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                  type: showPassword ? "text" : "password",
+                  id: "reset-password",
+                  name: "password",
+                  value: resetPasswordData.password,
+                  onChange: handleResetPasswordChange,
+                  placeholder: "Enter new password",
+                  required: true,
+                  disabled: loading,
+                  autoComplete: "new-password"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  type: "button",
+                  className: "password-toggle",
+                  onClick: function onClick() {
+                    return setShowPassword(!showPassword);
+                  },
+                  disabled: loading,
+                  children: showPassword ? 'Hide' : 'Show'
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-group",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "reset-password-confirm",
+                children: "Confirm New Password"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+                className: "password-input-container",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                  type: showConfirmPassword ? "text" : "password",
+                  id: "reset-password-confirm",
+                  name: "password_confirmation",
+                  value: resetPasswordData.password_confirmation,
+                  onChange: handleResetPasswordChange,
+                  placeholder: "Confirm new password",
+                  required: true,
+                  disabled: loading,
+                  autoComplete: "new-password"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+                  type: "button",
+                  className: "password-toggle",
+                  onClick: function onClick() {
+                    return setShowConfirmPassword(!showConfirmPassword);
+                  },
+                  disabled: loading,
+                  children: showConfirmPassword ? 'Hide' : 'Show'
+                })]
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+              type: "submit",
+              className: "btn btn-primary auth-submit-btn",
+              disabled: loading,
+              children: loading ? 'Resetting Password...' : 'Reset Password'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              style: {
+                textAlign: 'center',
+                marginTop: '1rem'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                href: "#back",
+                onClick: function onClick(e) {
+                  e.preventDefault();
+                  setShowResetForm(false);
+                  setShowForgotPassword(false);
+                  resetAllForms();
+                },
+                style: {
+                  color: 'var(--racing-red)',
+                  textDecoration: 'none',
+                  fontSize: '0.9rem'
+                },
+                children: "\u2190 Back to Login"
+              })
+            })]
+          }) : forgotPasswordSuccess ?
+          /*#__PURE__*/
+          /* FORGOT PASSWORD SUCCESS */
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+            className: "success-message",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("svg", {
+              width: "48",
+              height: "48",
+              viewBox: "0 0 24 24",
+              fill: "none",
+              style: {
+                margin: '0 auto 1rem',
+                display: 'block'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                d: "M22 11.08V12C21.9988 14.1564 21.3005 16.2547 20.0093 17.9818C18.7182 19.709 16.9033 20.9725 14.8354 21.5839C12.7674 22.1953 10.5573 22.1219 8.53447 21.3746C6.51168 20.6273 4.78465 19.2461 3.61096 17.4371C2.43727 15.628 1.87979 13.4881 2.02168 11.3363C2.16356 9.18455 2.99721 7.13631 4.39828 5.49706C5.79935 3.85781 7.69279 2.71537 9.79619 2.24013C11.8996 1.7649 14.1003 1.98232 16.07 2.85999",
+                stroke: "#155724",
+                strokeWidth: "2",
+                strokeLinecap: "round",
+                strokeLinejoin: "round"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("path", {
+                d: "M22 4L12 14.01L9 11.01",
+                stroke: "#155724",
+                strokeWidth: "2",
+                strokeLinecap: "round",
+                strokeLinejoin: "round"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h3", {
+              style: {
+                textAlign: 'center',
+                marginBottom: '0.5rem',
+                color: '#155724'
+              },
+              children: "Check Your Email"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("p", {
+              style: {
+                textAlign: 'center',
+                margin: 0
+              },
+              children: ["We've sent a password reset link to ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("strong", {
+                children: forgotPasswordEmail
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+              style: {
+                textAlign: 'center',
+                margin: '1rem 0 0 0',
+                fontSize: '0.9rem',
+                color: '#666'
+              },
+              children: "Click the link in the email to reset your password."
+            })]
+          }) :
+          /*#__PURE__*/
+          /* FORGOT PASSWORD FORM */
+          (0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("form", {
+            onSubmit: handleForgotPasswordSubmit,
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "success-message",
+              style: {
+                background: '#e3f2fd',
+                color: '#1565c0',
+                borderColor: '#bbdefb'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", {
+                style: {
+                  margin: 0,
+                  textAlign: 'center'
+                },
+                children: "Enter your email address and we'll send you a link to reset your password."
+              })
+            }), errors.message && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              className: "error-message",
+              children: errors.message
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", {
+              className: "form-group",
+              style: {
+                marginTop: '1.5rem'
+              },
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("label", {
+                htmlFor: "forgot-email",
+                children: "Email Address"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("input", {
+                type: "email",
+                id: "forgot-email",
+                value: forgotPasswordEmail,
+                onChange: function onChange(e) {
+                  return setForgotPasswordEmail(e.target.value);
+                },
+                placeholder: "Enter your email address",
+                required: true,
+                disabled: forgotPasswordLoading,
+                autoComplete: "email"
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", {
+              type: "submit",
+              className: "btn btn-primary auth-submit-btn",
+              disabled: forgotPasswordLoading,
+              children: forgotPasswordLoading ? 'Sending...' : 'Send Reset Link'
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
+              style: {
+                textAlign: 'center',
+                marginTop: '1rem'
+              },
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("a", {
+                href: "#back",
+                onClick: function onClick(e) {
+                  e.preventDefault();
+                  setShowForgotPassword(false);
+                  resetAllForms();
+                },
+                style: {
+                  color: 'var(--racing-red)',
+                  textDecoration: 'none',
+                  fontSize: '0.9rem'
+                },
+                children: "\u2190 Back to Login"
+              })
             })]
           })
         })]
@@ -35673,19 +36219,48 @@ function App() {
     _useState2 = _slicedToArray(_useState, 2),
     isAuthModalOpen = _useState2[0],
     setIsAuthModalOpen = _useState2[1];
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      token: '',
+      email: ''
+    }),
+    _useState4 = _slicedToArray(_useState3, 2),
+    resetData = _useState4[0],
+    setResetData = _useState4[1];
   var handleAuthModalOpen = function handleAuthModalOpen() {
     setIsAuthModalOpen(true);
   };
   var handleAuthModalClose = function handleAuthModalClose() {
     setIsAuthModalOpen(false);
+    // Clear reset data when modal closes
+    setResetData({
+      token: '',
+      email: ''
+    });
   };
+
+  // Reset password detection
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    var urlParams = new URLSearchParams(window.location.search);
+    var token = urlParams.get('token');
+    var email = urlParams.get('email');
+    if (token && email) {
+      setResetData({
+        token: token,
+        email: decodeURIComponent(email)
+      });
+      setIsAuthModalOpen(true);
+      // Clean the URL
+      window.history.replaceState({}, '', '/');
+    }
+  }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "App",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Header__WEBPACK_IMPORTED_MODULE_2__["default"], {
       onAuthModalOpen: handleAuthModalOpen
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Hero__WEBPACK_IMPORTED_MODULE_3__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Partnership__WEBPACK_IMPORTED_MODULE_4__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_home_Footer__WEBPACK_IMPORTED_MODULE_5__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_AuthModal__WEBPACK_IMPORTED_MODULE_6__["default"], {
       isOpen: isAuthModalOpen,
-      onClose: handleAuthModalClose
+      onClose: handleAuthModalClose,
+      resetData: resetData
     })]
   });
 }
