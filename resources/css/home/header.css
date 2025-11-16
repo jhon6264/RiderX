@@ -153,6 +153,10 @@
 .icon-btn:hover {
     color: var(--primary);
 }
+.track-btn svg {
+    width: clamp(18px, 1.5vw, 26px) !important;
+    height: clamp(18px, 1.5vw, 26px) !important;
+}
 
 .cart-icon,
 .user-icon {

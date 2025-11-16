@@ -35,6 +35,18 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
 
+        // ADD EMAIL VIEW CONFIGURATION
+        Fortify::verifyEmailView(function () {
+            return view('vendor.fortify.emails.verify-email');
+        });
+
+        // Clear all caches to ensure changes take effect
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Illuminate\Foundation\Console\OptimizeClearCommand::class,
+            ]);
+        }
+
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 

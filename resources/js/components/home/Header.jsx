@@ -165,9 +165,11 @@ const Header = ({ onAuthModalOpen }) => {
                             {/* Cart Icon - Only show when logged in */}
                             {authState.authenticated && (
                                 <button className="icon-btn cart-btn" aria-label="Shopping cart">
-                                    <svg className="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                        <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.2 16.5H17M17 13V16.5M9 19.5C9 20.3 8.3 21 7.5 21C6.7 21 6 20.3 6 19.5C6 18.7 6.7 18 7.5 18C8.3 18 9 18.7 9 19.5ZM18 19.5C18 20.3 17.3 21 16.5 21C15.7 21 15 20.3 15 19.5C15 18.7 15.7 18 16.5 18C17.3 18 18 18.7 18 19.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
+                                    <svg className="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  <circle cx="8" cy="21" r="1"/>
+  <circle cx="19" cy="21" r="1"/>
+  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+</svg>
                                     <span className="cart-count">0</span>
                                 </button>
                             )}
@@ -175,9 +177,11 @@ const Header = ({ onAuthModalOpen }) => {
                             {/* Track Order Icon - Only show when logged in */}
                             {authState.authenticated && (
                                 <button className="icon-btn track-btn" aria-label="Track order">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                        <path d="M20 7H4C2.9 7 2 7.9 2 9V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V9C22 7.9 21.1 7 20 7ZM8 13H6V11H8V13ZM8 17H6V15H8V17ZM14 13H10V11H14V13ZM14 17H10V15H14V17ZM18 13H16V11H18V13ZM18 17H16V15H18V17Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                                    </svg>
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  <path d="M12 3v6"/>
+  <path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/>
+  <path d="M3.054 9.013h17.893"/>
+</svg>
                                 </button>
                             )}
 
@@ -188,8 +192,8 @@ const Header = ({ onAuthModalOpen }) => {
                                     aria-label="User account"
                                     onClick={handleUserIconClick}
                                 >
-                                    <svg className="user-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                        <path d="M20 21V19C20 17.9 19.1 17 18 17H6C4.9 17 4 17.9 4 19V21M16 7C16 9.2 14.2 11 12 11C9.8 11 8 9.2 8 7C8 4.8 9.8 3 12 3C14.2 3 16 4.8 16 7Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    <svg className="user-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                         <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
                                     </svg>
                                 </button>
 
@@ -289,10 +293,12 @@ const Header = ({ onAuthModalOpen }) => {
                     {/* Mobile Menu Footer */}
                     <div className="mobile-nav-footer">
                         <div className="mobile-footer-item">
-                            <svg className="footer-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
-                                <path d="M20 7H4C2.9 7 2 7.9 2 9V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V9C22 7.9 21.1 7 20 7ZM8 13H6V11H8V13ZM8 17H6V15H8V17ZM14 13H10V11H14V13ZM14 17H10V15H14V17ZM18 13H16V11H18V13ZM18 17H16V15H18V17Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                            </svg>
-                            <span className="footer-text">Track order</span>
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+  <path d="M12 3v6"/>
+  <path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/>
+  <path d="M3.054 9.013h17.893"/>
+</svg>
+                            <span className="footer-text">Order</span>
                         </div>
                         <div className="mobile-footer-item">
                             <svg className="footer-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
