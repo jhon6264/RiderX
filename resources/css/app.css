@@ -268,5 +268,6 @@ body {
 @import 'home/partnership.css';
 @import 'products/product-grid.css';
 @import 'products/product-card.css';
+@import 'products/product-detail.css';
 @import 'auth-modal.css';
 @import 'user-dropdown.css';

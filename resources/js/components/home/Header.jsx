@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import UserDropdown from '../../UserDropdown';
+import { Link } from 'react-router-dom';
 
 const Header = ({ onAuthModalOpen }) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -225,12 +226,12 @@ const Header = ({ onAuthModalOpen }) => {
                 <div className="subheader">
                     <div className="subheader-container">
                         <nav className="category-nav">
-                            <a href="#" className="category-link active">Home</a>
-                            <a href="#" className="category-link">Helmets</a>
-                            <a href="#" className="category-link">Jackets</a>
-                            <a href="#" className="category-link">Pants</a>
-                            <a href="#" className="category-link">Boots</a>
-                            <a href="#" className="category-link">Gloves</a>
+                            <Link to="/" className="category-link active">Home</Link>
+                            <Link to="/helmets" className="category-link">Helmets</Link>
+                            <Link to="/jackets" className="category-link">Jackets</Link>
+                            <Link to="/pants" className="category-link">Pants</Link>
+                            <Link to="/boots" className="category-link">Boots</Link>
+                            <Link to="/gloves" className="category-link">Gloves</Link>
                         </nav>
                     </div>
                 </div>

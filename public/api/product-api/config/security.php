@@ -4,7 +4,10 @@
 // ========================
 // BASIC SECURITY HEADERS
 // ========================
-
+if (php_sapi_name() === 'cli') {
+    // If running in command line (like artisan seeder), skip all security headers
+    return;
+}
 // Prevent any output before JSON
 ob_start();
 

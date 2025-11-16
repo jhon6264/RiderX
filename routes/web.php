@@ -101,6 +101,11 @@ Route::prefix('api')->group(function () {
         ->middleware('throttle:5,1'); // 5 login attempts per minute
     
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
+
+    // Product API routes
+    Route::get('/products', [App\Http\Controllers\Api\ProductController::class, 'index']);
+    Route::get('/products/{category}', [App\Http\Controllers\Api\ProductController::class, 'getByCategory']);
+    Route::get('/products/item/{id}', [App\Http\Controllers\Api\ProductController::class, 'show']); 
 });
 
 // Rate limiting for Fortify routes (additional protection)
@@ -108,3 +113,11 @@ Route::middleware('throttle:5,1')->group(function () {
     // Fortify's built-in routes are already loaded above, but this adds extra protection
     // for any additional auth routes you might add
 });
+
+// ========================
+// REACT ROUTER CATCH-ALL
+// ========================
+// This MUST be the last route in the file
+Route::get('/{any}', function () {
+    return view('home');
+})->where('any', '.*');

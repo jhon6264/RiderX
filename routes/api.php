@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Http\Controllers\RegisteredUserController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 use Laravel\Fortify\Http\Controllers\EmailVerificationNotificationController;
-
+use App\Http\Controllers\Api\ProductController;
 
 
 
@@ -21,3 +21,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
     ->middleware(['auth:sanctum']);
 Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
     ->middleware(['auth:sanctum']);
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{category}', [ProductController::class, 'getByCategory']);
+Route::get('/product/{id}', [ProductController::class, 'show']);

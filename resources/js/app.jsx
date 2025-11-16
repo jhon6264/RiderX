@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/home/Header';
 import Hero from './components/home/Hero';
 import Partnership from './components/home/Partnership'; 
 import Footer from './components/home/Footer';
 import AuthModal from './AuthModal';
+import HelmetsPage from './pages/HelmetsPage';
+import JacketsPage from './pages/JacketsPage';
+import PantsPage from './pages/PantsPage';
+import BootsPage from './pages/BootsPage';
+import GlovesPage from './pages/GlovesPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import ProductGrid from './components/home/ProductGrid';
 
-function App() {
+function HomePage() {
     const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
     const [resetData, setResetData] = useState({ token: '', email: '' });
     const [verificationData, setVerificationData] = useState({ verified: false, email: '' });
@@ -17,12 +25,10 @@ function App() {
 
     const handleAuthModalClose = () => {
         setIsAuthModalOpen(false);
-        // Clear all data when modal closes
         setResetData({ token: '', email: '' });
         setVerificationData({ verified: false, email: '' });
     };
 
-    // Reset password and email verification detection
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const token = urlParams.get('token');
@@ -32,31 +38,28 @@ function App() {
         console.log('URL params:', { token, email, verified });
         
         if (token && email) {
-            // Password reset flow
             setResetData({ 
                 token: token, 
                 email: decodeURIComponent(email) 
             });
             setIsAuthModalOpen(true);
-            // Clean the URL
             window.history.replaceState({}, '', '/');
         } else if (verified === 'true') {
-            // Email verification success flow
             const verifiedEmail = urlParams.get('email') || '';
             setVerificationData({ 
                 verified: true, 
                 email: decodeURIComponent(verifiedEmail) 
             });
             setIsAuthModalOpen(true);
-            // Clean the URL
             window.history.replaceState({}, '', '/');
         }
     }, []);
 
     return (
-        <div className="App">
+        <div className="HomePage">
             <Header onAuthModalOpen={handleAuthModalOpen} />
             <Hero />
+            <ProductGrid /> 
             <Partnership /> 
             <Footer />
             
@@ -67,6 +70,22 @@ function App() {
                 verificationData={verificationData} 
             />
         </div>
+    );
+}
+
+function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/helmets" element={<HelmetsPage />} />
+                <Route path="/jackets" element={<JacketsPage />} />
+                <Route path="/pants" element={<PantsPage />} />
+                <Route path="/boots" element={<BootsPage />} />
+                <Route path="/gloves" element={<GlovesPage />} />
+                <Route path="/product/:id" element={<ProductDetailPage />} />
+            </Routes>
+        </Router>
     );
 }
 

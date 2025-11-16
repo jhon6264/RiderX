@@ -109,6 +109,195 @@ $jackets = [
         'image' => 'https://www.revzilla.com/product_images/2279/2403/alpinestars_andes_air_drystar_jacket_750x750.jpg'
     ],
     
+    // New Alpinestars Jackets
+    [
+        'id' => 35,
+        'name' => 'Alpinestars Atem V5 Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 399.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2279/2607/alpinestars_atem_v5_jacket_750x750.jpg'
+    ],
+    [
+        'id' => 36,
+        'name' => 'Alpinestars Atem V5 Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 399.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2279/2590/alpinestars_atem_v5_jacket_750x750.jpg'
+    ],
+    
+    // Alpinestars Fluid Apex Jersey
+    [
+        'id' => 37,
+        'name' => 'Alpinestars Fluid Apex Jersey',
+        'brand' => 'Alpinestars',
+        'price' => 89.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2478/2390/alpinestars_fluid_apex_jersey_black_750x750.jpg'
+    ],
+    [
+        'id' => 38,
+        'name' => 'Alpinestars Fluid Apex Jersey',
+        'brand' => 'Alpinestars',
+        'price' => 89.99,
+        'color' => 'Blue/Yellow Fluo',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2478/2424/alpinestars_fluid_apex_jersey_blue_yellow_fluo_750x750.jpg'
+    ],
+    [
+        'id' => 39,
+        'name' => 'Alpinestars Fluid Apex Jersey',
+        'brand' => 'Alpinestars',
+        'price' => 89.99,
+        'color' => 'Pink/Purple/Orange',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2478/2356/alpinestars_fluid_apex_jersey_pink_purple_orange_750x750.jpg'
+    ],
+    [
+        'id' => 40,
+        'name' => 'Alpinestars Fluid Apex Jersey',
+        'brand' => 'Alpinestars',
+        'price' => 89.99,
+        'color' => 'Red/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2478/2492/alpinestars_fluid_apex_jersey_red_white_750x750.jpg'
+    ],
+    [
+        'id' => 41,
+        'name' => 'Alpinestars Fluid Apex Jersey',
+        'brand' => 'Alpinestars',
+        'price' => 89.99,
+        'color' => 'Yellow/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2478/2526/alpinestars_fluid_apex_jersey_yellow_black_750x750.jpg'
+    ],
+    
+    // Alpinestars Leather Jackets
+    [
+        'id' => 42,
+        'name' => 'Alpinestars Missile V3 Ignition Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 799.99,
+        'color' => 'Black/Red',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2334/2260/alpinestars_missile_v3_ignition_leather_jacket_black_red_750x750.jpg'
+    ],
+    [
+        'id' => 43,
+        'name' => 'Alpinestars Missile V3 Ignition Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 799.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2334/2294/alpinestars_missile_v3_ignition_leather_jacket_black_white_750x750.jpg'
+    ],
+    
+    [
+        'id' => 44,
+        'name' => 'Alpinestars GP Plus V4 Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 749.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2158/6993/alpinestars_gp_plus_v4_leather_jacket_black_white_750x750.jpg'
+    ],
+    [
+        'id' => 45,
+        'name' => 'Alpinestars GP Plus V4 Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 749.99,
+        'color' => 'Black/Red/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2158/6867/alpinestars_gp_plus_v4_leather_jacket_black_red_fluo_white_750x750.jpg'
+    ],
+    [
+        'id' => 46,
+        'name' => 'Alpinestars GP Plus V4 Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 749.99,
+        'color' => 'Black/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2158/6918/alpinestars_gp_plus_v4_leather_jacket_black_black_750x750.jpg'
+    ],
+    
+    [
+        'id' => 47,
+        'name' => 'Alpinestars GP Force V2 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 899.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2509/7341/alpinestars_gp_force_v2_airflow_leather_jacket_black_white_750x750.jpg'
+    ],
+    [
+        'id' => 48,
+        'name' => 'Alpinestars GP Force V2 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 899.99,
+        'color' => 'Black/Red',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2509/7205/alpinestars_gp_force_v2_airflow_leather_jacket_750x750.jpg'
+    ],
+    [
+        'id' => 49,
+        'name' => 'Alpinestars GP Force V2 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 899.99,
+        'color' => 'Black/Hi-Viz Yellow',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2509/7409/alpinestars_gp_force_v2_airflow_leather_jacket_black_hi_viz_yellow_750x750.jpg'
+    ],
+    [
+        'id' => 50,
+        'name' => 'Alpinestars GP Force V2 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 899.99,
+        'color' => 'Red/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2509/7375/alpinestars_gp_force_v2_airflow_leather_jacket_red_black_750x750.jpg'
+    ],
+    
+    [
+        'id' => 51,
+        'name' => 'Alpinestars Faster V3 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 849.99,
+        'color' => 'Black/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2326/2194/alpinestars_faster_v3_airflow_leather_jacket_black_black_750x750.jpg'
+    ],
+    [
+        'id' => 52,
+        'name' => 'Alpinestars Faster V3 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 849.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2326/2704/alpinestars_faster_v3_airflow_leather_jacket_black_white_750x750.jpg'
+    ],
+    [
+        'id' => 53,
+        'name' => 'Alpinestars Faster V3 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 849.99,
+        'color' => 'Black/Red Fluo',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2326/2398/alpinestars_faster_v3_airflow_leather_jacket_black_red_fluo_750x750.jpg'
+    ],
+    [
+        'id' => 54,
+        'name' => 'Alpinestars Faster V3 Airflow Leather Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 849.99,
+        'color' => 'Black/White/Yellow Fluo',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2326/2585/alpinestars_faster_v3_airflow_leather_jacket_black_white_yellow_fluo_750x750.jpg'
+    ],
+    
     // More Dainese
     [
         'id' => 12,
@@ -263,6 +452,64 @@ $jackets = [
         'image' => 'https://www.revzilla.com/product_images/1995/3625/klim_marrakesh_jacket_potters_clay_750x750.jpg'
     ],
     
+    // Protective Gear / Chest Protectors
+    [
+        'id' => 55,
+        'name' => 'Alpinestars A10 V2 Full Chest Protector',
+        'brand' => 'Alpinestars',
+        'price' => 199.99,
+        'color' => 'Anthracite/Black/Red',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1898/4085/alpinestars_a10_v2_full_chest_protector_anthracite_black_red_750x750.jpg'
+    ],
+    [
+        'id' => 56,
+        'name' => 'Leatt Moto65 Pro Chest Protector',
+        'brand' => 'Leatt',
+        'price' => 179.99,
+        'color' => 'White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1470/3223/leatt_moto65_pro_chest_protector_750x750.jpg'
+    ],
+    [
+        'id' => 57,
+        'name' => 'Leatt 5.5 Pro Evo Chest Protector',
+        'brand' => 'Leatt',
+        'price' => 159.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2347/5320/leatt55_pro_evo_chest_protector_750x750.jpg'
+    ],
+    
+    // Body Protectors
+    [
+        'id' => 58,
+        'name' => 'Leatt Moto65 Body Protector',
+        'brand' => 'Leatt',
+        'price' => 249.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1470/3359/leatt_moto65_body_protector_750x750.jpg'
+    ],
+    [
+        'id' => 59,
+        'name' => 'Leatt 5.5 Evo Body Protector',
+        'brand' => 'Leatt',
+        'price' => 229.99,
+        'color' => 'Black/Red',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2347/4198/leatt55_evo_body_protector_750x750.jpg'
+    ],
+    [
+        'id' => 60,
+        'name' => 'Alpinestars Bionic Plus V2 Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 299.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2162/0462/alpinestars_bionic_plus_v2_jacket_black_white_750x750.jpg'
+    ],
+    
     // Women's Jackets
     [
         'id' => 28,
@@ -282,6 +529,86 @@ $jackets = [
         'category' => 'jackets',
         'image' => 'https://www.revzilla.com/product_images/1393/3971/sedici_alexi2_womens_mesh_jacket_white_fuchsia_750x750.jpg'
     ],
+    
+    // Bilt Women's Jackets
+    [
+        'id' => 61,
+        'name' => 'Bilt Techno2 Womens Jacket',
+        'brand' => 'Bilt',
+        'price' => 149.99,
+        'color' => 'White/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1715/7074/bilt_techno2_womens_jacket_white_black_750x750.jpg'
+    ],
+    [
+        'id' => 62,
+        'name' => 'Bilt Techno2 Womens Jacket',
+        'brand' => 'Bilt',
+        'price' => 149.99,
+        'color' => 'Black/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1715/7057/bilt_techno2_womens_jacket_black_black_750x750.jpg'
+    ],
+    
+    // Speed and Strength Hoodies
+    [
+        'id' => 63,
+        'name' => 'Speed and Strength Cat Outta Hell Armored Hoody',
+        'brand' => 'Speed and Strength',
+        'price' => 129.99,
+        'color' => 'White/Grey',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/0309/1720/speedand_strength_cat_outta_hell_armored_hoody_white_grey_750x750.jpg'
+    ],
+    [
+        'id' => 64,
+        'name' => 'Speed and Strength Cat Outta Hell Armored Hoody',
+        'brand' => 'Speed and Strength',
+        'price' => 129.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/0309/1754/speedand_strength_cat_outta_hell_armored_hoody_black_750x750.jpg'
+    ],
+    [
+        'id' => 65,
+        'name' => 'Speed and Strength Cat Outta Hell Armored Hoody',
+        'brand' => 'Speed and Strength',
+        'price' => 129.99,
+        'color' => 'Red/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/0309/1686/speedand_strength_cat_outta_hell_armored_hoody_red_black_750x750.jpg'
+    ],
+    
+    // Alpinestars Women's Hoodies
+    [
+        'id' => 66,
+        'name' => 'Alpinestars Stella Chrome V2 Hoody',
+        'brand' => 'Alpinestars',
+        'price' => 179.99,
+        'color' => 'Blue/Purple',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2395/5647/alpinestars_stella_chrome_v2_hoody_blue_purple_750x750.jpg'
+    ],
+    [
+        'id' => 67,
+        'name' => 'Alpinestars Stella Chrome V2 Hoody',
+        'brand' => 'Alpinestars',
+        'price' => 179.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2395/5681/alpinestars_stella_chrome_v2_hoody_black_white_750x750.jpg'
+    ],
+    [
+        'id' => 68,
+        'name' => 'Alpinestars Stella Chrome V2 Hoody',
+        'brand' => 'Alpinestars',
+        'price' => 179.99,
+        'color' => 'Grey/Pink',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2395/5783/alpinestars_stella_chrome_v2_hoody_grey_pink_750x750.jpg'
+    ],
+    
+    // Alpinestars Women's Jackets
     [
         'id' => 30,
         'name' => 'Alpinestars Stella Andes Air Drystar Jacket',
@@ -300,6 +627,47 @@ $jackets = [
         'category' => 'jackets',
         'image' => 'https://www.revzilla.com/product_images/2280/1376/alpinestars_stella_andes_air_drystar_jacket_750x750.jpg'
     ],
+    
+    [
+        'id' => 69,
+        'name' => 'Alpinestars Stella SMX Air Womens Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 299.99,
+        'color' => 'Black/Yellow/Pink',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2071/9349/alpinestars_stella_smx_air_womens_jacket_black_yellow_pink_750x750.jpg'
+    ],
+    [
+        'id' => 70,
+        'name' => 'Alpinestars Stella SMX Air Womens Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 299.99,
+        'color' => 'Black/White',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2071/9179/alpinestars_stella_smx_air_womens_jacket_750x750.jpg'
+    ],
+    
+    // Knox Women's Armored Shirts
+    [
+        'id' => 71,
+        'name' => 'Knox Urbane Pro MK3 Womens Armored Shirt',
+        'brand' => 'Knox',
+        'price' => 349.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2069/2897/knox_urbane_pro_mk3_womens_armored_shirt_750x750.jpg'
+    ],
+    [
+        'id' => 72,
+        'name' => 'Knox Urbane Pro MK3 Womens Armored Shirt',
+        'brand' => 'Knox',
+        'price' => 349.99,
+        'color' => 'Copper/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2069/2931/knox_urbane_pro_mk3_womens_armored_shirt_750x750.jpg'
+    ],
+    
+    // Revit Women's Jackets
     [
         'id' => 32,
         'name' => 'Revit Sand 4 H2O Womens Jacket',
@@ -326,6 +694,55 @@ $jackets = [
         'color' => 'Camo Brown',
         'category' => 'jackets',
         'image' => 'https://www.revzilla.com/product_images/1505/6957/revit_sand4_h2_o_womens_jacket_750x750.jpg'
+    ],
+    
+    // Additional Protective Jackets
+    [
+        'id' => 73,
+        'name' => 'Alpinestars Bionic Plus V2 Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 299.99,
+        'color' => 'Black/Anthracite/Red',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/2069/6484/alpinestars_bionic_plus_v2_jacket_black_anthracite_red_750x750.jpg'
+    ],
+    
+    // Bionic Action Protection
+    [
+        'id' => 74,
+        'name' => 'Alpinestars Stella Bionic Action V2 Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 279.99,
+        'color' => 'Black/Cyan',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1898/1943/alpinestars_stella_bionic_action_v2_jacket_black_cyan_750x750.jpg'
+    ],
+    [
+        'id' => 75,
+        'name' => 'Alpinestars Bionic Action V2 Protection Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 259.99,
+        'color' => 'Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1898/1586/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
+    ],
+    [
+        'id' => 76,
+        'name' => 'Alpinestars Bionic Action V2 Protection Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 259.99,
+        'color' => 'Grey/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1898/1518/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
+    ],
+    [
+        'id' => 77,
+        'name' => 'Alpinestars Bionic Action V2 Protection Jacket',
+        'brand' => 'Alpinestars',
+        'price' => 259.99,
+        'color' => 'Sand/Black',
+        'category' => 'jackets',
+        'image' => 'https://www.revzilla.com/product_images/1898/1552/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
     ]
 ];
 
