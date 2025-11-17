@@ -48674,6 +48674,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_home_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/home/Header */ "./resources/js/components/home/Header.jsx");
 /* harmony import */ var _components_home_Footer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/home/Footer */ "./resources/js/components/home/Footer.jsx");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+function _toConsumableArray(r) { return _arrayWithoutHoles(r) || _iterableToArray(r) || _unsupportedIterableToArray(r) || _nonIterableSpread(); }
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _iterableToArray(r) { if ("undefined" != typeof Symbol && null != r[Symbol.iterator] || null != r["@@iterator"]) return Array.from(r); }
+function _arrayWithoutHoles(r) { if (Array.isArray(r)) return _arrayLikeToArray(r); }
 function _regenerator() { /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */ var e, t, r = "function" == typeof Symbol ? Symbol : {}, n = r.iterator || "@@iterator", o = r.toStringTag || "@@toStringTag"; function i(r, n, o, i) { var c = n && n.prototype instanceof Generator ? n : Generator, u = Object.create(c.prototype); return _regeneratorDefine2(u, "_invoke", function (r, n, o) { var i, c, u, f = 0, p = o || [], y = !1, G = { p: 0, n: 0, v: e, a: d, f: d.bind(e, 4), d: function d(t, r) { return i = t, c = 0, u = e, G.n = r, a; } }; function d(r, n) { for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) { var o, i = p[t], d = G.p, l = i[2]; r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0)); } if (o || r > 1) return a; throw y = !0, n; } return function (o, p, l) { if (f > 1) throw TypeError("Generator is already running"); for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) { i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u); try { if (f = 2, i) { if (c || (o = "next"), t = i[o]) { if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object"); if (!t.done) return t; u = t.value, c < 2 && (c = 0); } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1); i = e; } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break; } catch (t) { i = e, c = 1, u = t; } finally { f = 1; } } return { value: t, done: y }; }; }(r, o, i), !0), u; } var a = {}; function Generator() {} function GeneratorFunction() {} function GeneratorFunctionPrototype() {} t = Object.getPrototypeOf; var c = [][n] ? t(t([][n]())) : (_regeneratorDefine2(t = {}, n, function () { return this; }), t), u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c); function f(e) { return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, _regeneratorDefine2(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e; } return GeneratorFunction.prototype = GeneratorFunctionPrototype, _regeneratorDefine2(u, "constructor", GeneratorFunctionPrototype), _regeneratorDefine2(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", _regeneratorDefine2(GeneratorFunctionPrototype, o, "GeneratorFunction"), _regeneratorDefine2(u), _regeneratorDefine2(u, o, "Generator"), _regeneratorDefine2(u, n, function () { return this; }), _regeneratorDefine2(u, "toString", function () { return "[object Generator]"; }), (_regenerator = function _regenerator() { return { w: i, m: f }; })(); }
 function _regeneratorDefine2(e, r, n, t) { var i = Object.defineProperty; try { i({}, "", {}); } catch (e) { i = 0; } _regeneratorDefine2 = function _regeneratorDefine(e, r, n, t) { function o(r, n) { _regeneratorDefine2(e, r, function (e) { return this._invoke(r, n, e); }); } r ? i ? i(e, r, { value: n, enumerable: !t, configurable: !t, writable: !t }) : e[r] = n : (o("next", 0), o("throw", 1), o("return", 2)); }, _regeneratorDefine2(e, r, n, t); }
 function asyncGeneratorStep(n, t, e, r, o, a, c) { try { var i = n[a](c), u = i.value; } catch (n) { return void e(n); } i.done ? t(u) : Promise.resolve(u).then(r, o); }
@@ -48720,10 +48724,22 @@ var ProductDetailPage = function ProductDetailPage() {
     _useState12 = _slicedToArray(_useState11, 2),
     relatedProducts = _useState12[0],
     setRelatedProducts = _useState12[1];
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]),
     _useState14 = _slicedToArray(_useState13, 2),
-    showSizeChart = _useState14[0],
-    setShowSizeChart = _useState14[1];
+    randomProducts = _useState14[0],
+    setRandomProducts = _useState14[1];
+  var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+    _useState16 = _slicedToArray(_useState15, 2),
+    showSizeChart = _useState16[0],
+    setShowSizeChart = _useState16[1];
+  var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)('overview'),
+    _useState18 = _slicedToArray(_useState17, 2),
+    activeTab = _useState18[0],
+    setActiveTab = _useState18[1];
+  var _useState19 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0),
+    _useState20 = _slicedToArray(_useState19, 2),
+    verticalCarouselIndex = _useState20[0],
+    setVerticalCarouselIndex = _useState20[1];
 
   // Size options by category
   var sizeOptions = {
@@ -48941,8 +48957,7 @@ var ProductDetailPage = function ProductDetailPage() {
   // Scroll to top when component mounts AND when id changes
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     window.scrollTo(0, 0);
-  }, [id]); // This runs every time the id changes
-
+  }, [id]);
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
     fetchProduct();
   }, [id]);
@@ -48989,6 +49004,8 @@ var ProductDetailPage = function ProductDetailPage() {
       return _ref.apply(this, arguments);
     };
   }();
+
+  // Fetch 8 related products (we'll show 6 at a time)
   var fetchRelatedProducts = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee2(category) {
       var response, data, filtered, _t2;
@@ -49008,7 +49025,7 @@ var ProductDetailPage = function ProductDetailPage() {
               filtered = data.data.filter(function (p) {
                 return p.id !== parseInt(id);
               });
-              setRelatedProducts(filtered.slice(0, 4));
+              setRelatedProducts(filtered.slice(0, 8));
             }
             _context2.n = 4;
             break;
@@ -49025,6 +49042,101 @@ var ProductDetailPage = function ProductDetailPage() {
       return _ref2.apply(this, arguments);
     };
   }();
+
+  // Fetch random products
+  var fetchRandomProducts = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator(/*#__PURE__*/_regenerator().m(function _callee3() {
+      var response, data, excludedIds, filteredProducts, shuffled, _t3;
+      return _regenerator().w(function (_context3) {
+        while (1) switch (_context3.p = _context3.n) {
+          case 0:
+            _context3.p = 0;
+            _context3.n = 1;
+            return fetch('/api/products');
+          case 1:
+            response = _context3.v;
+            _context3.n = 2;
+            return response.json();
+          case 2:
+            data = _context3.v;
+            if (data.success) {
+              // Filter out current product and related products
+              excludedIds = [parseInt(id)].concat(_toConsumableArray(relatedProducts.map(function (p) {
+                return p.id;
+              })));
+              filteredProducts = data.data.filter(function (p) {
+                return !excludedIds.includes(p.id);
+              }); // Shuffle and take 5
+              shuffled = shuffleArray(filteredProducts).slice(0, 5);
+              setRandomProducts(shuffled);
+            }
+            _context3.n = 4;
+            break;
+          case 3:
+            _context3.p = 3;
+            _t3 = _context3.v;
+            console.error('Error fetching random products:', _t3);
+          case 4:
+            return _context3.a(2);
+        }
+      }, _callee3, null, [[0, 3]]);
+    }));
+    return function fetchRandomProducts() {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  // Shuffle array function (from your ProductGrid)
+  var shuffleArray = function shuffleArray(array) {
+    var shuffled = _toConsumableArray(array);
+    for (var i = shuffled.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var _ref4 = [shuffled[j], shuffled[i]];
+      shuffled[i] = _ref4[0];
+      shuffled[j] = _ref4[1];
+    }
+    return shuffled;
+  };
+
+  // Color swatch logic (from your ProductGrid)
+  var getColorSwatches = function getColorSwatches(variants) {
+    var uniqueHexCodes = _toConsumableArray(new Set(variants.map(function (v) {
+      return v.hex_code;
+    })));
+    return uniqueHexCodes.slice(0, 4);
+  };
+
+  // Get border color for swatches (from your ProductGrid)
+  var getBorderColor = function getBorderColor(hexCode) {
+    if (!hexCode || typeof hexCode !== 'string') {
+      return '#e5e7eb';
+    }
+    try {
+      var lightColors = ['#ffffff', '#ffff00', '#fbbf24', '#eab308', '#fefce8', '#f0e68c', '#fffdd0', '#f5f5dc', '#d1d5db', '#f8f9fa'];
+      if (lightColors.includes(hexCode.toLowerCase())) {
+        return '#e5e7eb';
+      }
+      return '#ffffff';
+    } catch (error) {
+      return '#e5e7eb';
+    }
+  };
+
+  // Vertical carousel navigation for 6 products
+  var handleVerticalScroll = function handleVerticalScroll(direction) {
+    if (direction === 'up' && verticalCarouselIndex > 0) {
+      setVerticalCarouselIndex(verticalCarouselIndex - 1);
+    } else if (direction === 'down' && verticalCarouselIndex < relatedProducts.length - 6) {
+      setVerticalCarouselIndex(verticalCarouselIndex + 1);
+    }
+  };
+
+  // Update fetchProduct to also fetch random products
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (product && relatedProducts.length > 0) {
+      fetchRandomProducts();
+    }
+  }, [product, relatedProducts]);
   var handleVariantSelect = function handleVariantSelect(variant) {
     setSelectedVariant(variant);
   };
@@ -49056,27 +49168,285 @@ var ProductDetailPage = function ProductDetailPage() {
     setShowSizeChart(false);
   };
 
-  // Size Chart Modal Component
+  // Vertical Carousel Component (Desktop only)
+  var VerticalCarousel = function VerticalCarousel() {
+    if (relatedProducts.length === 0) return null;
+    var visibleProducts = relatedProducts.slice(verticalCarouselIndex, verticalCarouselIndex + 6);
+    var canScrollUp = verticalCarouselIndex > 0;
+    var canScrollDown = verticalCarouselIndex < relatedProducts.length - 6;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "vertical-carousel",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+        className: "vertical-carousel-title",
+        children: "Related Products"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "vertical-carousel-container",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          className: "carousel-arrow",
+          onClick: function onClick() {
+            return handleVerticalScroll('up');
+          },
+          disabled: !canScrollUp,
+          children: "\u2191"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "vertical-carousel-items",
+          children: visibleProducts.map(function (relatedProduct) {
+            var _relatedProduct$varia;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              to: "/product/".concat(relatedProduct.id),
+              className: "vertical-product-card",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: (_relatedProduct$varia = relatedProduct.variants[0]) === null || _relatedProduct$varia === void 0 ? void 0 : _relatedProduct$varia.image,
+                alt: relatedProduct.name,
+                className: "vertical-product-image"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "vertical-product-info",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                  children: relatedProduct.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  className: "product-card-brand",
+                  children: relatedProduct.brand
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "product-card-price",
+                  children: ["$", relatedProduct.base_price]
+                })]
+              })]
+            }, relatedProduct.id);
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          className: "carousel-arrow",
+          onClick: function onClick() {
+            return handleVerticalScroll('down');
+          },
+          disabled: !canScrollDown,
+          children: "\u2193"
+        })]
+      })]
+    });
+  };
+
+  // NEW: Related Products Section for Mobile (same design as random products)
+  var RelatedProductsSection = function RelatedProductsSection() {
+    if (relatedProducts.length === 0) return null;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "related-products-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+        children: "Related Products"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "horizontal-carousel",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "horizontal-carousel-container",
+          children: relatedProducts.slice(0, 5).map(function (relatedProduct) {
+            var _relatedProduct$varia2;
+            var colorSwatches = getColorSwatches(relatedProduct.variants);
+            var hasMoreColors = relatedProduct.variants.length > 4;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              to: "/product/".concat(relatedProduct.id),
+              className: "horizontal-product-card",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: (_relatedProduct$varia2 = relatedProduct.variants[0]) === null || _relatedProduct$varia2 === void 0 ? void 0 : _relatedProduct$varia2.image,
+                alt: relatedProduct.name,
+                className: "horizontal-product-image"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "horizontal-product-content",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                  children: relatedProduct.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  className: "product-card-brand",
+                  children: relatedProduct.brand
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "product-card-colors",
+                  children: [colorSwatches.map(function (hexCode, index) {
+                    var variantWithThisColor = relatedProduct.variants.find(function (v) {
+                      return v.hex_code === hexCode;
+                    });
+                    var colorName = (variantWithThisColor === null || variantWithThisColor === void 0 ? void 0 : variantWithThisColor.color) || "Color ".concat(index + 1);
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "color-swatch",
+                      style: {
+                        backgroundColor: hexCode || '#6b7280',
+                        borderColor: getBorderColor(hexCode)
+                      },
+                      title: colorName
+                    }, index);
+                  }), hasMoreColors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "color-swatch-more",
+                    title: "+".concat(relatedProduct.variants.length - 4, " more colors"),
+                    children: "+"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "product-card-price",
+                  children: ["$", relatedProduct.base_price]
+                })]
+              })]
+            }, relatedProduct.id);
+          })
+        })
+      })]
+    });
+  };
+
+  // Random Products Section
+  var RandomProductsSection = function RandomProductsSection() {
+    if (randomProducts.length === 0) return null;
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "random-products-section",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
+        children: "You Might Also Like"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "horizontal-carousel",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "horizontal-carousel-container",
+          children: randomProducts.map(function (randomProduct) {
+            var _randomProduct$varian;
+            var colorSwatches = getColorSwatches(randomProduct.variants);
+            var hasMoreColors = randomProduct.variants.length > 4;
+            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
+              to: "/product/".concat(randomProduct.id),
+              className: "horizontal-product-card",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                src: (_randomProduct$varian = randomProduct.variants[0]) === null || _randomProduct$varian === void 0 ? void 0 : _randomProduct$varian.image,
+                alt: randomProduct.name,
+                className: "horizontal-product-image"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "horizontal-product-content",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+                  children: randomProduct.name
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                  className: "product-card-brand",
+                  children: randomProduct.brand
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "product-card-colors",
+                  children: [colorSwatches.map(function (hexCode, index) {
+                    var variantWithThisColor = randomProduct.variants.find(function (v) {
+                      return v.hex_code === hexCode;
+                    });
+                    var colorName = (variantWithThisColor === null || variantWithThisColor === void 0 ? void 0 : variantWithThisColor.color) || "Color ".concat(index + 1);
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "color-swatch",
+                      style: {
+                        backgroundColor: hexCode || '#6b7280',
+                        borderColor: getBorderColor(hexCode)
+                      },
+                      title: colorName
+                    }, index);
+                  }), hasMoreColors && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                    className: "color-swatch-more",
+                    title: "+".concat(randomProduct.variants.length - 4, " more colors"),
+                    children: "+"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "product-card-price",
+                  children: ["$", randomProduct.base_price]
+                })]
+              })]
+            }, randomProduct.id);
+          })
+        })
+      })]
+    });
+  };
+
+  // Tabs Component
+  var ProductTabs = function ProductTabs() {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "product-tabs",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "tabs-header",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          className: "tab-button ".concat(activeTab === 'overview' ? 'active' : ''),
+          onClick: function onClick() {
+            return setActiveTab('overview');
+          },
+          children: "Overview"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+          className: "tab-button ".concat(activeTab === 'reviews' ? 'active' : ''),
+          onClick: function onClick() {
+            return setActiveTab('reviews');
+          },
+          children: "Reviews & Ratings"
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+        className: "tabs-content",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "tab-content ".concat(activeTab === 'overview' ? 'active' : ''),
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-description",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+              children: "Product Description"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+              children: product === null || product === void 0 ? void 0 : product.description
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-specifications",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+              children: "Specifications"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "specs-grid",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "spec-item",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                  children: "Brand:"
+                }), " ", product === null || product === void 0 ? void 0 : product.brand]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "spec-item",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                  children: "Category:"
+                }), " ", product === null || product === void 0 ? void 0 : product.category]
+              })]
+            })]
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+          className: "tab-content ".concat(activeTab === 'reviews' ? 'active' : ''),
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "reviews-section",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
+              children: "Customer Reviews"
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "reviews-summary",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "overall-rating",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "rating-stars",
+                  children: '★'.repeat(5)
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                  className: "rating-text",
+                  children: "4.8 out of 5"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                  className: "review-count",
+                  children: "(124 reviews)"
+                })]
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "reviews-list",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                children: "No reviews yet. Be the first to review this product!"
+              })
+            })]
+          })
+        })]
+      })]
+    });
+  };
+
   // Size Chart Modal Component
   var SizeChartModal = function SizeChartModal() {
-    var _useState15 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState16 = _slicedToArray(_useState15, 2),
-      isVisible = _useState16[0],
-      setIsVisible = _useState16[1];
-    var _useState17 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
-      _useState18 = _slicedToArray(_useState17, 2),
-      shouldRender = _useState18[0],
-      setShouldRender = _useState18[1];
+    var _useState21 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState22 = _slicedToArray(_useState21, 2),
+      isVisible = _useState22[0],
+      setIsVisible = _useState22[1];
+    var _useState23 = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
+      _useState24 = _slicedToArray(_useState23, 2),
+      shouldRender = _useState24[0],
+      setShouldRender = _useState24[1];
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
       if (showSizeChart) {
         setShouldRender(true);
-        // Small delay to allow DOM to update before starting animation
         setTimeout(function () {
           return setIsVisible(true);
         }, 10);
       } else {
         setIsVisible(false);
-        // Wait for animation to complete before removing from DOM
         setTimeout(function () {
           return setShouldRender(false);
         }, 300);
@@ -49196,170 +49566,121 @@ var ProductDetailPage = function ProductDetailPage() {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "product-detail-content",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "product-images",
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "main-image",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-              src: selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.image,
-              alt: product.name,
-              className: "product-main-image"
-            })
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-          className: "product-info",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
-            className: "product-title",
-            children: product.name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-            className: "product-brand",
-            children: product.brand
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "product-price",
-            children: ["$", (selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.price) || product.base_price]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-            className: "product-rating",
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "stars",
-              children: ['★'.repeat(5), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
-                className: "rating-text",
-                children: "(4.8) 124 Reviews"
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "variant-gallery",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "color-indicator",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
-                children: "Color: "
-              }), selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.color]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              className: "variant-images",
-              children: product.variants.map(function (variant) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-                  className: "variant-image-box ".concat((selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.id) === variant.id ? 'active' : ''),
-                  onClick: function onClick() {
-                    return handleVariantSelect(variant);
-                  },
-                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                    src: variant.image,
-                    alt: variant.color,
-                    className: "variant-thumbnail"
-                  })
-                }, variant.id);
-              })
-            })]
-          }), currentSizes.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "size-selector",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "size-header",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "size-indicator",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
-                  children: "Size: "
-                }), selectedSize]
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                className: "size-guide-link",
-                onClick: openSizeChart,
-                children: "Size Guide"
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-              className: "size-options",
-              children: currentSizes.map(function (size) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-                  className: "size-option ".concat(selectedSize === size ? 'active' : ''),
-                  onClick: function onClick() {
-                    return handleSizeSelect(size);
-                  },
-                  children: size
-                }, size);
-              })
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "action-buttons-row",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "quantity-selector",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
-                htmlFor: "quantity",
-                children: "Qty:"
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
-                id: "quantity",
-                value: quantity,
-                onChange: function onChange(e) {
-                  return setQuantity(parseInt(e.target.value));
-                },
-                children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (num) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
-                    value: num,
-                    children: num
-                  }, num);
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(VerticalCarousel, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "main-content-area",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: "product-main-section",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+              className: "product-images",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "main-image",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                  src: selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.image,
+                  alt: product.name,
+                  className: "product-main-image"
                 })
-              })]
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-              className: "add-to-cart-btn",
-              onClick: handleAddToCart,
-              children: "Add to Cart"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
-              className: "buy-now-btn",
-              onClick: handleBuyNow,
-              children: "Buy Now"
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "product-description",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-              children: "Description"
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-              children: product.description
-            })]
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-            className: "product-specifications",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h3", {
-              children: "Specifications"
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-              className: "specs-grid",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "spec-item",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
-                  children: "Brand:"
-                }), " ", product.brand]
+              className: "product-info",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+                className: "product-title",
+                children: product.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+                className: "product-brand",
+                children: product.brand
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "spec-item",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
-                  children: "Category:"
-                }), " ", product.category]
-              })]
-            })]
-          })]
-        })]
-      }), relatedProducts.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-        className: "related-products",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
-          children: "Related Products"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-          className: "related-products-grid",
-          children: relatedProducts.map(function (relatedProduct) {
-            var _relatedProduct$varia;
-            return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_router_dom__WEBPACK_IMPORTED_MODULE_1__.Link, {
-              to: "/product/".concat(relatedProduct.id),
-              className: "related-product-card",
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
-                src: (_relatedProduct$varia = relatedProduct.variants[0]) === null || _relatedProduct$varia === void 0 ? void 0 : _relatedProduct$varia.image,
-                alt: relatedProduct.name,
-                className: "related-product-image"
+                className: "product-price",
+                children: ["$", (selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.price) || product.base_price]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "product-rating",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "stars",
+                  children: ['★'.repeat(5), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
+                    className: "rating-text",
+                    children: "(4.8) 124 Reviews"
+                  })]
+                })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                className: "related-product-info",
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
-                  children: relatedProduct.name
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-                  className: "related-product-brand",
-                  children: relatedProduct.brand
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-                  className: "related-product-price",
-                  children: ["$", relatedProduct.base_price]
+                className: "variant-gallery",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "color-indicator",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                    children: "Color: "
+                  }), selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.color]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "variant-images",
+                  children: product.variants.map(function (variant) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                      className: "variant-image-box ".concat((selectedVariant === null || selectedVariant === void 0 ? void 0 : selectedVariant.id) === variant.id ? 'active' : ''),
+                      onClick: function onClick() {
+                        return handleVariantSelect(variant);
+                      },
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                        src: variant.image,
+                        alt: variant.color,
+                        className: "variant-thumbnail"
+                      })
+                    }, variant.id);
+                  })
+                })]
+              }), currentSizes.length > 0 && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "size-selector",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "size-header",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                    className: "size-indicator",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("strong", {
+                      children: "Size: "
+                    }), selectedSize]
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                    className: "size-guide-link",
+                    onClick: openSizeChart,
+                    children: "Size Guide"
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "size-options",
+                  children: currentSizes.map(function (size) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                      className: "size-option ".concat(selectedSize === size ? 'active' : ''),
+                      onClick: function onClick() {
+                        return handleSizeSelect(size);
+                      },
+                      children: size
+                    }, size);
+                  })
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "action-buttons-row",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                  className: "quantity-selector",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("label", {
+                    htmlFor: "quantity",
+                    children: "Qty:"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("select", {
+                    id: "quantity",
+                    value: quantity,
+                    onChange: function onChange(e) {
+                      return setQuantity(parseInt(e.target.value));
+                    },
+                    children: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(function (num) {
+                      return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("option", {
+                        value: num,
+                        children: num
+                      }, num);
+                    })
+                  })]
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  className: "add-to-cart-btn",
+                  onClick: handleAddToCart,
+                  children: "Add to Cart"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
+                  className: "buy-now-btn",
+                  onClick: handleBuyNow,
+                  children: "Buy Now"
                 })]
               })]
-            }, relatedProduct.id);
-          })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(ProductTabs, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RelatedProductsSection, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(RandomProductsSection, {})]
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(SizeChartModal, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_home_Footer__WEBPACK_IMPORTED_MODULE_3__["default"], {})]
