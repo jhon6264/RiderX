@@ -1,7 +1,7 @@
 <?php
 // api/helmets.php
-
-// Include security configuration
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 require_once 'config/security.php';
 
 $helmets = [
@@ -18,7 +18,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2337/4594/arai_regent_x_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_regent_x_helmet_black_750x750.jpg'
     ],
     [
         'id' => 2,
@@ -28,7 +28,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2337/4628/arai_regent_x_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_regent_x_helmet_white_750x750.jpg'
     ],
     [
         'id' => 3,
@@ -38,7 +38,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2337/4662/arai_regent_x_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_regent_x_helmet_grey_750x750.jpg'
     ],
     [
         'id' => 4,
@@ -48,7 +48,7 @@ $helmets = [
         'color' => 'Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2337/4730/arai_regent_x_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_regent_x_helmet_red_750x750.jpg'
     ],
     [
         'id' => 5,
@@ -58,7 +58,7 @@ $helmets = [
         'color' => 'Ivory',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2337/4781/arai_regent_x_helmet_modern_ivory_750x750.jpg'
+        'image' => '/img/helmets/arai_regent_x_helmet_modern_ivory_750x750.jpg'
     ],
     
     // Sedici Full Face
@@ -70,7 +70,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2224/7993/sedici_strada3_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/sedici_strada3_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 7,
@@ -80,7 +80,7 @@ $helmets = [
         'color' => 'Glossy Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2224/8078/sedici_strada3_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/sedici_strada3_helmet_black_750x750.jpg'
     ],
     [
         'id' => 8,
@@ -90,7 +90,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2224/8095/sedici_strada3_helmet_white_750x750.jpg'
+        'image' => '/img/helmets/sedici_strada3_helmet_white_750x750.jpg'
     ],
     [
         'id' => 9,
@@ -100,7 +100,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2224/8112/sedici_strada3_helmet_grey_750x750.jpg'
+        'image' => '/img/helmets/sedici_strada3_helmet_grey_750x750.jpg'
     ],
     
     // Nexx Full Face
@@ -112,7 +112,7 @@ $helmets = [
         'color' => 'Glaze Carbon Ice Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2493/4180/nexx_xwst3_zero_pro_carbon_glaze_edition_helmet_glaze_carbon_ice_blue_750x750.jpg'
+        'image' => '/img/helmets/nexx_xwst3_zero_pro_carbon_glaze_edition_helmet_glaze_carbon_ice_blue_750x750.jpg'
     ],
     
     // Alpinestars Full Face
@@ -124,7 +124,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2225/7292/alpinestars_supertech_r10_carbon_helmet_white_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_r10_carbon_helmet_white_750x750.jpg'
     ],
     [
         'id' => 12,
@@ -134,7 +134,7 @@ $helmets = [
         'color' => 'Black Carbon',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2209/1032/alpinestars_supertech_r10_carbon_helmet_black_carbon_480x480.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_r10_carbon_helmet_black_carbon_480x480.jpg'
     ],
     // New Alpinestars Supertech R10 Carbon variants
     [
@@ -145,7 +145,7 @@ $helmets = [
         'color' => 'Matte Black Carbon/Fluo Red/Blue/White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2208/7462/alpinestars_supertech_r10_carbon_team_helmet_black_carbon_red_fluo_matte_blue_white_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_r10_carbon_team_helmet_black_carbon_red_fluo_matte_blue_white_750x750.jpg'
     ],
     [
         'id' => 54,
@@ -155,7 +155,7 @@ $helmets = [
         'color' => 'Gloss Black Carbon/Red/White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2226/0199/alpinestars_supertech_r10_carbon_team_helmet_black_carbon_red_white_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_r10_carbon_team_helmet_black_carbon_red_white_750x750.jpg'
     ],
     [
         'id' => 55,
@@ -165,7 +165,7 @@ $helmets = [
         'color' => 'Gloss Black Carbon/Silver',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2226/0267/alpinestars_supertech_r10_carbon_element_helmet_gloss_black_carbon_silver_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_r10_carbon_element_helmet_gloss_black_carbon_silver_750x750.jpg'
     ],
     [
         'id' => 56,
@@ -175,7 +175,7 @@ $helmets = [
         'color' => 'Gloss Black Carbon/Bright Red/White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2209/0862/alpinestars_supertech_r10_carbon_element_helmet_gloss_black_carbon_bright_red_white_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_r10_carbon_element_helmet_gloss_black_carbon_bright_red_white_750x750.jpg'
     ],
     
     // Scorpion Full Face
@@ -187,7 +187,7 @@ $helmets = [
         'color' => 'Black Onyx',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2475/0804/scorpion_exor1_air_carbon_onyx_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exor1_air_carbon_onyx_helmet_black_camo_750x750.jpg'
     ],
     // New Scorpion Full Face variants
     [
@@ -198,7 +198,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2330/7271/scorpion_exor1_air_carbon_onyx_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exor1_air_carbon_onyx_helmet_black_dark_750x750.jpg'
     ],
     [
         'id' => 58,
@@ -208,7 +208,7 @@ $helmets = [
         'color' => 'Gloss Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/1507/9276/scorpion_exor1_air_carbon_helmet_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exor1_air_carbon_helmet_braided_750x750.jpg'
     ],
     [
         'id' => 59,
@@ -218,7 +218,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/1507/9220/scorpion_exor1_air_carbon_helmet_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exor1_air_carbon_helmet_lightbraid_750x750.jpg'
     ],
     [
         'id' => 60,
@@ -228,7 +228,7 @@ $helmets = [
         'color' => 'Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2166/0760/scorpion_exo_exo_r1_air_full_face_helmet_blue_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exo_exo_r1_air_full_face_helmet_blue_750x750.jpg'
     ],
     
     // AGV Full Face
@@ -240,7 +240,7 @@ $helmets = [
         'color' => 'Black Pink',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2477/7392/agvk1_s_sling_helmet_black_pink_750x750.jpg'
+        'image' => '/img/helmets/agvk1_s_sling_helmet_black_pink_750x750.jpg'
     ],
     [
         'id' => 15,
@@ -250,7 +250,7 @@ $helmets = [
         'color' => 'Matte Black Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2250/8281/agvk1_s_sling_helmet_matte_black_red_750x750.jpg'
+        'image' => '/img/helmets/agvk1_s_sling_helmet_matte_black_red_750x750.jpg'
     ],
     [
         'id' => 16,
@@ -260,7 +260,7 @@ $helmets = [
         'color' => 'Black Grey Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2370/6218/agvk1_s_fastlap_helmet_black_grey_red_750x750.jpg'
+        'image' => '/img/helmets/agvk1_s_fastlap_helmet_black_grey_red_750x750.jpg'
     ],
     [
         'id' => 17,
@@ -270,7 +270,7 @@ $helmets = [
         'color' => 'Black Purple Pink',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2370/5963/agvk1_s_fastlap_helmet_black_purple_pink_750x750.jpg'
+        'image' => '/img/helmets/agvk1_s_fastlap_helmet_black_purple_pink_750x750.jpg'
     ],
     [
         'id' => 18,
@@ -280,7 +280,7 @@ $helmets = [
         'color' => 'Black Red Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2405/2083/agvk1_s_fastlap_helmet_black_red_blue_750x750.jpg'
+        'image' => '/img/helmets/agvk1_s_fastlap_helmet_black_red_blue_750x750.jpg'
     ],
     
     // New Scorpion Full Face Helmets
@@ -292,7 +292,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2332/2044/scorpion_exo_eclipse_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exo_eclipse_helmet_black_750x750.jpg'
     ],
     [
         'id' => 62,
@@ -302,7 +302,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2332/2095/scorpion_exo_eclipse_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exo_eclipse_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 63,
@@ -312,7 +312,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2475/5241/scorpion_exo_eclipse_helmet_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exo_eclipse_helmet_750x750.jpg'
     ],
     
     [
@@ -323,7 +323,7 @@ $helmets = [
         'color' => 'Black/Blue/Hi-Viz Yellow',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2475/1025/scorpion_exost1400_evo_hex_helmet_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exost1400_evo_hex_helmet_blue_750x750.jpg'
     ],
     [
         'id' => 65,
@@ -333,7 +333,7 @@ $helmets = [
         'color' => 'Black/Matte Blue/White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2330/8546/scorpion_exost1400_evo_hex_helmet_red_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exost1400_evo_hex_helmet_reda_750x750.jpg'
     ],
     [
         'id' => 66,
@@ -343,7 +343,7 @@ $helmets = [
         'color' => 'Matte Grey/Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2330/8529/scorpion_exost1400_evo_hex_helmet_red_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exost1400_evo_hex_helmet_redq_750x750.jpg'
     ],
     [
         'id' => 67,
@@ -353,7 +353,7 @@ $helmets = [
         'color' => 'Black/Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2330/8495/scorpion_exost1400_evo_hex_helmet_red_750x750.jpg'
+        'image' => '/img/helmets/scorpion_exost1400_evo_hex_helmet_red_750x750.jpg'
     ],
     
     // New Alpinestars Full Face Helmets
@@ -365,7 +365,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2147/9812/alpinestars_sm5_helmet_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_sm5_helmet_black_750x750.jpg'
     ],
     [
         'id' => 69,
@@ -375,7 +375,7 @@ $helmets = [
         'color' => 'Gloss White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2147/9846/alpinestars_sm5_helmet_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_sm5_helmet_750x750.jpg'
     ],
     
     [
@@ -386,7 +386,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2405/2151/alpinestars_supertech_m3_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_m3_helmet_black_750x750.jpg'
     ],
     [
         'id' => 71,
@@ -396,7 +396,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2405/1947/alpinestars_supertech_m3_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_m3_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 72,
@@ -406,7 +406,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2405/1998/alpinestars_supertech_m3_helmet_white_750x750.jpg'
+        'image' => '/img/helmets/alpinestars_supertech_m3_helmet_white_750x750.jpg'
     ],
     
     // Adventure/Dual Sport Helmets
@@ -418,7 +418,7 @@ $helmets = [
         'color' => 'Yellow',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2346/0192/arai_xd5_trail_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_xd5_trail_helmet_yellow_750x750.jpg'
     ],
     [
         'id' => 74,
@@ -428,7 +428,7 @@ $helmets = [
         'color' => 'Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2346/0226/arai_xd5_trail_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_xd5_trail_helmet_blue_750x750.jpg'
     ],
     [
         'id' => 75,
@@ -438,7 +438,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2336/7201/arai_xd5_discovery_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_xd5_discovery_helmet_750x750.jpg'
     ],
     
     [
@@ -449,7 +449,7 @@ $helmets = [
         'color' => 'Black/Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2148/6031/shoei_hornet_x2_invigorate_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_hornet_x2_invigorate_helmet_blue_750x750.jpg'
     ],
     [
         'id' => 77,
@@ -459,7 +459,7 @@ $helmets = [
         'color' => 'Black/Green',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2148/6014/shoei_hornet_x2_invigorate_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_hornet_x2_invigorate_helmet_green_750x750.jpg'
     ],
     [
         'id' => 78,
@@ -469,7 +469,7 @@ $helmets = [
         'color' => 'White/Pink/Purple',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2148/5929/shoei_hornet_x2_invigorate_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_hornet_x2_invigorate_helmet_white_750x750.jpg'
     ],
     [
         'id' => 79,
@@ -479,7 +479,7 @@ $helmets = [
         'color' => 'White/Red/Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2148/5980/shoei_hornet_x2_invigorate_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_hornet_x2_invigorate_helmet_hehe_750x750.jpg'
     ],
     
     // New Nexx Adventure Helmets
@@ -491,7 +491,7 @@ $helmets = [
         'color' => 'Matte White/Hi-Viz Yellow',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2243/7393/nexx_xwed3_keyo_carbon_helmet_matte_white_hi_viz_750x750.jpg'
+        'image' => '/img/helmets/nexx_xwed3_keyo_carbon_helmet_matte_white_hi_viz_750x750.jpg'
     ],
     [
         'id' => 81,
@@ -501,7 +501,7 @@ $helmets = [
         'color' => 'Matte Blue/Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2243/7342/nexx_xwed3_keyo_carbon_helmet_matte_blue_red_750x750.jpg'
+        'image' => '/img/helmets/nexx_xwed3_keyo_carbon_helmet_matte_blue_red_750x750.jpg'
     ],
     [
         'id' => 82,
@@ -511,7 +511,7 @@ $helmets = [
         'color' => 'Matte Green/Silver',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2243/7359/nexx_xwed3_keyo_carbon_helmet_matte_green_silver_750x750.jpg'
+        'image' => '/img/helmets/nexx_xwed3_keyo_carbon_helmet_matte_green_silver_750x750.jpg'
     ],
     [
         'id' => 83,
@@ -521,7 +521,7 @@ $helmets = [
         'color' => 'Matte Grey/Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2243/7376/nexx_xwed3_keyo_carbon_helmet_matte_grey_red_750x750.jpg'
+        'image' => '/img/helmets/nexx_xwed3_keyo_carbon_helmet_matte_grey_red_750x750.jpg'
     ],
     [
         'id' => 84,
@@ -531,7 +531,7 @@ $helmets = [
         'color' => 'Matte White/Orange',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2243/7410/nexx_xwed3_keyo_carbon_helmet_matte_white_orange_750x750.jpg'
+        'image' => '/img/helmets/nexx_xwed3_keyo_carbon_helmet_matte_white_orange_750x750.jpg'
     ],
     
     // Klim Adventure Helmets
@@ -543,7 +543,7 @@ $helmets = [
         'color' => 'Gloss Petrol/Strike Orange',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2390/9177/klim_x1_alpha_concept_helmet_gloss_petrol_strike_orange_750x750.jpg'
+        'image' => '/img/helmets/klim_x1_alpha_concept_helmet_gloss_petrol_strike_orange_750x750.jpg'
     ],
     [
         'id' => 86,
@@ -553,17 +553,17 @@ $helmets = [
         'color' => 'Gloss High Rise/Electric Blue Lemonade',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2390/9245/klim_x1_alpha_concept_helmet_gloss_high_rise_electric_blue_lemonade_750x750.jpg'
+        'image' => '/img/helmets/klim_x1_alpha_concept_helmet_gloss_high_rise_electric_blue_lemonade_750x750.jpg'
     ],
     [
         'id' => 87,
-        'name' => 'Klim X1 Alpha Patriot Helmet',
+        'name' => 'Klim X1 Alpha Concept Helmet',
         'brand' => 'Klim',
         'price' => 799.99,
         'color' => 'Chrome/Gunmetal Black',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2487/6072/klim_x1_alpha_patriot_helmet_750x750.jpg'
+        'image' => '/img/helmets/klim_x1_alpha_patriot_helmet_750x750.jpg'
     ],
     
     [
@@ -574,7 +574,7 @@ $helmets = [
         'color' => 'Electric Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2406/5033/klim_krios_pro_ventura_helmet_electric_blue_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_ventura_helmet_electric_blue_750x750.jpg'
     ],
     [
         'id' => 89,
@@ -584,7 +584,7 @@ $helmets = [
         'color' => 'Olive',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2406/5084/klim_krios_pro_ventura_helmet_olive_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_ventura_helmet_olive_750x750.jpg'
     ],
     [
         'id' => 90,
@@ -594,7 +594,7 @@ $helmets = [
         'color' => 'Striking Orange',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/1514/3499/klim_krios_pro_rally_helmet_bronze_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_rally_helmet_bronzewer_750x750.jpg'
     ],
     [
         'id' => 91,
@@ -604,7 +604,7 @@ $helmets = [
         'color' => 'Bronze',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/1514/3346/klim_krios_pro_rally_helmet_bronze_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_rally_helmet_bronze_750x750.jpg'
     ],
     
     [
@@ -615,7 +615,7 @@ $helmets = [
         'color' => 'Carbon',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/1384/0585/klim_krios_karbon_helmet_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_karbon_helmet_750x750.jpg'
     ],
     [
         'id' => 93,
@@ -625,7 +625,7 @@ $helmets = [
         'color' => 'Black/Fiery Red',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2389/9803/klim_krios_pro_spectrum_helmet_black_fiery_red_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_spectrum_helmet_black_fiery_red_750x750.jpg'
     ],
     [
         'id' => 94,
@@ -635,7 +635,7 @@ $helmets = [
         'color' => 'White/Blue',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2389/9735/klim_krios_pro_spectrum_helmet_white_blue_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_spectrum_helmet_white_blue_750x750.jpg'
     ],
     [
         'id' => 95,
@@ -645,7 +645,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2406/3605/klim_krios_pro_charger_helmet_grey_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_charger_helmet_grey_750x750.jpg'
     ],
     [
         'id' => 96,
@@ -655,7 +655,7 @@ $helmets = [
         'color' => 'Hi-Viz Yellow/Black/Grey',
         'category' => 'helmets',
         'type' => 'full-face',
-        'image' => 'https://www.revzilla.com/product_images/2406/3673/klim_krios_pro_charger_helmet_hi_viz_750x750.jpg'
+        'image' => '/img/helmets/klim_krios_pro_charger_helmet_hi_viz_750x750.jpg'
     ],
     
     // ========================
@@ -671,7 +671,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2394/6620/sedici_sistema3_helmet_750x750.jpg'
+        'image' => '/img/helmets/sedici_sistema3_helmetqw_750x750.jpg'
     ],
     [
         'id' => 20,
@@ -681,7 +681,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2394/6586/sedici_sistema3_helmet_750x750.jpg'
+        'image' => '/img/helmets/sedici_sistema3_helmetssa_750x750.jpg'
     ],
     [
         'id' => 21,
@@ -691,7 +691,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2394/6603/sedici_sistema3_helmet_750x750.jpg'
+        'image' => '/img/helmets/sedici_sistema3_helmesact_750x750.jpg'
     ],
     [
         'id' => 22,
@@ -701,7 +701,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2394/6654/sedici_sistema3_helmet_750x750.jpg'
+        'image' => '/img/helmets/sedici_sistema3_helsccacasmet_750x750.jpg'
     ],
     
     // LS2 Modular
@@ -713,7 +713,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2105/7520/ls2_helmets_advant_x_solid_helmet_750x750.jpg'
+        'image' => '/img/helmets/ls2_helmets_advant_x_solid_helcascasmet_750x750.jpg'
     ],
     [
         'id' => 24,
@@ -723,7 +723,7 @@ $helmets = [
         'color' => 'Gloss White',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2105/7503/ls2_helmets_advant_x_solid_helmet_750x750.jpg'
+        'image' => '/img/helmets/ls2_helmets_advacascnt_x_solid_helmet_750x750.jpg'
     ],
     [
         'id' => 25,
@@ -733,7 +733,7 @@ $helmets = [
         'color' => 'Matte Titanium',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2405/5465/ls2_advant_x_solid_helmet_matte_titanium_750x750.jpg'
+        'image' => '/img/helmets/ls2_advant_x_solid_helmet_matte_titaniuascascm_750x750.jpg'
     ],
     
     // Sedici Pro Modular
@@ -745,7 +745,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2431/3526/sedici_pro_modular_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/sedici_pro_modular_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 27,
@@ -755,7 +755,7 @@ $helmets = [
         'color' => 'Matte White',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2431/3441/sedici_pro_modular_helmet_white_750x750.jpg'
+        'image' => '/img/helmets/sedici_pro_modular_helmet_white_750x750.jpg'
     ],
     
     // Schuberth Modular
@@ -767,7 +767,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1918/4784/schuberth_c5_master_helmet_grey_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_master_helmasdaset_grey_750x750.jpg'
     ],
     [
         'id' => 29,
@@ -777,7 +777,7 @@ $helmets = [
         'color' => 'White Red',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1836/6209/schuberth_c5_master_helmet_blue_white_red_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_master_helmet_blue_white_red_750x750.jpg'
     ],
     [
         'id' => 30,
@@ -787,7 +787,7 @@ $helmets = [
         'color' => 'White Orange',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1836/6311/schuberth_c5_master_helmet_black_white_orange_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_master_helmet_black_white_orange_750x750.jpg'
     ],
     [
         'id' => 31,
@@ -797,7 +797,7 @@ $helmets = [
         'color' => 'Grey Yellow',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1836/6090/schuberth_c5_master_helmet_grey_yellow_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_master_helmet_grey_yellow_750x750.jpg'
     ],
     [
         'id' => 32,
@@ -807,7 +807,7 @@ $helmets = [
         'color' => 'Gloss Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2436/6792/schuberth_c5_helmet_gloss_black_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_helmet_gloss_black_750x750.jpg'
     ],
     [
         'id' => 33,
@@ -817,7 +817,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1836/5546/schuberth_c5_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 34,
@@ -827,7 +827,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1836/5393/schuberth_c5_helmet_white_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_helmet_white_750x750.jpg'
     ],
     [
         'id' => 35,
@@ -837,7 +837,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/1836/5699/schuberth_c5_helmet_grey_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_helmet_grey_750x750.jpg'
     ],
     
     // New Schuberth S3 Apex Modular
@@ -849,7 +849,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2382/5868/schuberth_s3_apex_helmet_grey_750x750.jpg'
+        'image' => '/img/helmets/schuberth_s3_apex_helmet_grey_750x750.jpg'
     ],
     [
         'id' => 98,
@@ -859,7 +859,7 @@ $helmets = [
         'color' => 'White/Red',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2382/5800/schuberth_s3_apex_helmet_white_750x750.jpg'
+        'image' => '/img/helmets/schuberth_s3_apex_helmet_white_750x750.jpg'
     ],
     [
         'id' => 99,
@@ -869,7 +869,7 @@ $helmets = [
         'color' => 'Anthracite/Red',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2382/5732/schuberth_s3_apex_helmet_anthracite_750x750.jpg'
+        'image' => '/img/helmets/schuberth_s3_apex_helmet_anthracite_750x750.jpg'
     ],
     
     // Shoei Modular
@@ -881,7 +881,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2243/9314/shoei_neotec3_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_neotec3_hascacaelmet_750x750.jpg'
     ],
     [
         'id' => 37,
@@ -891,7 +891,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2243/9059/shoei_neotec3_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_neotec3_helmeadasdasadast_750x750.jpg'
     ],
     [
         'id' => 38,
@@ -901,7 +901,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2243/9110/shoei_neotec3_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_neotsadec3_helmasdaset_750x750.jpg'
     ],
     [
         'id' => 39,
@@ -911,7 +911,7 @@ $helmets = [
         'color' => 'Matte Deep Gray',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2243/9042/shoei_neotec3_helmet_750x750.jpg'
+        'image' => '/img/helmets/shoei_neotec3_helmet_750x750.jpg'
     ],
     
     // Sedici Sistema 3 Parlare
@@ -923,7 +923,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2394/6875/sedici_sistema3_parlare_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/sedici_sistema3_parlare_helmet_black_750x750.jpg'
     ],
     [
         'id' => 41,
@@ -933,7 +933,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2394/6722/sedici_sistema3_parlare_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/sedici_sistema3_parlare_helmet_matte_black_750x750.jpg'
     ],
     
     // Schuberth Carbon Modular
@@ -945,7 +945,7 @@ $helmets = [
         'color' => 'Gloss Carbon',
         'category' => 'helmets',
         'type' => 'modular',
-        'image' => 'https://www.revzilla.com/product_images/2221/7696/schuberth_c5_carbon_helmet_gloss_carbon_750x750.jpg'
+        'image' => '/img/helmets/schuberth_c5_carbon_helmet_gloss_carbon_750x750.jpg'
     ],
     
     // ========================
@@ -961,7 +961,7 @@ $helmets = [
         'color' => 'Black',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/1361/7154/arai_classic_v_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_classic_v_heasdawqewqlmet_750x750.jpg'
     ],
     [
         'id' => 44,
@@ -971,7 +971,7 @@ $helmets = [
         'color' => 'Copper Frost',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/1361/7222/arai_classic_v_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_classic_v_helmeasdsaa_750x750.jpg'
     ],
     [
         'id' => 45,
@@ -981,7 +981,7 @@ $helmets = [
         'color' => 'White',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/1361/7188/arai_classic_v_helmet_750x750.jpg'
+        'image' => '/img/helmets/arai_classic_v_helmedasdt_750x750.jpg'
     ],
     
     // Bilt Open Face
@@ -993,7 +993,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/0190/3762/custom_bilt_jet_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/custom_bilt_jet_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 47,
@@ -1003,7 +1003,7 @@ $helmets = [
         'color' => 'Pearl Gray',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/0190/3770/custom_bilt_jet_helmet_pearl_white_750x750.jpg'
+        'image' => '/img/helmets/custom_bilt_jet_helmet_pearl_white_750x750.jpg'
     ],
     
     // Scorpion Open Face
@@ -1015,7 +1015,7 @@ $helmets = [
         'color' => 'Gloss Black',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/2422/6972/scorpion_covert_x_helmet_black_750x750.jpg'
+        'image' => '/img/helmets/scorpion_covert_x_helmet_black_750x750.jpg'
     ],
     [
         'id' => 49,
@@ -1025,7 +1025,7 @@ $helmets = [
         'color' => 'Matte Black',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/2422/7006/scorpion_covert_x_helmet_matte_black_750x750.jpg'
+        'image' => '/img/helmets/scorpion_covert_x_helmet_matte_black_750x750.jpg'
     ],
     [
         'id' => 50,
@@ -1035,7 +1035,7 @@ $helmets = [
         'color' => 'Grey',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/2422/7125/scorpion_covert_x_helmet_grey_750x750.jpg'
+        'image' => '/img/helmets/scorpion_covert_x_helmet_grey_750x750.jpg'
     ],
     [
         'id' => 51,
@@ -1045,7 +1045,7 @@ $helmets = [
         'color' => 'Marauder Design',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/2422/7227/scorpion_covert_x_marauder_helmet_750x750.jpg'
+        'image' => '/img/helmets/scorpion_covert_x_marauder_helmet_750x750.jpg'
     ],
     
     // Bell Open Face
@@ -1057,7 +1057,7 @@ $helmets = [
         'color' => 'Classic Design',
         'category' => 'helmets',
         'type' => 'open-face',
-        'image' => 'https://www.revzilla.com/product_images/0344/5278/bell_rogue_helmet_750x750.jpg'
+        'image' => '/img/helmets/bell_rogue_helmet_750x750.jpg'
     ]
 ];
 

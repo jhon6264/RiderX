@@ -12,7 +12,7 @@ $pants = [
         'price' => 249.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2526/2863/dainese_drake_air_abs_luteshell_pants_black_black_750x750.jpg'
+        'image' => '/img/pants/dainese_drake_air_abs_luteshell_pants_black_black_750x750.jpg'
     ],
     [
         'id' => 2,
@@ -21,7 +21,7 @@ $pants = [
         'price' => 229.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2192/9290/dainese_drake_air_tex_pants_black_black_750x750.jpg'
+        'image' => '/img/pants/dainese_drake_air_tex_pants_black_black_750x750.jpg'
     ],
     
     // Revit Pants
@@ -32,7 +32,7 @@ $pants = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2379/8481/revit_sand5_h2_o_pants_black_750x750.jpg'
+        'image' => '/img/pants/revit_sand5_h2_o_pants_black_750x750.jpg'
     ],
     [
         'id' => 4,
@@ -41,7 +41,7 @@ $pants = [
         'price' => 199.99,
         'color' => 'Silver/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2379/8413/revit_sand5_h2_o_pants_750x750.jpg'
+        'image' => '/img/pants/revit_sand5_h2_o_pants_750x750.jpg'
     ],
     [
         'id' => 5,
@@ -50,7 +50,7 @@ $pants = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2194/2125/revit_tornado4_h2_o_pants_750x750.jpg'
+        'image' => '/img/pants/revit_tornado4_h2_o_pants_black_750x750.jpg'
     ],
     [
         'id' => 6,
@@ -59,7 +59,7 @@ $pants = [
         'price' => 179.99,
         'color' => 'White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2194/2159/revit_tornado4_h2_o_pants_750x750.jpg'
+        'image' => '/img/pants/revit_tornado4_h2_o_pants_white_750x750.jpg'
     ],
     
     // Sedici Pants
@@ -70,7 +70,7 @@ $pants = [
         'price' => 149.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1393/4464/sedici_alexi2_mesh_pants_black_750x750.jpg'
+        'image' => '/img/pants/sedici_alexi2_mesh_pants_black_750x750.jpg'
     ],
     [
         'id' => 8,
@@ -79,7 +79,7 @@ $pants = [
         'price' => 149.99,
         'color' => 'White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2097/8753/sedici_alexi2_mesh_pants_silver_black_750x750.jpg'
+        'image' => '/img/pants/sedici_alexi2_mesh_pants_silver_black_750x750.jpg'
     ],
     [
         'id' => 9,
@@ -88,7 +88,7 @@ $pants = [
         'price' => 169.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2415/1318/sedici_corsa2_pants_black_black_750x750.jpg'
+        'image' => '/img/pants/sedici_corsa2_pants_black_black_750x750.jpg'
     ],
     
     // Alpinestars Pants
@@ -99,7 +99,7 @@ $pants = [
         'price' => 279.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1783/9198/alpinestars_missilev3_airflow_pants_black_black_750x750.jpg'
+        'image' => '/img/pants/alpinestars_missilev3_airflow_pants_black_black_750x750.jpg'
     ],
     [
         'id' => 11,
@@ -108,7 +108,7 @@ $pants = [
         'price' => 349.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/0904/9401/alpinestars_trackv2_leather_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_trackv2_leather_pants_750x750.jpg'
     ],
     [
         'id' => 12,
@@ -117,7 +117,7 @@ $pants = [
         'price' => 159.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/0268/0254/alpinestars_pant_ramjet_black_750x750.jpg'
+        'image' => '/img/pants/alpinestars_pant_ramjet_black_750x750.jpg'
     ],
     
     // New Alpinestars Pants
@@ -128,7 +128,7 @@ $pants = [
         'price' => 189.99,
         'color' => 'Navy/Orange/White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2341/4632/alpinestars_pro_dura_pants_navy_orange_white_750x750.jpg'
+        'image' => '/img/pants/alpinestars_pro_dura_pants_navy_orange_white_750x750.jpg'
     ],
     [
         'id' => 15,
@@ -137,7 +137,7 @@ $pants = [
         'price' => 189.99,
         'color' => 'Navy/White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2341/4598/alpinestars_pro_dura_pants_navy_white_750x750.jpg'
+        'image' => '/img/pants/alpinestars_pro_dura_pants_navy_white_750x750.jpg'
     ],
     [
         'id' => 16,
@@ -146,7 +146,7 @@ $pants = [
         'price' => 189.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2341/4666/alpinestars_pro_dura_pants_black_750x750.jpg'
+        'image' => '/img/pants/alpinestars_pro_dura_pants_black_750x750.jpg'
     ],
     
     // Alpinestars Fluid Apex Pants
@@ -157,7 +157,7 @@ $pants = [
         'price' => 129.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2478/2458/alpinestars_fluid_apex_pants_black_750x750.jpg'
+        'image' => '/img/pants/alpinestars_fluid_apex_pants_black_750x750.jpg'
     ],
     [
         'id' => 18,
@@ -166,7 +166,7 @@ $pants = [
         'price' => 129.99,
         'color' => 'Blue/Yellow Fluo',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2478/9677/alpinestars_fluid_apex_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_fluid_apex_pants_blue_750x750.jpg'
     ],
     [
         'id' => 19,
@@ -175,7 +175,7 @@ $pants = [
         'price' => 129.99,
         'color' => 'Pink/Purple/Orange',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2478/2560/alpinestars_fluid_apex_pants_pink_purple_orange_750x750.jpg'
+        'image' => '/img/pants/alpinestars_fluid_apex_pants_pink_purple_orange_750x750.jpg'
     ],
     [
         'id' => 20,
@@ -184,7 +184,7 @@ $pants = [
         'price' => 129.99,
         'color' => 'Red/White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2478/2747/alpinestars_fluid_apex_pants_red_white_750x750.jpg'
+        'image' => '/img/pants/alpinestars_fluid_apex_pants_red_white_750x750.jpg'
     ],
     [
         'id' => 21,
@@ -193,7 +193,7 @@ $pants = [
         'price' => 129.99,
         'color' => 'Yellow/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2478/9711/alpinestars_fluid_apex_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_fluid_apex_pants_750x750.jpg'
     ],
     
     // Alpinestars Supertech Vista Pants
@@ -204,7 +204,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'Yellow/Purple/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2482/7805/alpinestars_supertech_vista_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_supertech_vista_pants_750x750.jpg'
     ],
     [
         'id' => 23,
@@ -213,7 +213,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'Grey/Yellow Fluo/Blue',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2482/7856/alpinestars_supertech_vista_pants_grey_yellow_fluo_blue_750x750.jpg'
+        'image' => '/img/pants/alpinestars_supertech_vista_pants_grey_yellow_fluo_blue_750x750.jpg'
     ],
     [
         'id' => 24,
@@ -222,7 +222,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'Navy/Hot Coral/Cobalt',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2482/7771/alpinestars_supertech_vista_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_supertech_vista_pants_navy750x750.jpg'
     ],
     
     // Alpinestars Supertech AFD Vista Pants
@@ -233,7 +233,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'Black/Red/White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2482/1974/alpinestars_supertech_afd_vista_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_supertech_afd_vista_pants_black_750x750.jpg'
     ],
     [
         'id' => 26,
@@ -242,7 +242,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'White/Purple',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2482/1940/alpinestars_supertech_afd_vista_pants_750x750.jpg'
+        'image' => '/img/pants/alpinestars_supertech_afd_vista_pants_white_750x750.jpg'
     ],
     
     // Dainese Leather Pants
@@ -253,7 +253,7 @@ $pants = [
         'price' => 449.99,
         'color' => 'Black/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2170/9551/dainese_delta4_leather_pants_black_black_750x750.jpg'
+        'image' => '/img/pants/dainese_delta4_leather_pants_black_black_750x750.jpg'
     ],
     [
         'id' => 28,
@@ -262,7 +262,7 @@ $pants = [
         'price' => 449.99,
         'color' => 'Black/White',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2170/9551/dainese_delta4_leather_pants_black_black_750x750.jpg'
+        'image' => '/img/pants/dainese_delta4_leather_pants_black_black_750x750.jpg'
     ],
     [
         'id' => 29,
@@ -271,7 +271,7 @@ $pants = [
         'price' => 499.99,
         'color' => 'Black/White/Red',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2179/7041/dainese_super_speed_perforated_leather_pants_black_white_red_750x750.jpg'
+        'image' => '/img/pants/dainese_super_speed_perforated_leather_pants_black_white_red_750x750.jpg'
     ],
     
     // Klim Pants
@@ -282,7 +282,7 @@ $pants = [
         'price' => 389.99,
         'color' => 'Petrol Strike Orange',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1730/3570/klim_carlsbad_pant_petrol_strike_orange_750x750.jpg'
+        'image' => '/img/pants/klim_carlsbad_pant_petrol_strike_orange_750x750.jpg'
     ],
     
     // Klim Mojave Pants
@@ -293,7 +293,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1997/4586/klim_mojave_in_the_boot_pant_black_750x750.jpg'
+        'image' => '/img/pants/klim_mojave_in_the_boot_pant_black_750x750.jpg'
     ],
     [
         'id' => 31,
@@ -302,7 +302,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'Peyote/Asphalt',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2387/9291/klim_mojave_itb_pants_peyote_asphalt_750x750.jpg'
+        'image' => '/img/pants/klim_mojave_itb_pants_peyote_asphalt_750x750.jpg'
     ],
     [
         'id' => 32,
@@ -311,7 +311,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'High Rise/Nightfall Blue',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2387/9359/klim_mojave_itb_pants_high_rise_nightfall_blue_750x750.jpg'
+        'image' => '/img/pants/klim_mojave_itb_pants_high_rise_nightfall_blue_750x750.jpg'
     ],
     [
         'id' => 33,
@@ -320,7 +320,7 @@ $pants = [
         'price' => 299.99,
         'color' => 'Petrol/Golden Brown',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2387/9325/klim_mojave_itb_pants_petrol_golden_brown_750x750.jpg'
+        'image' => '/img/pants/klim_mojave_itb_pants_petrol_golden_brown_750x750.jpg'
     ],
     
     // Klim Jackson Pants
@@ -331,7 +331,7 @@ $pants = [
         'price' => 349.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2208/5915/klim_jackson_pants_stealth_black_750x750.jpg'
+        'image' => '/img/pants/klim_jackson_pants_stealth_black_750x750.jpg'
     ],
     [
         'id' => 35,
@@ -340,7 +340,7 @@ $pants = [
         'price' => 349.99,
         'color' => 'Golden Brown',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2208/6085/klim_jackson_pants_golden_brown_750x750.jpg'
+        'image' => '/img/pants/klim_jackson_pants_golden_brown_750x750.jpg'
     ],
     [
         'id' => 36,
@@ -349,7 +349,7 @@ $pants = [
         'price' => 349.99,
         'color' => 'Petrol/Monument',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2208/6306/klim_jackson_pants_petrol_750x750.jpg'
+        'image' => '/img/pants/klim_jackson_pants_petrol_750x750.jpg'
     ],
     
     // Klim XC Pro Pants
@@ -360,7 +360,7 @@ $pants = [
         'price' => 379.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2213/2053/klim_xc_pro_pants_black_750x750.jpg'
+        'image' => '/img/pants/klim_xc_pro_pants_black_750x750.jpg'
     ],
     [
         'id' => 38,
@@ -369,7 +369,7 @@ $pants = [
         'price' => 379.99,
         'color' => 'Slate Grey/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2390/9483/klim_xc_pro_pants_slate_grey_black_750x750.jpg'
+        'image' => '/img/pants/klim_xc_pro_pants_slate_grey_black_750x750.jpg'
     ],
     [
         'id' => 39,
@@ -378,7 +378,7 @@ $pants = [
         'price' => 379.99,
         'color' => 'Hi-Viz',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2213/2087/klim_xc_pro_pants_hi_viz_750x750.jpg'
+        'image' => '/img/pants/klim_xc_pro_pants_hi_viz_750x750.jpg'
     ],
     [
         'id' => 40,
@@ -387,7 +387,7 @@ $pants = [
         'price' => 379.99,
         'color' => 'Redrock',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2213/2155/klim_xc_pro_pants_redrock_750x750.jpg'
+        'image' => '/img/pants/klim_xc_pro_pants_redrock_750x750.jpg'
     ],
     
     // Klim XC Lite Pants
@@ -398,7 +398,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'Heliotrope',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2209/8580/klim_xc_lite_pants_heliotrope_750x750.jpg'
+        'image' => '/img/pants/klim_xc_lite_pants_heliotrope_750x750.jpg'
     ],
     [
         'id' => 42,
@@ -407,7 +407,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'Monument',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2209/8682/klim_xc_lite_pants_monument_750x750.jpg'
+        'image' => '/img/pants/klim_xc_lite_pants_monument_750x750.jpg'
     ],
     [
         'id' => 43,
@@ -416,7 +416,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'Winter Moss',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2209/8733/klim_xc_lite_pants_winter_moss_750x750.jpg'
+        'image' => '/img/pants/klim_xc_lite_pants_winter_moss_750x750.jpg'
     ],
     
     // Alpinestars Adventure Pants
@@ -427,7 +427,7 @@ $pants = [
         'price' => 399.99,
         'color' => 'Pale Brown',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1925/2060/alpinestars_amt10_r_drystar_xf_pants_pale_brown_750x750.jpg'
+        'image' => '/img/pants/alpinestars_amt10_r_drystar_xf_pants_pale_brown_750x750.jpg'
     ],
     
     // Women's Pants
@@ -438,7 +438,7 @@ $pants = [
         'price' => 269.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1706/4782/dainese_tempest3_d_dry_womens_pants_black_750x750.jpg'
+        'image' => '/img/pants/dainese_tempest3_d_dry_womens_pants_black_750x750.jpg'
     ],
     [
         'id' => 46,
@@ -447,7 +447,7 @@ $pants = [
         'price' => 269.99,
         'color' => 'Black/Red',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1706/4748/dainese_tempest3_d_dry_womens_pants_black_red_750x750.jpg'
+        'image' => '/img/pants/dainese_tempest3_d_dry_womens_pants_black_red_750x750.jpg'
     ],
     
     [
@@ -457,7 +457,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'Ebony/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2385/6640/dainese_mangen_absoluteshell_pro_womens_pants_750x750.jpg'
+        'image' => '/img/pants/dainese_mangen_absoluteshell_pro_womens_pants_black_750x750.jpg'
     ],
     [
         'id' => 48,
@@ -466,7 +466,7 @@ $pants = [
         'price' => 329.99,
         'color' => 'Dark Green/Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/2385/6708/dainese_mangen_absoluteshell_pro_womens_pants_750x750.jpg'
+        'image' => '/img/pants/dainese_mangen_absoluteshell_pro_womens_pants_green_750x750.jpg'
     ],
     
     // Women's Leggings
@@ -477,7 +477,7 @@ $pants = [
         'price' => 149.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1715/4813/revit_ellison_womens_leggings_black_750x750.jpg'
+        'image' => '/img/pants/revit_ellison_womens_leggings_black_750x750.jpg'
     ],
     [
         'id' => 50,
@@ -486,7 +486,7 @@ $pants = [
         'price' => 119.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1397/9824/street_steel_moto_leggings_black_750x750.jpg'
+        'image' => '/img/pants/street_steel_moto_leggings_black_black_750x750.jpg'
     ],
     
     // Additional Dainese Pants
@@ -497,7 +497,7 @@ $pants = [
         'price' => 249.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1643/7831/dainese_tempest3_d_dry_pants_black_750x750.jpg'
+        'image' => '/img/pants/dainese_tempest3_d_dry_pants_black_750x750.jpg'
     ],
     [
         'id' => 52,
@@ -506,7 +506,7 @@ $pants = [
         'price' => 249.99,
         'color' => 'Black/Red',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/1643/7831/dainese_tempest3_d_dry_pants_black_750x750.jpg'
+        'image' => '/img/pants/dainese_tempest3_d_dry_pants_black_750x750.jpg'
     ],
     
     // Oxford Pants
@@ -517,7 +517,7 @@ $pants = [
         'price' => 179.99,
         'color' => 'Tech Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/0409/2784/oxford_mondial_pants_750x750.jpg'
+        'image' => '/img/pants/oxford_mondial_pants_black_750x750.jpg'
     ],
     [
         'id' => 54,
@@ -526,7 +526,7 @@ $pants = [
         'price' => 179.99,
         'color' => 'Grey/Blue/Red',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/0409/2801/oxford_mondial_pants_750x750.jpg'
+        'image' => '/img/pants/oxford_mondial_pants_750x750.jpg'
     ],
     
     [
@@ -536,7 +536,7 @@ $pants = [
         'price' => 159.99,
         'color' => 'Desert',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/0409/2657/oxford_continental_pants_750x750.jpg'
+        'image' => '/img/pants/oxford_continental_pants_desert_750x750.jpg'
     ],
     [
         'id' => 56,
@@ -545,7 +545,7 @@ $pants = [
         'price' => 159.99,
         'color' => 'Black',
         'category' => 'pants',
-        'image' => 'https://www.revzilla.com/product_images/0409/2674/oxford_continental_pants_750x750.jpg'
+        'image' => '/img/pants/oxford_continental_pants_750x750.jpg'
     ]
 ];
 

@@ -987,3 +987,112 @@
         font-size: 0.75rem;
     }
 }
+
+
+/* Add to C:\Users\User\Desktop\RiderX\resources\css\products\product-detail.css */
+
+/* Success Modal Styles */
+.success-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 1rem;
+}
+
+.success-modal {
+    background-color: var(--pure-white);
+    border-radius: 0.75rem;
+    max-width: 400px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.success-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-gray);
+    background: var(--charcoal-black);
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+
+.success-modal-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--pure-white);
+}
+
+.success-modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--pure-white);
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.success-modal-close:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.success-modal-body {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.success-modal-body p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--charcoal-black);
+    line-height: 1.5;
+}
+
+.success-modal-footer {
+    padding: 1rem 1.5rem 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+}
+
+.success-modal-footer .btn {
+    flex: 1;
+    padding: 0.75rem 1rem;
+}
+
+.success-modal-footer .btn-outline {
+    background: transparent;
+    color: var(--charcoal-black);
+    border: 2px solid var(--charcoal-black);
+}
+
+.success-modal-footer .btn-outline:hover {
+    background: var(--charcoal-black);
+    color: var(--pure-white);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-30px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}

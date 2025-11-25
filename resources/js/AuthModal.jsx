@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import Loading from './components/Loading'; 
 const AuthModal = ({ 
     isOpen, 
     onClose, 
@@ -82,6 +82,20 @@ const validatePassword = (password) => {
             setIsLoginView(true);
         }
     }, [resetData, isOpen]);
+
+
+    useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const email = urlParams.get('email');
+    const verified = urlParams.get('verified');
+    
+    if (token && email && !isOpen) {
+        // If we have token/email in URL and modal isn't open, open it
+        // This will be handled by the parent component through context
+        // You might need to pass these as props or handle in App.jsx
+    }
+}, [isOpen]);
 
     // Clear all forms when modal closes
     useEffect(() => {
@@ -554,14 +568,18 @@ useEffect(() => {
                                 </a>
                             </div>
 
-                            {/* Login Button */}
-                            <button 
-                                type="submit" 
-                                className="btn btn-primary auth-submit-btn"
-                                disabled={loading}
-                            >
-                                {loading ? 'Logging in...' : 'Login'}
-                            </button>
+                           {/* Login Button */}
+   <button 
+        type="submit" 
+        className={`btn btn-primary auth-submit-btn ${loading ? 'button-loading' : ''}`}
+        disabled={loading}
+    >
+        {loading ? (
+            <Loading type="dots" size="small" />
+        ) : (
+            'Login'
+        )}
+    </button>
 
                             {/* Divider */}
                             <div className="divider">
@@ -775,14 +793,18 @@ useEffect(() => {
             {errors.terms && <span className="field-error">{errors.terms[0]}</span>}
         </div>
 
-        {/* Signup Button */}
-        <button 
-            type="submit" 
-            className="btn btn-primary auth-submit-btn"
-            disabled={loading || showVerificationSuccess}
-        >
-            {loading ? 'Creating Account...' : 'Create Account'}
-        </button>
+         {/* Signup Button */}
+   <button 
+        type="submit" 
+        className={`btn btn-primary auth-submit-btn ${loading ? 'button-loading' : ''}`}
+        disabled={loading || showVerificationSuccess}
+    >
+        {loading ? (
+            <Loading type="dots" size="small" />
+        ) : (
+            'Create Account'
+        )}
+    </button>
     </form>
 
     {/* Footer */}
@@ -913,14 +935,18 @@ useEffect(() => {
                                         </div>
                                     </div>
 
-                                    {/* Submit Button */}
-                                    <button 
-                                        type="submit" 
-                                        className="btn btn-primary auth-submit-btn"
-                                        disabled={loading}
-                                    >
-                                        {loading ? 'Resetting Password...' : 'Reset Password'}
-                                    </button>
+                                   {/* Reset Password Submit Button */}
+    <button 
+        type="submit" 
+        className={`btn btn-primary auth-submit-btn ${loading ? 'button-loading' : ''}`}
+        disabled={loading}
+    >
+        {loading ? (
+            <Loading type="dots" size="small" />
+        ) : (
+            'Reset Password'
+        )}
+    </button>
 
                                     {/* Back to Login */}
                                     <div style={{textAlign: 'center', marginTop: '1rem'}}>
@@ -984,14 +1010,18 @@ useEffect(() => {
                                         />
                                     </div>
 
-                                    {/* Submit Button */}
-                                    <button 
-                                        type="submit" 
-                                        className="btn btn-primary auth-submit-btn"
-                                        disabled={forgotPasswordLoading}
-                                    >
-                                        {forgotPasswordLoading ? 'Sending...' : 'Send Reset Link'}
-                                    </button>
+                                   {/* Forgot Password Submit Button */}
+    <button 
+        type="submit" 
+        className={`btn btn-primary auth-submit-btn ${forgotPasswordLoading ? 'button-loading' : ''}`}
+        disabled={forgotPasswordLoading}
+    >
+        {forgotPasswordLoading ? (
+            <Loading type="dots" size="small" />
+        ) : (
+            'Send Reset Link'
+        )}
+    </button>
 
                                     {/* Back to Login */}
                                     <div style={{textAlign: 'center', marginTop: '1rem'}}>

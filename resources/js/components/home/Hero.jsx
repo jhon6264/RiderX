@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const Hero = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    
 
     const slides = [
         {

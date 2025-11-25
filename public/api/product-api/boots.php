@@ -12,7 +12,7 @@ $boots = [
         'price' => 129.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2236/0537/reax_katana_riding_shoes_black_750x750.jpg'
+        'image' => '/img/boots/reax_katana_riding_shoes_blaasdasdask_750x750.jpg'
     ],
     [
         'id' => 2,
@@ -21,7 +21,7 @@ $boots = [
         'price' => 119.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1871/4685/reax_fulton_wp_riding_shoes_750x750.jpg'
+        'image' => '/img/boots/reax_fulton_wp_riding_shoscascaes_750x750.jpg'
     ],
     [
         'id' => 3,
@@ -30,7 +30,7 @@ $boots = [
         'price' => 119.99,
         'color' => 'Grey',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1871/4668/reax_fulton_wp_riding_shoes_750x750.jpg'
+        'image' => '/img/boots/reax_fulton_wp_riding_shasdases_750x750.jpg'
     ],
     
     // Dainese Boots
@@ -41,7 +41,7 @@ $boots = [
         'price' => 299.99,
         'color' => 'Black/Army Green',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2523/8261/dainese_seeker_gore_tex_boots_black_army_green_750x750.jpg'
+        'image' => '/img/boots/dainese_seeker_gore_tex_boots_bsaasdack_army_green_750x750.jpg'
     ],
     [
         'id' => 5,
@@ -50,7 +50,7 @@ $boots = [
         'price' => 249.99,
         'color' => 'Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2528/7259/dainese_nexus2_boots_red_750x750.jpg'
+        'image' => '/img/boots/dainese_nexus2_boots_resadasdd_750x750.jpg'
     ],
     [
         'id' => 6,
@@ -59,7 +59,7 @@ $boots = [
         'price' => 269.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1897/2950/dainese_nexus2_air_boots_black_750x750.jpg'
+        'image' => '/img/boots/dainese_nexus2_air_boots_blackasdasd_750x750.jpg'
     ],
     [
         'id' => 7,
@@ -68,7 +68,7 @@ $boots = [
         'price' => 269.99,
         'color' => 'Black/White/Lava Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1897/2746/dainese_nexus2_air_boots_black_white_lava_red_750x750.jpg'
+        'image' => '/img/boots/dainese_nexus2_air_boots_black_white_lava_red_750x750.jpg'
     ],
     [
         'id' => 8,
@@ -77,7 +77,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black/Anthracite',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2387/1335/dainese_superya_shoes_750x750.jpg'
+        'image' => '/img/boots/dainese_superya_shoesdss_750x750.jpg'
     ],
     [
         'id' => 9,
@@ -86,7 +86,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2387/1318/dainese_superya_shoes_750x750.jpg'
+        'image' => '/img/boots/dainese_superya_shoess_750x750.jpg'
     ],
     
     // TCX Boots
@@ -97,7 +97,7 @@ $boots = [
         'price' => 279.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0324/2114/tcx_comp_evo_michelin_boots_black_750x750.jpg'
+        'image' => '/img/boots/tcx_comp_evo_michelin_boots_black_750x750.jpg'
     ],
     [
         'id' => 11,
@@ -106,7 +106,7 @@ $boots = [
         'price' => 289.99,
         'color' => 'Grey',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1948/7000/tcx_comp_evo2_michelin_boots_black_grey_camo_750x750.jpg'
+        'image' => '/img/boots/tcx_comp_evo2_michelin_boots_black_grey_camo_750x750.jpg'
     ],
     [
         'id' => 12,
@@ -115,7 +115,7 @@ $boots = [
         'price' => 289.99,
         'color' => 'White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1948/6966/tcx_comp_evo2_michelin_boots_black_white_750x750.jpg'
+        'image' => '/img/boots/tcx_comp_evo2_michelin_boots_black_white_750x750.jpg'
     ],
     [
         'id' => 13,
@@ -124,7 +124,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1681/6924/tcxr04_d_air_womens_boots_black_white_750x750.jpg'
+        'image' => '/img/boots/tcxr04_d_air_womens_boots_black_white_750x750.jpg'
     ],
     [
         'id' => 14,
@@ -133,7 +133,7 @@ $boots = [
         'price' => 229.99,
         'color' => 'Green/Black/Yellow',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2365/9087/tcx_mood2_gore_tex_boots_green_black_yellow_750x750.jpg'
+        'image' => '/img/boots/tcx_mood2_gore_tex_boots_green_black_yellow_750x750.jpg'
     ],
     [
         'id' => 15,
@@ -142,7 +142,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1681/5547/tcx_infinity_mid_wp_boots_black_750x750.jpg'
+        'image' => '/img/boots/tcx_infinity_mid_wp_boots_black_750x750.jpg'
     ],
     [
         'id' => 16,
@@ -151,7 +151,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black/Green',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1681/5598/tcx_infinity_mid_wp_boots_black_green_750x750.jpg'
+        'image' => '/img/boots/tcx_infinity_mid_wp_boots_black_green_750x750.jpg'
     ],
     [
         'id' => 17,
@@ -160,7 +160,7 @@ $boots = [
         'price' => 319.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2190/7864/tcxrt_race_pro_air_boots_black_reflex_750x750.jpg'
+        'image' => '/img/boots/tcxrt_race_pro_air_boots_black_reflex_750x750.jpg'
     ],
     [
         'id' => 18,
@@ -169,7 +169,7 @@ $boots = [
         'price' => 319.99,
         'color' => 'Orange/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2190/8544/tcxrt_race_pro_air_boots_750x750.jpg'
+        'image' => '/img/boots/tcxrt_race_pro_air_boots_orange_750x750.jpg'
     ],
     [
         'id' => 19,
@@ -178,7 +178,7 @@ $boots = [
         'price' => 319.99,
         'color' => 'Silver',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2190/8646/tcxrt_race_pro_air_boots_750x750.jpg'
+        'image' => '/img/boots/tcxrt_race_pro_air_boots_black_750x750.jpg'
     ],
     [
         'id' => 20,
@@ -187,7 +187,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Vintage Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2303/8750/tcx_fuel_wp_boots_vintage_brown36_open_box_vintage_brown_750x750.jpg'
+        'image' => '/img/boots/tcx_fuel_wp_boots_vintage_brown36_open_box_vintage_brown_750x750.jpg'
     ],
     [
         'id' => 21,
@@ -196,7 +196,7 @@ $boots = [
         'price' => 159.99,
         'color' => 'Light Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2196/3815/tcx_dartwood_wp_shoes_light_brown_750x750.jpg'
+        'image' => '/img/boots/tcx_dartwood_wp_shoes_light_brown_750x750.jpg'
     ],
     [
         'id' => 22,
@@ -205,7 +205,7 @@ $boots = [
         'price' => 159.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1495/1851/tcx_dartwood_wp_shoes_750x750.jpg'
+        'image' => '/img/boots/tcx_dartwood_wp_shoes_750x750.jpg'
     ],
     [
         'id' => 23,
@@ -214,7 +214,7 @@ $boots = [
         'price' => 159.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1495/1902/tcx_dartwood_wp_shoes_750x750.jpg'
+        'image' => '/img/boots/tcx_dartwood_wp_shoes_black_750x750.jpg'
     ],
     [
         'id' => 24,
@@ -223,7 +223,7 @@ $boots = [
         'price' => 139.99,
         'color' => 'Green/Caramel',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1495/0746/tcx_street3_air_shoes_black_750x750.jpg'
+        'image' => '/img/boots/tcx_street3_air_shoes_black_750x750.jpg'
     ],
     [
         'id' => 25,
@@ -232,7 +232,7 @@ $boots = [
         'price' => 139.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2196/5294/tcx_street3_air_shoes_green_caramel_750x750.jpg'
+        'image' => '/img/boots/tcx_street3_air_shoes_green_caramel_750x750.jpg'
     ],
     
     // Alpinestars Boots
@@ -243,7 +243,7 @@ $boots = [
         'price' => 549.99,
         'color' => 'Black/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2484/0997/alpinestars_tech7_enduro_boots_black_white_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech7_enduro_boots_black_white_750x750.jpg'
     ],
     [
         'id' => 27,
@@ -252,7 +252,7 @@ $boots = [
         'price' => 549.99,
         'color' => 'Black/Anthracite/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2484/1133/alpinestars_tech7_enduro_boots_black_anthracite_white_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech7_enduro_boots_black_anthracite_white_750x750.jpg'
     ],
     [
         'id' => 28,
@@ -261,7 +261,7 @@ $boots = [
         'price' => 549.99,
         'color' => 'Black/Grey/Orange Fluo',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2484/1218/alpinestars_tech7_enduro_boots_black_grey_orange_fluo_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech7_enduro_boots_black_grey_orange_fluo_750x750.jpg'
     ],
     [
         'id' => 29,
@@ -270,7 +270,7 @@ $boots = [
         'price' => 549.99,
         'color' => 'Black/Grey/Bright Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2484/1341/alpinestars_tech7_enduro_boots_black_grey_bright_red_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech7_enduro_boots_black_grey_bright_red_750x750.jpg'
     ],
     [
         'id' => 30,
@@ -279,7 +279,7 @@ $boots = [
         'price' => 299.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0095/2714/alpinestars_tech5_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech5_boots_750x750.jpg'
     ],
     [
         'id' => 31,
@@ -288,7 +288,7 @@ $boots = [
         'price' => 299.99,
         'color' => 'Black/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1441/1699/alpinestars_boot_tech_bk_gy_wt_black_red_750x750.jpg'
+        'image' => '/img/boots/alpinestars_boot_tech_bk_gy_wt_black_red_750x750.jpg'
     ],
     [
         'id' => 32,
@@ -297,7 +297,7 @@ $boots = [
         'price' => 299.99,
         'color' => 'Yellow/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2295/7956/alpinestars_tech5_boots_yellow_black_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech5_boots_yellow_black_750x750.jpg'
     ],
     [
         'id' => 33,
@@ -306,7 +306,7 @@ $boots = [
         'price' => 329.99,
         'color' => 'Blue/Orange/Yellow',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1898/1212/alpinestars_tech_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech_boots_orange-750x750.jpg'
     ],
     [
         'id' => 34,
@@ -315,7 +315,7 @@ $boots = [
         'price' => 329.99,
         'color' => 'Blue/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1898/1195/alpinestars_tech_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech_boots_blue_750x750.jpg'
     ],
     [
         'id' => 35,
@@ -324,7 +324,7 @@ $boots = [
         'price' => 329.99,
         'color' => 'Red/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0394/3665/alpinestars_tech_boots_fluo_red_blue_white_red_white_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech_boots_fluo_red_blue_white_red_white_750x750.jpg'
     ],
     [
         'id' => 36,
@@ -333,7 +333,7 @@ $boots = [
         'price' => 649.99,
         'color' => 'Fluo Orange/Black/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2482/9437/alpinestars_tech10_supervented_boot_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech10_supervented_boot_750x750.jpg'
     ],
     [
         'id' => 37,
@@ -342,7 +342,7 @@ $boots = [
         'price' => 649.99,
         'color' => 'White/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1398/0028/alpinestars_boot_t10_s_vnt_750x750.jpg'
+        'image' => '/img/boots/alpinestars_boot_t10_s_vnt_750x750.jpg'
     ],
     [
         'id' => 38,
@@ -351,7 +351,7 @@ $boots = [
         'price' => 649.99,
         'color' => 'White/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2106/1344/alpinestars_tech_supervented_boots_blue_black_white_us_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech_supervented_boots_blue_black_white_usa_750x750.jpg'
     ],
     [
         'id' => 39,
@@ -360,7 +360,7 @@ $boots = [
         'price' => 649.99,
         'color' => 'Black/Blue/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2106/1327/alpinestars_tech_supervented_boots_blue_black_white_us_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech_supervented_boots_blue_blue_white_us_750x750.jpg'
     ],
     [
         'id' => 40,
@@ -369,7 +369,7 @@ $boots = [
         'price' => 649.99,
         'color' => 'Navy/White/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2121/7088/alpinestars_tech10_supervented_boots_navy_white_red_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech10_supervented_boots_navy_white_red_750x750.jpg'
     ],
     [
         'id' => 41,
@@ -378,7 +378,7 @@ $boots = [
         'price' => 649.99,
         'color' => 'Purple/Yellow Fluo/Pink',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2482/9454/alpinestars_tech10_supervented_boot_750x750.jpg'
+        'image' => '/img/boots/alpinestars_tech10_supervenssdasted_boot_750x750.jpg'
     ],
     [
         'id' => 42,
@@ -387,7 +387,7 @@ $boots = [
         'price' => 229.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2325/6805/alpinestars_stella_smx6_v3_drystar_boots_black_silver_750x750.jpg'
+        'image' => '/img/boots/alpinestars_stella_smx6_v3_drystar_boots_black_silver_750x750.jpg'
     ],
     [
         'id' => 43,
@@ -396,7 +396,7 @@ $boots = [
         'price' => 229.99,
         'color' => 'White/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2325/6873/alpinestars_stella_smx6_v3_drystar_boots_white_black_750x750.jpg'
+        'image' => '/img/boots/alpinestars_stella_smx6_v3_drystar_boots_white_black_750x750.jpg'
     ],
     [
         'id' => 44,
@@ -405,7 +405,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1517/2379/alpinestars_smx1_rv2_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_smx1_rv2_boots_750x750.jpg'
     ],
     [
         'id' => 45,
@@ -414,7 +414,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1517/2362/alpinestars_smx1_rv2_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_smx1_rv2_boossts_750x750.jpg'
     ],
     [
         'id' => 46,
@@ -423,7 +423,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1517/2396/alpinestars_smx1_rv2_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_smx1_rv2_boasdasots_750x750.jpg'
     ],
     [
         'id' => 47,
@@ -432,7 +432,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1717/2591/alpinestars_ridgev2_wp_boots_750x750.jpg'
+        'image' => '/img/boots/alpinestars_ridgev2_wp_bosots_750x750.jpg'
     ],
     [
         'id' => 48,
@@ -441,7 +441,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1469/6491/alpinestars_boot_ridge_v2_wp_black_red_750x750.jpg'
+        'image' => '/img/boots/alpinestars_boot_ridge_v2_wp_black_redss_750x750.jpg'
     ],
     
     // Sidi Boots
@@ -452,7 +452,7 @@ $boots = [
         'price' => 349.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0076/0598/sidi_mag1_boots_750x750.jpg'
+        'image' => '/img/boots/sidi_mag1_boossts_750x750.jpg'
     ],
     [
         'id' => 50,
@@ -461,7 +461,7 @@ $boots = [
         'price' => 349.99,
         'color' => 'Black/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2515/3887/sidi_boots_mag1_boot_750x750.jpg'
+        'image' => '/img/boots/sidi_boots_mag1_boosadt_750x750.jpg'
     ],
     [
         'id' => 51,
@@ -470,7 +470,7 @@ $boots = [
         'price' => 349.99,
         'color' => 'White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2405/0808/sidi_mag1_boots_white_750x750.jpg'
+        'image' => '/img/boots/sidi_mag1_boots_whsadaste_750x750.jpg'
     ],
     [
         'id' => 52,
@@ -479,7 +479,7 @@ $boots = [
         'price' => 349.99,
         'color' => 'Black/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2515/3904/sidi_boots_mag1_boot_750x750.jpg'
+        'image' => '/img/boots/sidi_boots_mag1_bosaaaot_750x750.jpg'
     ],
     
     // Gaerne Boots
@@ -490,7 +490,7 @@ $boots = [
         'price' => 499.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2341/0960/gaerne_gp_evo1_boots_750x750.jpg'
+        'image' => '/img/boots/gaerne_gp_evo1_bootsadadw_750x750.jpg'
     ],
     [
         'id' => 54,
@@ -499,7 +499,7 @@ $boots = [
         'price' => 499.99,
         'color' => 'White/Black/Hi-Viz Yellow',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2341/0858/gaerne_gp_evo1_boots_750x750.jpg'
+        'image' => '/img/boots/gaerne_gp_evo1_boots_750x750.jpg'
     ],
     [
         'id' => 55,
@@ -508,7 +508,7 @@ $boots = [
         'price' => 499.99,
         'color' => 'Nardo Grey/Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2341/1079/gaerne_gp_evo1_boots_nardo_grey_red_750x750.jpg'
+        'image' => '/img/boots/gaerne_gp_evo1_bootwqqws_750x750.jpg'
     ],
     [
         'id' => 56,
@@ -517,7 +517,7 @@ $boots = [
         'price' => 399.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2342/2027/gaerne_g_dakar_aquatec_wp_boots_brown_750x750.jpg'
+        'image' => '/img/boots/gaerne_g_dakar_aquatec_wp_boots_brownss_750x750.jpg'
     ],
     [
         'id' => 57,
@@ -526,7 +526,7 @@ $boots = [
         'price' => 349.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2341/4258/gaerne_g_dune_aquatech_wp_boots_black_750x750.jpg'
+        'image' => '/img/boots/gaerne_g_dune_aquatech_wp_boots_blacsdak_750x750.jpg'
     ],
     [
         'id' => 58,
@@ -535,7 +535,7 @@ $boots = [
         'price' => 349.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2341/4423/gaerne_g_dune_aquatech_wp_boots_brown_750x750.jpg'
+        'image' => '/img/boots/gaerne_g_dune_aquatech_wp_boots_brasdasdasdasown_750x750.jpg'
     ],
     
     // Forma Boots
@@ -546,7 +546,7 @@ $boots = [
         'price' => 299.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0125/8230/forma_adventure_boots_750x750.jpg'
+        'image' => '/img/boots/forma_adventure_bootssadas_750x750.jpg'
     ],
     [
         'id' => 60,
@@ -555,7 +555,7 @@ $boots = [
         'price' => 299.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0135/5557/forma_adventure_boots_black_750x750.jpg'
+        'image' => '/img/boots/forma_adventure_boots_blaasdasdck_750x750.jpg'
     ],
     [
         'id' => 61,
@@ -564,7 +564,7 @@ $boots = [
         'price' => 249.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0990/7573/forma_boots_eagle_750x750.jpg'
+        'image' => '/img/boots/forma_boots_eagleasdas_750x750.jpg'
     ],
     [
         'id' => 62,
@@ -573,7 +573,7 @@ $boots = [
         'price' => 249.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0990/7631/forma_boots_eagle_750x750.jpg'
+        'image' => '/img/boots/forma_boots_eagdadle_750x750.jpg'
     ],
     [
         'id' => 63,
@@ -582,7 +582,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0988/4579/forma_boots_freccia_750x750.jpg'
+        'image' => '/img/boots/forma_boots_frecciaasdas_750x750.jpg'
     ],
     [
         'id' => 64,
@@ -591,7 +591,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black/White',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0988/4417/forma_boots_freccia_750x750.jpg'
+        'image' => '/img/boots/forma_boots_frecciasadas_750x750.jpg'
     ],
     [
         'id' => 65,
@@ -600,7 +600,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Red/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0988/4494/forma_boots_freccia_750x750.jpg'
+        'image' => '/img/boots/forma_boots_frecasdasdcia_750x750.jpg'
     ],
     
     // Icon Boots
@@ -611,7 +611,7 @@ $boots = [
         'price' => 149.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1910/7044/icon_elsinore2_ce_boots_750x750.jpg'
+        'image' => '/img/boots/icon_elsinore2_ce_boosacasts_750x750.jpg'
     ],
     [
         'id' => 67,
@@ -620,7 +620,7 @@ $boots = [
         'price' => 149.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1910/7095/icon_elsinore2_ce_boots_750x750.jpg'
+        'image' => '/img/boots/icon_elsinore2_ce_booascasts_750x750.jpg'
     ],
     [
         'id' => 68,
@@ -629,7 +629,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1522/8100/icon_stormhawk_waterproof_boots_black_750x750.jpg'
+        'image' => '/img/boots/icon_stormhawk_waterproof_boots_blacasdask_750x750.jpg'
     ],
     [
         'id' => 69,
@@ -638,7 +638,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Grey',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1522/8270/icon_stormhawk_waterproof_boots_grey_750x750.jpg'
+        'image' => '/img/boots/icon_stormhawk_waterproof_boots_grascacay_750x750.jpg'
     ],
     [
         'id' => 70,
@@ -647,7 +647,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1522/8236/icon_stormhawk_waterproof_boots_brown_750x750.jpg'
+        'image' => '/img/boots/icon_stormhawk_waterproof_boots_browascasn_750x750.jpg'
     ],
     [
         'id' => 71,
@@ -656,7 +656,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1899/3805/icon_overlord_vented_ce_boots_black_750x750.jpg'
+        'image' => '/img/boots/icon_overlord_vented_ce_boots_blaacascasck_750x750.jpg'
     ],
     [
         'id' => 72,
@@ -665,7 +665,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Grey',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1899/3856/icon_overlord_vented_ce_boots_grey_750x750.jpg'
+        'image' => '/img/boots/icon_overlord_vented_ce_boots_grecaasy_750x750.jpg'
     ],
     [
         'id' => 73,
@@ -674,7 +674,7 @@ $boots = [
         'price' => 169.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1901/1096/icon_slabtown_wpce_boots_black_750x750.jpg'
+        'image' => '/img/boots/icon_slabtown_wpce_boots_bladasdasck_750x750.jpg'
     ],
     [
         'id' => 74,
@@ -683,7 +683,7 @@ $boots = [
         'price' => 189.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1900/9651/icon_alcan_wpce_boots_black_750x750.jpg'
+        'image' => '/img/boots/icon_alcan_wpce_boots_blaasdasdawqwqck_750x750.jpg'
     ],
     [
         'id' => 75,
@@ -692,7 +692,7 @@ $boots = [
         'price' => 189.99,
         'color' => 'Grey',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1901/0280/icon_alcan_wpce_boots_750x750.jpg'
+        'image' => '/img/boots/icon_alcan_wpce_bootascass_750x750.jpg'
     ],
     [
         'id' => 76,
@@ -701,7 +701,7 @@ $boots = [
         'price' => 159.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1899/4060/icon_patrol3_wpce_boots_black_750x750.jpg'
+        'image' => '/img/boots/icon_patrol3_wpce_boots_blacksacas_750x750.jpg'
     ],
     [
         'id' => 77,
@@ -710,7 +710,7 @@ $boots = [
         'price' => 159.99,
         'color' => 'Grey',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1899/4111/icon_patrol3_wpce_boots_grey_750x750.jpg'
+        'image' => '/img/boots/icon_patrol3_wpce_boots_greascasy_750x750.jpg'
     ],
     
     // Stylmartin Boots
@@ -721,7 +721,7 @@ $boots = [
         'price' => 249.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1528/1081/stylmartin_legend_evo_wp_boots_black_750x750.jpg'
+        'image' => '/img/boots/stylmartin_legend_evo_wp_boots_blackacascas_750x750.jpg'
     ],
     [
         'id' => 79,
@@ -730,7 +730,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Red',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0173/0118/stylmartin_continental_boots_red_750x750.jpg'
+        'image' => '/img/boots/stylmartin_continental_boots_redascas_750x750.jpg'
     ],
     [
         'id' => 80,
@@ -739,7 +739,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/0173/0126/stylmartin_continental_boots_black_750x750.jpg'
+        'image' => '/img/boots/stylmartin_continental_boots_blacascwqadck_750x750.jpg'
     ],
     
     // BMW Boots
@@ -750,7 +750,7 @@ $boots = [
         'price' => 229.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2524/0811/bmw_seoul_gtx_sneakers_khaki_750x750.jpg'
+        'image' => '/img/boots/bmw_seoul_gtx_sneakers_khakascasi_750x750.jpg'
     ],
     [
         'id' => 82,
@@ -759,7 +759,7 @@ $boots = [
         'price' => 229.99,
         'color' => 'Khaki',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2524/0794/bmw_seoul_gtx_sneakers_khaki_750x750.jpg'
+        'image' => '/img/boots/bmw_seoul_gtx_sneakers_khakiascas_750x750.jpg'
     ],
     
     // RST Boots
@@ -770,7 +770,7 @@ $boots = [
         'price' => 279.99,
         'color' => 'Black/Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2276/0584/rst_moto_tractech_evo_iiicewp_boots_black_black_750x750.jpg'
+        'image' => '/img/boots/rst_moto_tractech_evo_iiicewp_boots_black_blacsadask_750x750.jpg'
     ],
     [
         'id' => 84,
@@ -779,7 +779,7 @@ $boots = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2276/1128/rst_moto_adventure_x_mid_cewp_boots_black_750x750.jpg'
+        'image' => '/img/boots/rst_moto_adventure_x_mid_cewp_boots_black_asdas750x750.jpg'
     ],
     
     // Klim Boots
@@ -790,7 +790,7 @@ $boots = [
         'price' => 499.99,
         'color' => 'Brown/Orange',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1995/6294/klim_adventure_gtx_boots_brown_orange_750x750.jpg'
+        'image' => '/img/boots/klim_adventure_gtx_boots_brown_oraasdasAnge_750x750.jpg'
     ],
     [
         'id' => 86,
@@ -799,7 +799,7 @@ $boots = [
         'price' => 499.99,
         'color' => 'Asphalt/Hi-Viz Green',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1490/1507/klim_adventure_gtx_boots_750x750.jpg'
+        'image' => '/img/boots/klim_adventure_gtx_boascasdasots_750x750.jpg'
     ],
     [
         'id' => 87,
@@ -808,7 +808,7 @@ $boots = [
         'price' => 499.99,
         'color' => 'Stealth Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1490/1388/klim_adventure_gtx_boots_750x750.jpg'
+        'image' => '/img/boots/klim_adventure_gtx_booasdts_750x750.jpg'
     ],
     
     // Tour Master Boots
@@ -819,7 +819,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Brown',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2289/3126/tour_master_break_trail_wp_boots_brown_750x750.jpg'
+        'image' => '/img/boots/tour_master_break_trail_wp_boots_broasdasn_750x750.jpg'
     ],
     [
         'id' => 89,
@@ -828,7 +828,7 @@ $boots = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/2289/3024/tour_master_break_trail_wp_boots_black_750x750.jpg'
+        'image' => '/img/boots/tour_master_break_trail_wp_boots_bacsslack_750x750.jpg'
     ],
     
     // Sedici Boots
@@ -839,7 +839,7 @@ $boots = [
         'price' => 169.99,
         'color' => 'Black',
         'category' => 'boots',
-        'image' => 'https://www.revzilla.com/product_images/1498/7727/sedici_vertice_h2_o_boot_black_750x750.jpg'
+        'image' => '/img/boots/sedici_vertice_h2_o_boot_blasdcasack_750x750.jpg'
     ]
 ];
 

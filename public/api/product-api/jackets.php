@@ -12,7 +12,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Black/Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2192/2866/dainese_air_fast_tex_jacket_750x750.jpg'
+        'image' => '/img/jackets/dainese_air_fast_tex_jacket_black_750x750.jpg'
     ],
     [
         'id' => 2,
@@ -21,7 +21,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2192/2849/dainese_air_fast_tex_jacket_750x750.jpg'
+        'image' => '/img/jackets/dainese_air_fast_tex_jacket_white_750x750.jpg'
     ],
     [
         'id' => 3,
@@ -30,7 +30,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Red',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2190/4328/dainese_air_fast_tex_jacket_red_750x750.jpg'
+        'image' => '/img/jackets/dainese_air_fast_tex_jacket_red_750x750.jpg'
     ],
     
     // Sedici Jackets
@@ -41,7 +41,7 @@ $jackets = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2410/6275/sedici_podio2_jacket_black_black_750x750.jpg'
+        'image' => '/img/jackets/sedici_podio2_jacket_black_black_750x750.jpg'
     ],
     [
         'id' => 5,
@@ -50,7 +50,7 @@ $jackets = [
         'price' => 199.99,
         'color' => 'White/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2410/6292/sedici_podio2_jacket_white_black_750x750.jpg'
+        'image' => '/img/jackets/sedici_podio2_jacket_white_black_750x750.jpg'
     ],
     [
         'id' => 6,
@@ -59,7 +59,7 @@ $jackets = [
         'price' => 199.99,
         'color' => 'Black/Orange',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2410/6326/sedici_podio2_jacket_black_orange_750x750.jpg'
+        'image' => '/img/jackets/sedici_podio2_jacket_black_orange_750x750.jpg'
     ],
     [
         'id' => 7,
@@ -68,7 +68,7 @@ $jackets = [
         'price' => 199.99,
         'color' => 'Red/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2410/6309/sedici_podio2_jacket_red_black_750x750.jpg'
+        'image' => '/img/jackets/sedici_podio2_jacket_red_black_750x750.jpg'
     ],
     
     // Alpinestars Jackets
@@ -79,7 +79,7 @@ $jackets = [
         'price' => 349.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2279/2437/alpinestars_andes_air_drystar_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_andes_air_drystar_jacket_black_750x750.jpg'
     ],
     [
         'id' => 9,
@@ -88,7 +88,7 @@ $jackets = [
         'price' => 349.99,
         'color' => 'Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2279/2471/alpinestars_andes_air_drystar_jacket_ice_grey_dark_grey_black_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_andes_air_drystar_jacket_ice_grey_dark_grey_black_750x750.jpg'
     ],
     [
         'id' => 10,
@@ -97,7 +97,7 @@ $jackets = [
         'price' => 349.99,
         'color' => 'Brown',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2395/3046/alpinestars_andes_air_drystar_jacket_black_grey_blue_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_andes_air_drystar_jacket_black_grey_blue_750x750.jpg'
     ],
     [
         'id' => 11,
@@ -106,7 +106,7 @@ $jackets = [
         'price' => 349.99,
         'color' => 'Dark Blue',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2279/2403/alpinestars_andes_air_drystar_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_andes_air_drystar_jacket_blue_750x750.jpg'
     ],
     
     // New Alpinestars Jackets
@@ -117,7 +117,7 @@ $jackets = [
         'price' => 399.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2279/2607/alpinestars_atem_v5_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_atem_v5_jacket_black_750x750.jpg'
     ],
     [
         'id' => 36,
@@ -126,7 +126,7 @@ $jackets = [
         'price' => 399.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2279/2590/alpinestars_atem_v5_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_atem_v5_jacket_white_750x750.jpg'
     ],
     
     // Alpinestars Fluid Apex Jersey
@@ -137,7 +137,7 @@ $jackets = [
         'price' => 89.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2478/2390/alpinestars_fluid_apex_jersey_black_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_fluid_apex_jersey_black_750x750.jpg'
     ],
     [
         'id' => 38,
@@ -146,7 +146,7 @@ $jackets = [
         'price' => 89.99,
         'color' => 'Blue/Yellow Fluo',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2478/2424/alpinestars_fluid_apex_jersey_blue_yellow_fluo_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_fluid_apex_jersey_blue_yellow_fluo_750x750.jpg'
     ],
     [
         'id' => 39,
@@ -155,7 +155,7 @@ $jackets = [
         'price' => 89.99,
         'color' => 'Pink/Purple/Orange',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2478/2356/alpinestars_fluid_apex_jersey_pink_purple_orange_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_fluid_apex_jersey_pink_purple_orange_750x750.jpg'
     ],
     [
         'id' => 40,
@@ -164,7 +164,7 @@ $jackets = [
         'price' => 89.99,
         'color' => 'Red/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2478/2492/alpinestars_fluid_apex_jersey_red_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_fluid_apex_jersey_red_white_750x750.jpg'
     ],
     [
         'id' => 41,
@@ -173,7 +173,7 @@ $jackets = [
         'price' => 89.99,
         'color' => 'Yellow/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2478/2526/alpinestars_fluid_apex_jersey_yellow_black_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_fluid_apex_jersey_yellow_black_750x750.jpg'
     ],
     
     // Alpinestars Leather Jackets
@@ -184,7 +184,7 @@ $jackets = [
         'price' => 799.99,
         'color' => 'Black/Red',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2334/2260/alpinestars_missile_v3_ignition_leather_jacket_black_red_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_missile_v3_ignition_leather_jacket_black_red_750x750.jpg'
     ],
     [
         'id' => 43,
@@ -193,7 +193,7 @@ $jackets = [
         'price' => 799.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2334/2294/alpinestars_missile_v3_ignition_leather_jacket_black_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_missile_v3_ignition_leather_jacket_black_white_750x750.jpg'
     ],
     
     [
@@ -203,7 +203,7 @@ $jackets = [
         'price' => 749.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2158/6993/alpinestars_gp_plus_v4_leather_jacket_black_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_plus_v4_leather_jacket_black_white_750x750.jpg'
     ],
     [
         'id' => 45,
@@ -212,7 +212,7 @@ $jackets = [
         'price' => 749.99,
         'color' => 'Black/Red/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2158/6867/alpinestars_gp_plus_v4_leather_jacket_black_red_fluo_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_plus_v4_leather_jacket_black_red_fluo_white_750x750.jpg'
     ],
     [
         'id' => 46,
@@ -221,7 +221,7 @@ $jackets = [
         'price' => 749.99,
         'color' => 'Black/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2158/6918/alpinestars_gp_plus_v4_leather_jacket_black_black_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_plus_v4_leather_jacket_black_black_750x750.jpg'
     ],
     
     [
@@ -231,7 +231,7 @@ $jackets = [
         'price' => 899.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2509/7341/alpinestars_gp_force_v2_airflow_leather_jacket_black_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_force_v2_airflow_leather_jacket_black_white_750x750.jpg'
     ],
     [
         'id' => 48,
@@ -240,7 +240,7 @@ $jackets = [
         'price' => 899.99,
         'color' => 'Black/Red',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2509/7205/alpinestars_gp_force_v2_airflow_leather_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_force_v2_airflow_leather_jacket_750x750.jpg'
     ],
     [
         'id' => 49,
@@ -249,7 +249,7 @@ $jackets = [
         'price' => 899.99,
         'color' => 'Black/Hi-Viz Yellow',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2509/7409/alpinestars_gp_force_v2_airflow_leather_jacket_black_hi_viz_yellow_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_force_v2_airflow_leather_jacket_black_hi_viz_yellow_750x750.jpg'
     ],
     [
         'id' => 50,
@@ -258,7 +258,7 @@ $jackets = [
         'price' => 899.99,
         'color' => 'Red/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2509/7375/alpinestars_gp_force_v2_airflow_leather_jacket_red_black_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_gp_force_v2_airflow_leather_jacket_red_black_750x750.jpg'
     ],
     
     [
@@ -268,7 +268,7 @@ $jackets = [
         'price' => 849.99,
         'color' => 'Black/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2326/2194/alpinestars_faster_v3_airflow_leather_jacket_black_black_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_faster_v3_airflow_leather_jacket_black_black_750x750.jpg'
     ],
     [
         'id' => 52,
@@ -277,7 +277,7 @@ $jackets = [
         'price' => 849.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2326/2704/alpinestars_faster_v3_airflow_leather_jacket_black_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_faster_v3_airflow_leather_jacket_black_white_750x750.jpg'
     ],
     [
         'id' => 53,
@@ -286,7 +286,7 @@ $jackets = [
         'price' => 849.99,
         'color' => 'Black/Red Fluo',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2326/2398/alpinestars_faster_v3_airflow_leather_jacket_black_red_fluo_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_faster_v3_airflow_leather_jacket_black_red_fluo_750x750.jpg'
     ],
     [
         'id' => 54,
@@ -295,7 +295,7 @@ $jackets = [
         'price' => 849.99,
         'color' => 'Black/White/Yellow Fluo',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2326/2585/alpinestars_faster_v3_airflow_leather_jacket_black_white_yellow_fluo_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_faster_v3_airflow_leather_jacket_black_white_yellow_fluo_750x750.jpg'
     ],
     
     // More Dainese
@@ -306,7 +306,7 @@ $jackets = [
         'price' => 329.99,
         'color' => 'Black/Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1643/8817/dainese_hydra_flux2_air_d_dry_jacket_black_grey_750x750.jpg'
+        'image' => '/img/jackets/dainese_hydra_flux2_air_d_dry_jacket_black_grey_750x750.jpg'
     ],
     [
         'id' => 13,
@@ -315,7 +315,7 @@ $jackets = [
         'price' => 329.99,
         'color' => 'Orange',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1643/8698/dainese_hydra_flux2_air_d_dry_jacket_black_grey_750x750.jpg'
+        'image' => '/img/jackets/dainese_hydra_flux2_air_d_dry_jacket_black_orange_750x750.jpg'
     ],
     
     // Merlin Jackets
@@ -326,7 +326,7 @@ $jackets = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2412/0317/merlin_shenstone_ii_cotec_air_jacket_black_750x750.jpg'
+        'image' => '/img/jackets/merlin_shenstone_ii_cotec_air_jacket_black_750x750.jpg'
     ],
     [
         'id' => 15,
@@ -335,7 +335,7 @@ $jackets = [
         'price' => 179.99,
         'color' => 'Olive',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2412/0402/merlin_shenstone_ii_cotec_air_jacket_olive_750x750.jpg'
+        'image' => '/img/jackets/merlin_shenstone_ii_cotec_air_jacket_olive_750x750.jpg'
     ],
     
     // Revit Jackets
@@ -346,7 +346,7 @@ $jackets = [
         'price' => 279.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2379/8379/revit_sand5_h2_o_jacket_black_anthracite_750x750.jpg'
+        'image' => '/img/jackets/revit_sand5_h2_o_jacket_black_anthracite_750x750.jpg'
     ],
     [
         'id' => 17,
@@ -355,7 +355,7 @@ $jackets = [
         'price' => 279.99,
         'color' => 'Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2404/0829/revit_sand5_h2_o_jacket_grey_dark_grey_750x750.jpg'
+        'image' => '/img/jackets/revit_sand5_h2_o_jacket_grey_dark_grey_750x750.jpg'
     ],
     [
         'id' => 18,
@@ -364,7 +364,7 @@ $jackets = [
         'price' => 279.99,
         'color' => 'Sand Brown',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2379/8277/revit_sand5_h2_o_jacket_750x750.jpg'
+        'image' => '/img/jackets/revit_sand5_h2_o_jacket_sand_brown_750x750.jpg'
     ],
     [
         'id' => 19,
@@ -373,7 +373,7 @@ $jackets = [
         'price' => 279.99,
         'color' => 'Silver',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2379/8243/revit_sand5_h2_o_jacket_750x750.jpg'
+        'image' => '/img/jackets/revit_sand5_h2_o_jacket_silver_750x750.jpg'
     ],
     
     // Reax Jackets
@@ -384,7 +384,7 @@ $jackets = [
         'price' => 149.99,
         'color' => 'Green',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2244/4788/reax_alta2_mesh_jacket_black_750x750.jpg'
+        'image' => '/img/jackets/reax_alta2_mesh_jacket_green_750x750.jpg'
     ],
     [
         'id' => 21,
@@ -393,7 +393,7 @@ $jackets = [
         'price' => 149.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2244/4737/reax_alta2_mesh_jacket_black_750x750.jpg'
+        'image' => '/img/jackets/reax_alta2_mesh_jacket_black_750x750.jpg'
     ],
     [
         'id' => 22,
@@ -402,7 +402,7 @@ $jackets = [
         'price' => 149.99,
         'color' => 'White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2244/4754/reax_alta2_mesh_jacket_black_750x750.jpg'
+        'image' => '/img/jackets/reax_alta2_mesh_jacket_silver_750x750.jpg'
     ],
     [
         'id' => 23,
@@ -411,7 +411,7 @@ $jackets = [
         'price' => 149.99,
         'color' => 'Rust',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2244/4805/reax_alta2_mesh_jacket_black_750x750.jpg'
+        'image' => '/img/jackets/reax_alta2_mesh_jacket_rust_750x750.jpg'
     ],
     
     // Klim Jackets
@@ -422,7 +422,7 @@ $jackets = [
         'price' => 389.99,
         'color' => 'Winter Moss',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2209/4568/klim_marrakesh_jacket_winter_moss_750x750.jpg'
+        'image' => '/img/jackets/klim_marrakesh_jacket_winter_moss_750x750.jpg'
     ],
     [
         'id' => 25,
@@ -431,7 +431,7 @@ $jackets = [
         'price' => 389.99,
         'color' => 'Stealth Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1995/0973/klim_marrakesh_jacket_stealth_black_750x750.jpg'
+        'image' => '/img/jackets/klim_marrakesh_jacket_stealth_black_750x750.jpg'
     ],
     [
         'id' => 26,
@@ -440,7 +440,7 @@ $jackets = [
         'price' => 389.99,
         'color' => 'Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1995/2775/klim_marrakesh_jacket_grey_750x750.jpg'
+        'image' => '/img/jackets/klim_marrakesh_jacket_grey_750x750.jpg'
     ],
     [
         'id' => 27,
@@ -449,7 +449,7 @@ $jackets = [
         'price' => 389.99,
         'color' => 'Petrol Blue',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1995/3625/klim_marrakesh_jacket_potters_clay_750x750.jpg'
+        'image' => '/img/jackets/klim_marrakesh_jacket_potters_clay_750x750.jpg'
     ],
     
     // Protective Gear / Chest Protectors
@@ -460,7 +460,7 @@ $jackets = [
         'price' => 199.99,
         'color' => 'Anthracite/Black/Red',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1898/4085/alpinestars_a10_v2_full_chest_protector_anthracite_black_red_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_a10_v2_full_chest_protector_anthracite_black_red_750x750.jpg'
     ],
     [
         'id' => 56,
@@ -469,7 +469,7 @@ $jackets = [
         'price' => 179.99,
         'color' => 'White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1470/3223/leatt_moto65_pro_chest_protector_750x750.jpg'
+        'image' => '/img/jackets/leatt_moto65_pro_chest_protector_white_750x750.jpg'
     ],
     [
         'id' => 57,
@@ -478,7 +478,7 @@ $jackets = [
         'price' => 159.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2347/5320/leatt55_pro_evo_chest_protector_750x750.jpg'
+        'image' => '/img/jackets/leatt55_pro_evo_chest_protector_black_750x750.jpg'
     ],
     
     // Body Protectors
@@ -489,7 +489,7 @@ $jackets = [
         'price' => 249.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1470/3359/leatt_moto65_body_protector_750x750.jpg'
+        'image' => '/img/jackets/leatt_moto65_body_protector_750x750.jpg'
     ],
     [
         'id' => 59,
@@ -498,7 +498,7 @@ $jackets = [
         'price' => 229.99,
         'color' => 'Black/Red',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2347/4198/leatt55_evo_body_protector_750x750.jpg'
+        'image' => '/img/jackets/leatt55_evo_body_protector_750x750.jpg'
     ],
     [
         'id' => 60,
@@ -507,7 +507,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2162/0462/alpinestars_bionic_plus_v2_jacket_black_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_bionic_plus_v2_jacket_black_white_750x750.jpg'
     ],
     
     // Women's Jackets
@@ -518,7 +518,7 @@ $jackets = [
         'price' => 169.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1393/2747/sedici_alexi2_womens_mesh_jacket_black_750x750.jpg'
+        'image' => '/img/jackets/sedici_alexi2_womens_mesh_jacket_black_750x750.jpg'
     ],
     [
         'id' => 29,
@@ -527,7 +527,7 @@ $jackets = [
         'price' => 169.99,
         'color' => 'Silver',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1393/3971/sedici_alexi2_womens_mesh_jacket_white_fuchsia_750x750.jpg'
+        'image' => '/img/jackets/sedici_alexi2_womens_mesh_jacket_white_fuchsia_750x750.jpg'
     ],
     
     // Bilt Women's Jackets
@@ -538,7 +538,7 @@ $jackets = [
         'price' => 149.99,
         'color' => 'White/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1715/7074/bilt_techno2_womens_jacket_white_black_750x750.jpg'
+        'image' => '/img/jackets/bilt_techno2_womens_jacket_white_black_750x750.jpg'
     ],
     [
         'id' => 62,
@@ -547,7 +547,7 @@ $jackets = [
         'price' => 149.99,
         'color' => 'Black/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1715/7057/bilt_techno2_womens_jacket_black_black_750x750.jpg'
+        'image' => '/img/jackets/bilt_techno2_womens_jacket_black_black_750x750.jpg'
     ],
     
     // Speed and Strength Hoodies
@@ -558,7 +558,7 @@ $jackets = [
         'price' => 129.99,
         'color' => 'White/Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/0309/1720/speedand_strength_cat_outta_hell_armored_hoody_white_grey_750x750.jpg'
+        'image' => '/img/jackets/speedand_strength_cat_outta_hell_armored_hoody_white_grey_750x750.jpg'
     ],
     [
         'id' => 64,
@@ -567,7 +567,7 @@ $jackets = [
         'price' => 129.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/0309/1754/speedand_strength_cat_outta_hell_armored_hoody_black_750x750.jpg'
+        'image' => '/img/jackets/speedand_strength_cat_outta_hell_armored_hoody_black_750x750.jpg'
     ],
     [
         'id' => 65,
@@ -576,7 +576,7 @@ $jackets = [
         'price' => 129.99,
         'color' => 'Red/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/0309/1686/speedand_strength_cat_outta_hell_armored_hoody_red_black_750x750.jpg'
+        'image' => '/img/jackets/speedand_strength_cat_outta_hell_armored_hoody_red_black_750x750.jpg'
     ],
     
     // Alpinestars Women's Hoodies
@@ -587,7 +587,7 @@ $jackets = [
         'price' => 179.99,
         'color' => 'Blue/Purple',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2395/5647/alpinestars_stella_chrome_v2_hoody_blue_purple_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_chrome_v2_hoody_blue_purple_750x750.jpg'
     ],
     [
         'id' => 67,
@@ -596,7 +596,7 @@ $jackets = [
         'price' => 179.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2395/5681/alpinestars_stella_chrome_v2_hoody_black_white_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_chrome_v2_hoody_black_white_750x750.jpg'
     ],
     [
         'id' => 68,
@@ -605,7 +605,7 @@ $jackets = [
         'price' => 179.99,
         'color' => 'Grey/Pink',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2395/5783/alpinestars_stella_chrome_v2_hoody_grey_pink_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_chrome_v2_hoody_grey_pink_750x750.jpg'
     ],
     
     // Alpinestars Women's Jackets
@@ -616,7 +616,7 @@ $jackets = [
         'price' => 329.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2280/1410/alpinestars_stella_andes_air_drystar_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_andes_air_drystar_jacket_black_750x750.jpg'
     ],
     [
         'id' => 31,
@@ -625,7 +625,7 @@ $jackets = [
         'price' => 329.99,
         'color' => 'Ice Grey',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2280/1376/alpinestars_stella_andes_air_drystar_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_andes_air_drystar_jacket_grey_750x750.jpg'
     ],
     
     [
@@ -635,7 +635,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Black/Yellow/Pink',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2071/9349/alpinestars_stella_smx_air_womens_jacket_black_yellow_pink_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_smx_air_womens_jacket_black_yellow_pink_750x750.jpg'
     ],
     [
         'id' => 70,
@@ -644,7 +644,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Black/White',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2071/9179/alpinestars_stella_smx_air_womens_jacket_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_smx_air_womens_jacket_750x750.jpg'
     ],
     
     // Knox Women's Armored Shirts
@@ -655,7 +655,7 @@ $jackets = [
         'price' => 349.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2069/2897/knox_urbane_pro_mk3_womens_armored_shirt_750x750.jpg'
+        'image' => '/img/jackets/knox_urbane_pro_mk3_womens_armored_shirt_black_750x750.jpg'
     ],
     [
         'id' => 72,
@@ -664,7 +664,7 @@ $jackets = [
         'price' => 349.99,
         'color' => 'Copper/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2069/2931/knox_urbane_pro_mk3_womens_armored_shirt_750x750.jpg'
+        'image' => '/img/jackets/knox_urbane_pro_mk3_womens_armored_shirt_750x750.jpg'
     ],
     
     // Revit Women's Jackets
@@ -675,7 +675,7 @@ $jackets = [
         'price' => 269.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1505/7110/revit_sand4_h2_o_womens_jacket_750x750.jpg'
+        'image' => '/img/jackets/revit_sand4_h2_o_womens_jacket_black_750x750.jpg'
     ],
     [
         'id' => 33,
@@ -684,7 +684,7 @@ $jackets = [
         'price' => 269.99,
         'color' => 'Silver',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1505/7042/revit_sand4_h2_o_womens_jacket_750x750.jpg'
+        'image' => '/img/jackets/revit_sand4_h2_o_womens_jacket_white_750x750.jpg'
     ],
     [
         'id' => 34,
@@ -693,7 +693,7 @@ $jackets = [
         'price' => 269.99,
         'color' => 'Camo Brown',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1505/6957/revit_sand4_h2_o_womens_jacket_750x750.jpg'
+        'image' => '/img/jackets/revit_sand4_h2_o_womens_jacket_brown_750x750.jpg'
     ],
     
     // Additional Protective Jackets
@@ -704,7 +704,7 @@ $jackets = [
         'price' => 299.99,
         'color' => 'Black/Anthracite/Red',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/2069/6484/alpinestars_bionic_plus_v2_jacket_black_anthracite_red_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_bionic_plus_v2_jacket_black_anthracite_red_750x750.jpg'
     ],
     
     // Bionic Action Protection
@@ -715,7 +715,7 @@ $jackets = [
         'price' => 279.99,
         'color' => 'Black/Cyan',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1898/1943/alpinestars_stella_bionic_action_v2_jacket_black_cyan_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_stella_bionic_action_v2_jacket_black_cyan_750x750.jpg'
     ],
     [
         'id' => 75,
@@ -724,7 +724,7 @@ $jackets = [
         'price' => 259.99,
         'color' => 'Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1898/1586/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_bionic_action_v2_protection_jacket_black_750x750.jpg'
     ],
     [
         'id' => 76,
@@ -733,7 +733,7 @@ $jackets = [
         'price' => 259.99,
         'color' => 'Grey/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1898/1518/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
     ],
     [
         'id' => 77,
@@ -742,7 +742,7 @@ $jackets = [
         'price' => 259.99,
         'color' => 'Sand/Black',
         'category' => 'jackets',
-        'image' => 'https://www.revzilla.com/product_images/1898/1552/alpinestars_bionic_action_v2_protection_jacket_greyblack_750x750.jpg'
+        'image' => '/img/jackets/alpinestars_bionic_action_v2_protection_jacket_sandblack_750x750.jpg'
     ]
 ];
 

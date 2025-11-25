@@ -1,6 +1,7 @@
 // ProductGrid.jsx
 import React, { useState, useEffect } from 'react';
 
+
 const ProductGrid = ({ category }) => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);

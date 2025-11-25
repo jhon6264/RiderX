@@ -1,16 +1,15 @@
+// C:\Users\User\Desktop\RiderX\resources\js\pages\HelmetsPage.jsx
 import React from 'react';
-import Header from '../components/home/Header';
-import Footer from '../components/home/Footer';
+import ProductGrid from '../components/home/ProductGrid';
 
 const HelmetsPage = () => {
     return (
-        <div className="HelmetsPage">
-            <Header />
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-6">Motorcycle Helmets</h1>
-                <p>Helmets page content coming soon...</p>
-            </div>
-            <Footer />
+        <div className="helmets-page">
+            <main className="page-main">
+                <div className="page-container">
+                    <ProductGrid category="helmets" showHeader={true} />
+                </div>
+            </main>
         </div>
     );
 };

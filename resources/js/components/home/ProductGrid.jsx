@@ -1,29 +1,58 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Loading from '../Loading';
+import { formatPrice } from '../../utils/currencyFormatter';
 
-const ProductGrid = () => {
-    const [featuredProducts, setFeaturedProducts] = useState([]);
+const ProductGrid = ({ category = null }) => {
+    const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+     // Scroll to top when category changes
     useEffect(() => {
-        fetchFeaturedProducts();
-    }, []);
+        window.scrollTo(0, 0);
+    }, [category]);
+
+    useEffect(() => {
+        if (category) {
+            fetchCategoryProducts();
+        } else {
+            fetchFeaturedProducts();
+        }
+    }, [category]);
 
     const fetchFeaturedProducts = async () => {
         try {
             const response = await fetch('/api/products');
             const data = await response.json();
-            console.log('API Response:', data); // Debug log
+            console.log('API Response:', data);
             
             if (data.success) {
                 const shuffledProducts = shuffleArray(data.data).slice(0, 15);
-                setFeaturedProducts(shuffledProducts);
+                setProducts(shuffledProducts);
             } else {
                 setError('Failed to load products');
             }
         } catch (err) {
             setError('Error fetching products: ' + err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const fetchCategoryProducts = async () => {
+        try {
+            const response = await fetch(`/api/products/${category}`);
+            const data = await response.json();
+            console.log(`API Response for ${category}:`, data);
+            
+            if (data.success) {
+                setProducts(data.data);
+            } else {
+                setError(`Failed to load ${category} products`);
+            }
+        } catch (err) {
+            setError(`Error fetching ${category} products: ` + err.message);
         } finally {
             setLoading(false);
         }
@@ -40,8 +69,7 @@ const ProductGrid = () => {
 
     // Function to get unique color swatches from variants (max 4 shown)
     const getColorSwatches = (variants) => {
-        console.log('Variants for color swatches:', variants); // Debug log
-        // Use actual hex codes from database
+        console.log('Variants for color swatches:', variants);
         const uniqueHexCodes = [...new Set(variants.map(v => v.hex_code))];
         return uniqueHexCodes.slice(0, 4);
     };
@@ -67,35 +95,75 @@ const ProductGrid = () => {
         );
     };
 
+    // Get the appropriate title and subtitle based on category
+    const getHeaderContent = () => {
+        if (category) {
+            const categoryTitles = {
+                helmets: { title: 'Motorcycle Helmets', subtitle: 'Premium helmets for maximum protection and comfort on every ride' },
+                jackets: { title: 'Riding Jackets', subtitle: 'Durable and stylish jackets designed for safety and performance' },
+                pants: { title: 'Riding Pants', subtitle: 'Protective pants built for comfort and safety on the road' },
+                boots: { title: 'Riding Boots', subtitle: 'High-quality boots offering superior protection and support' },
+                gloves: { title: 'Riding Gloves', subtitle: 'Protective gloves for optimal grip and hand safety' }
+            };
+            
+            const content = categoryTitles[category] || { 
+                title: category.charAt(0).toUpperCase() + category.slice(1), 
+                subtitle: `Premium ${category} for motorcycle enthusiasts` 
+            };
+            
+            return content;
+        } else {
+            return {
+                title: 'Featured Gear',
+                subtitle: 'Discover our premium selection of motorcycle gear from helmets to gloves - all designed for maximum safety and style.'
+            };
+        }
+    };
+
+    // FIXED: No header during loading - only skeleton cards
     if (loading) {
         return (
-            <section className="product-grid-section">
-                <div className="product-grid-loading">Loading products...</div>
-            </section>
+            <div className="product-grid">
+                {/* REMOVED: Header during loading */}
+                <Loading 
+                    type="skeleton" 
+                    count={8} 
+                    size="medium" 
+                    className="product-grid-loading"
+                />
+            </div>
         );
     }
 
     if (error) {
         return (
-            <section className="product-grid-section">
-                <div className="product-grid-error">{error}</div>
-            </section>
+            <div className="product-grid">
+                <div className="grid-header">
+                    <h2>{category ? `${category.charAt(0).toUpperCase() + category.slice(1)}` : 'Featured Products'}</h2>
+                </div>
+                <div className="error-message">
+                    <p>Error loading products: {error}</p>
+                </div>
+            </div>
         );
     }
+
+    const headerContent = getHeaderContent();
 
     return (
         <section className="product-grid-section">
             <div className="product-grid-container">
+                {/* FIXED: Header only shows AFTER loading completes */}
                 <div className="product-grid-header">
-                    <h2 className="product-grid-title">Featured Gear</h2>
+                    <h2 className="product-grid-title">{headerContent.title}</h2>
                     <p className="product-grid-subtitle">
-                        Discover our premium selection of motorcycle gear from helmets to gloves - all designed for maximum safety and style.
+                        {headerContent.subtitle}
                     </p>
                 </div>
 
                 <div className="product-grid">
-                    {featuredProducts.map((product) => {
-                        console.log('Product:', product); // Debug log
+                    {products.map((product) => {
+                        console.log('Product:', product);
                         const colorSwatches = getColorSwatches(product.variants);
                         const hasMoreColors = product.variants.length > 4;
                         
@@ -120,33 +188,33 @@ const ProductGrid = () => {
                                     <p className="product-card-brand">{product.brand}</p>
                                     
                                     {/* Color Swatches - Using actual hex codes from database */}
-<div className="product-card-colors">
-    {colorSwatches.map((hexCode, index) => {
-        // Find the variant that has this hex code to get the actual color name
-        const variantWithThisColor = product.variants.find(v => v.hex_code === hexCode);
-        const colorName = variantWithThisColor?.color || `Color ${index + 1}`;
-        
-        return (
-            <div 
-                key={index}
-                className="color-swatch"
-                style={{ 
-                    backgroundColor: hexCode || '#6b7280',
-                    borderColor: getBorderColor(hexCode)
-                }}
-                title={colorName}  // Show actual color name
-            />
-        );
-    })}
-    {hasMoreColors && (
-        <div className="color-swatch-more" title={`+${product.variants.length - 4} more colors`}>
-            +
-        </div>
-    )}
-</div>
+                                    <div className="product-card-colors">
+                                        {colorSwatches.map((hexCode, index) => {
+                                            // Find the variant that has this hex code to get the actual color name
+                                            const variantWithThisColor = product.variants.find(v => v.hex_code === hexCode);
+                                            const colorName = variantWithThisColor?.color || `Color ${index + 1}`;
+                                            
+                                            return (
+                                                <div 
+                                                    key={index}
+                                                    className="color-swatch"
+                                                    style={{ 
+                                                        backgroundColor: hexCode || '#6b7280',
+                                                        borderColor: getBorderColor(hexCode)
+                                                    }}
+                                                    title={colorName}  // Show actual color name
+                                                />
+                                            );
+                                        })}
+                                        {hasMoreColors && (
+                                            <div className="color-swatch-more" title={`+${product.variants.length - 4} more colors`}>
+                                                +
+                                            </div>
+                                        )}
+                                    </div>
 
                                     <div className="product-card-footer">
-                                        <span className="product-card-price">${product.base_price}</span>
+                                        <span className="product-card-price">{formatPrice(product.base_price)}</span>
                                     </div>
 
                                     {/* Star Rating */}

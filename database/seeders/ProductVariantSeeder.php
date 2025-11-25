@@ -121,10 +121,10 @@ class ProductVariantSeeder extends Seeder
                     ];
                 }
                 
-                // Add variant with color
+                // Add variant with color - USING LOCAL IMAGE PATH FROM STATIC FILE
                 $groupedProducts[$key]['variants'][] = [
                     'color' => $product['color'],
-                    'image_url' => $product['image'],
+                    'image_url' => $product['image'], // This now uses your local paths like '/img/...'
                     'price' => $product['price'],
                     'stock_quantity' => rand(5, 50),
                     'sku' => 'RX-' . strtoupper(substr($category, 0, 3)) . '-' . uniqid()
@@ -139,7 +139,7 @@ class ProductVariantSeeder extends Seeder
                     'base_price' => $productData['base_price'],
                     'category_id' => $productData['category_id'],
                     'description' => $this->generateDescription($productData['name'], $productData['brand']),
-                    'specifications' => json_encode(['type' => $productData['variants'][0]['type'] ?? 'standard']),
+                    'specifications' => json_encode(['type' => 'standard']),
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
@@ -154,7 +154,7 @@ class ProductVariantSeeder extends Seeder
                         'product_id' => $productId,
                         'color' => $variant['color'],
                         'hex_code' => $hexCode,
-                        'image_url' => $variant['image_url'],
+                        'image_url' => $variant['image_url'], // This will be your local path
                         'price' => $variant['price'],
                         'stock_quantity' => $variant['stock_quantity'],
                         'sku' => $variant['sku'],

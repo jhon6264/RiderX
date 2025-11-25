@@ -5,15 +5,15 @@ require_once 'config/security.php';
 
 $gloves = [
     // Dainese Gloves
-    [
-        'id' => 1,
-        'name' => 'Dainese X-Ride 2 Ergo Tek Gloves',
-        'brand' => 'Dainese',
-        'price' => 129.99,
-        'color' => 'Black',
-        'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2382/5511/dainese_x_ride2_ergo_tek_gloves_black_black_750x750.jpg'
-    ],
+   [
+    'id' => 1,
+    'name' => 'Dainese X-Ride 2 Ergo Tek Gloves',
+    'brand' => 'Dainese',
+    'price' => 129.99,
+    'color' => 'Black',
+    'category' => 'gloves',
+    'image' => '/img/gloves/dainese_x_ride2_ergo_tek_gloves_black_black_750x750.jpg'
+],
     [
         'id' => 2,
         'name' => 'Dainese Air Maze Gloves',
@@ -21,26 +21,26 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1545/2797/dainese_air_maze_gloves_750x750.jpg'
+        'image' => '/img/gloves/dainese_air_maze_gloves_750x750.jpg'
     ],
     [
-        'id' => 3,
-        'name' => 'Dainese Carbon 4 Leather Gloves',
-        'brand' => 'Dainese',
-        'price' => 199.99,
-        'color' => 'Black',
-        'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1944/2772/dainese_carbon4_leather_gloves_black_black_750x750.jpg'
-    ],
-    [
-        'id' => 4,
-        'name' => 'Dainese Carbon 4 Leather Gloves',
-        'brand' => 'Dainese',
-        'price' => 199.99,
-        'color' => 'Orange',
-        'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1944/2806/dainese_carbon4_leather_gloves_black_black_750x750.jpg'
-    ],
+    'id' => 3,
+    'name' => 'Dainese Carbon 4 Leather Gloves',
+    'brand' => 'Dainese', 
+    'price' => 199.99,
+    'color' => 'Black',
+    'category' => 'gloves',
+    'image' => '/img/gloves/glove_template_black.jpg'
+],
+[
+    'id' => 4, 
+    'name' => 'Dainese Carbon 4 Leather Gloves',
+    'brand' => 'Dainese',
+    'price' => 199.99,
+    'color' => 'Orange',
+    'category' => 'gloves', 
+    'image' => '/img/gloves/glove_template_orange.jpg'
+],
     [
         'id' => 5,
         'name' => 'Dainese Carbon 4 Gloves',
@@ -48,7 +48,7 @@ $gloves = [
         'price' => 189.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1896/3618/dainese_carbon4_gloves_black_black_black_750x750.jpg'
+        'image' => '/img/gloves/dainese_carbon4_gloves_black_black_black_750x750.jpg'
     ],
     [
         'id' => 6,
@@ -57,7 +57,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1376/9581/dainese_impeto_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/dainese_impeto_gloves_black_750x750.jpg'
     ],
     [
         'id' => 7,
@@ -66,7 +66,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1376/9530/dainese_impeto_gloves_black_white_750x750.jpg'
+        'image' => '/img/gloves/dainese_impeto_gloves_white_750x750.jpg'
     ],
     [
         'id' => 8,
@@ -75,7 +75,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Orange',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1376/9615/dainese_impeto_gloves_black_lava_red_750x750.jpg'
+        'image' => '/img/gloves/dainese_impeto_gloves_red_750x750.jpg'
     ],
     [
         'id' => 9,
@@ -84,7 +84,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0217/2147/dainese_blackjack_gloves_750x750.jpg'
+        'image' => '/img/gloves/dainese_blackjack_gloves_black_750x750.jpg'
     ],
     [
         'id' => 10,
@@ -93,7 +93,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Brown',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0159/6393/dainese_blackjack_gloves_brown_750x750.jpg'
+        'image' => '/img/gloves/dainese_blackjack_gloves_brown_750x750.jpg'
     ],
     
     // Reax Gloves
@@ -104,7 +104,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1529/8709/reax_tasker_air_womens_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/reax_tasker_air_womens_gloves_black_750x750.jpg'
     ],
     [
         'id' => 12,
@@ -113,7 +113,7 @@ $gloves = [
         'price' => 49.99,
         'color' => 'Green',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2220/7734/reax_superfly2_mesh_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/reax_superfly2_mesh_gloves_green_750x750.jpg'
     ],
     [
         'id' => 13,
@@ -122,7 +122,7 @@ $gloves = [
         'price' => 49.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2220/7717/reax_superfly2_mesh_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/reax_superfly2_mesh_gloves_black_750x750.jpg'
     ],
     [
         'id' => 14,
@@ -131,7 +131,7 @@ $gloves = [
         'price' => 49.99,
         'color' => 'Cement',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2220/7598/reax_superfly2_mesh_gloves_silver_750x750.jpg'
+        'image' => '/img/gloves/reax_superfly2_mesh_gloves_silver_750x750.jpg'
     ],
     
     // Revit Gloves
@@ -142,7 +142,7 @@ $gloves = [
         'price' => 99.99,
         'color' => 'Grey',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2361/3036/revit_hydra2_h2_o_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_hydra2_h2_o_gloves_750x750.jpg'
     ],
     [
         'id' => 16,
@@ -151,16 +151,16 @@ $gloves = [
         'price' => 99.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2361/3036/revit_hydra2_h2_o_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_hydra2_h2_o_gloves_750x750.jpg'
     ],
     [
         'id' => 17,
         'name' => 'Revit Quantum 3 Gloves',
         'brand' => 'Revit',
         'price' => 149.99,
-        'color' => 'Neon Red/Blue',
+        'color' => 'Orange',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2379/7733/revit_quantum3_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_quantum3_gloves_Orange_750x750.jpg'
     ],
     [
         'id' => 18,
@@ -169,7 +169,7 @@ $gloves = [
         'price' => 149.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2379/7699/revit_quantum3_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_quantum3_gloves_Black_White_750x750.jpg'
     ],
     [
         'id' => 19,
@@ -178,7 +178,7 @@ $gloves = [
         'price' => 149.99,
         'color' => 'Grey/Neon Yellow',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2379/7665/revit_quantum3_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_quantum3_gloves_Neon_750x750.jpg'
     ],
     [
         'id' => 20,
@@ -187,7 +187,7 @@ $gloves = [
         'price' => 149.99,
         'color' => 'White/Neon Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2379/7631/revit_quantum3_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_quantum3_gloves_White_750x750.jpg'
     ],
     [
         'id' => 21,
@@ -196,7 +196,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1938/8083/revit_metis2_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_metis2_gloves_Black_50x750.jpg'
     ],
     [
         'id' => 22,
@@ -205,7 +205,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1938/8185/revit_metis2_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_metis2_gloves_White_750x750.jpg'
     ],
     [
         'id' => 23,
@@ -214,25 +214,25 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Light Grey/Neon Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2379/6543/revit_metis2_gloves_light_grey_neon_red_750x750.jpg'
+        'image' => '/img/gloves/revit_metis2_gloves_neon_red_750x750.jpg'
     ],
     [
         'id' => 24,
         'name' => 'Revit League 2 Gloves',
         'brand' => 'Revit',
         'price' => 79.99,
-        'color' => 'Black/Grey',
+        'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1938/8338/revit_league2_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_league2_gloves_Black750x750.jpg'
     ],
     [
         'id' => 25,
         'name' => 'Revit League 2 Gloves',
         'brand' => 'Revit',
         'price' => 79.99,
-        'color' => 'Black/Red',
+        'color' => 'Black/Orange',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1938/8304/revit_league2_gloves_750x750.jpg'
+        'image' => '/img/gloves/revit_league2_gloves_Orange750x750.jpg'
     ],
     
     // Alpinestars Gloves
@@ -243,7 +243,7 @@ $gloves = [
         'price' => 129.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1022/6406/alpinestars_spx_air_carbonv2_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_spx_air_carbonv2_gloves_black_750x750.jpg'
     ],
     [
         'id' => 27,
@@ -252,7 +252,7 @@ $gloves = [
         'price' => 129.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0904/9707/alpinestars_spx_air_carbonv2_gloves_black_white_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_spx_air_carbonv2_gloves_black_white_750x750.jpg'
     ],
     [
         'id' => 28,
@@ -261,7 +261,7 @@ $gloves = [
         'price' => 129.99,
         'color' => 'Black/White/Fluo Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0904/9724/alpinestars_spx_air_carbonv2_gloves_black_white_fluo_red_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_spx_air_carbonv2_gloves_black_white_fluo_red_750x750.jpg'
     ],
     [
         'id' => 29,
@@ -270,7 +270,7 @@ $gloves = [
         'price' => 129.99,
         'color' => 'White/Black/Bright Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0904/9741/alpinestars_spx_air_carbonv2_gloves_white_black_bright_red_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_spx_air_carbonv2_gloves_white_black_bright_red_750x750.jpg'
     ],
     [
         'id' => 30,
@@ -279,7 +279,7 @@ $gloves = [
         'price' => 199.99,
         'color' => 'Black/Fluo Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0904/9078/alpinestars_gp_pro_r3_gloves_black_white_bright_red_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_gp_pro_r3_gloves_black_white_bright_red_750x750.jpg'
     ],
     [
         'id' => 31,
@@ -288,7 +288,7 @@ $gloves = [
         'price' => 179.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2326/9765/alpinestars_gp_pro_rs4_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_gp_pro_rs4_gloves_black_750x750.jpg'
     ],
     [
         'id' => 32,
@@ -297,7 +297,7 @@ $gloves = [
         'price' => 179.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2326/9714/alpinestars_gp_pro_rs4_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_gp_pro_rs4_gloves_white_750x750.jpg'
     ],
     [
         'id' => 33,
@@ -306,7 +306,7 @@ $gloves = [
         'price' => 179.99,
         'color' => 'Black/Red/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2326/9799/alpinestars_gp_pro_rs4_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/alpinestars_gp_pro_rs4_gloves_black_orange750x750.jpg'
     ],
     
     // Roland Sands Gloves
@@ -317,7 +317,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Sapphire Leopard',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1789/8139/roland_sands_caspian74_ce_womens_gloves_leopard_750x750.jpg'
+        'image' => '/img/gloves/roland_sands_caspian74_ce_womens_gloves_leopard_750x750.jpg'
     ],
     [
         'id' => 35,
@@ -326,7 +326,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1789/7913/roland_sands_caspian74_ce_womens_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/roland_sands_caspian74_ce_womens_gloves_black_750x750.jpg'
     ],
     [
         'id' => 36,
@@ -335,7 +335,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Gravel',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1789/7947/roland_sands_caspian74_ce_womens_gloves_gravel_750x750.jpg'
+        'image' => '/img/gloves/roland_sands_caspian74_ce_womens_gloves_gravel_750x750.jpg'
     ],
     [
         'id' => 37,
@@ -344,7 +344,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Tigre',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1800/2372/roland_sands_caspian74_ce_womens_gloves_tigre_750x750.jpg'
+        'image' => '/img/gloves/roland_sands_caspian74_ce_womens_gloves_tigre_750x750.jpg'
     ],
     
     // Cortech Gloves
@@ -355,7 +355,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2236/6861/cortech_bully20_gloves_750x750.jpg'
+        'image' => '/img/gloves/cortech_bully20_gloves_black_750x750.jpg'
     ],
     [
         'id' => 39,
@@ -364,7 +364,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'White/Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2236/6827/cortech_bully20_gloves_750x750.jpg'
+        'image' => '/img/gloves/cortech_bully20_gloves_white750x750.jpg'
     ],
     [
         'id' => 40,
@@ -373,7 +373,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Tan/Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2236/6895/cortech_bully20_gloves_750x750.jpg'
+        'image' => '/img/gloves/cortech_bully20_gloves_tan_750x750.jpg'
     ],
     [
         'id' => 41,
@@ -382,7 +382,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Tobacco/Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2236/6793/cortech_bully20_gloves_750x750.jpg'
+        'image' => '/img/gloves/cortech_bully20_gloves_brown_750x750.jpg'
     ],
     
     // Speed and Strength Gloves
@@ -393,7 +393,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0094/2010/speedand_strength_rustand_redemption_gloves_750x750.jpg'
+        'image' => '/img/gloves/speedand_strength_rustand_redemption_gloves_black_750x750.jpg'
     ],
     [
         'id' => 43,
@@ -402,7 +402,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Brown',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0094/2018/speedand_strength_rustand_redemption_gloves_750x750.jpg'
+        'image' => '/img/gloves/speedand_strength_rustand_redemption_gloves_brown_750x750.jpg'
     ],
     [
         'id' => 44,
@@ -411,7 +411,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Olive',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0094/2026/speedand_strength_rustand_redemption_gloves_750x750.jpg'
+        'image' => '/img/gloves/speedand_strength_rustand_redemption_gloves_olive_750x750.jpg'
     ],
     
     // Icon Gloves
@@ -422,7 +422,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0905/5132/icon_hypersport_short_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/icon_hypersport_short_gloves_black_750x750.jpg'
     ],
     [
         'id' => 46,
@@ -431,7 +431,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0905/5268/icon_hypersport_short_gloves_white_750x750.jpg'
+        'image' => '/img/gloves/icon_hypersport_short_gloves_white_750x750.jpg'
     ],
     [
         'id' => 47,
@@ -440,7 +440,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0905/5234/icon_hypersport_short_gloves_red_750x750.jpg'
+        'image' => '/img/gloves/icon_hypersport_short_gloves_red_750x750.jpg'
     ],
     [
         'id' => 48,
@@ -449,7 +449,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Blue',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/0905/5200/icon_hypersport_short_gloves_blue_750x750.jpg'
+        'image' => '/img/gloves/icon_hypersport_short_gloves_blue_750x750.jpg'
     ],
     [
         'id' => 49,
@@ -458,16 +458,16 @@ $gloves = [
         'price' => 99.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2394/7385/icon_long_track_cx_gloves_750x750.jpg'
+        'image' => '/img/gloves/icon_long_track_cx_gloves_black_750x750.jpg'
     ],
     [
         'id' => 50,
         'name' => 'Icon Long Track CX Gloves',
         'brand' => 'Icon',
         'price' => 99.99,
-        'color' => 'Tan',
+        'color' => 'Yellow',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2394/7351/icon_long_track_cx_gloves_750x750.jpg'
+        'image' => '/img/gloves/icon_long_track_cx_gloves_yellow_750x750.jpg'
     ],
     [
         'id' => 51,
@@ -476,7 +476,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2206/3373/icon_airform_slabtown_gloves_750x750.jpg'
+        'image' => '/img/gloves/icon_airform_slabtown_gloves_black_750x750.jpg'
     ],
     [
         'id' => 52,
@@ -485,7 +485,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2206/3407/icon_airform_slabtown_gloves_750x750.jpg'
+        'image' => '/img/gloves/icon_airform_slabtown_gloves_white_750x750.jpg'
     ],
     [
         'id' => 53,
@@ -494,7 +494,7 @@ $gloves = [
         'price' => 69.99,
         'color' => 'Black/White Checkers',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2206/3441/icon_airform_slabtown_gloves_black_white_checkers_750x750.jpg'
+        'image' => '/img/gloves/icon_airform_slabtown_gloves_black_white_checkers_750x750.jpg'
     ],
     [
         'id' => 54,
@@ -503,7 +503,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Blue',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2394/7963/icon_anthem3_gloves_750x750.jpg'
+        'image' => '/img/gloves/icon_anthem3_gloves_blue_750x750.jpg'
     ],
     [
         'id' => 55,
@@ -512,7 +512,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2394/7895/icon_anthem3_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/icon_anthem3_gloves_black_750x750.jpg'
     ],
     [
         'id' => 56,
@@ -521,7 +521,7 @@ $gloves = [
         'price' => 59.99,
         'color' => 'Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2394/7929/icon_anthem3_gloves_750x750.jpg'
+        'image' => '/img/gloves/icon_anthem3_gloves_red_750x750.jpg'
     ],
     
     // Knox Gloves
@@ -532,7 +532,7 @@ $gloves = [
         'price' => 229.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2076/7623/knox_handroid_mk5_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/knox_handroid_mk5_gloves_black_750x750.jpg'
     ],
     [
         'id' => 58,
@@ -541,7 +541,7 @@ $gloves = [
         'price' => 229.99,
         'color' => 'Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2076/7725/knox_handroid_mk5_gloves_750x750.jpg'
+        'image' => '/img/gloves/knox_handroid_mk5_gloves_red_750x750.jpg'
     ],
     [
         'id' => 59,
@@ -550,7 +550,7 @@ $gloves = [
         'price' => 229.99,
         'color' => 'Black/Yellow',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2076/7691/knox_handroid_mk5_gloves_750x750.jpg'
+        'image' => '/img/gloves/knox_handroid_mk5_gloves_yellow_750x750.jpg'
     ],
     [
         'id' => 60,
@@ -559,7 +559,7 @@ $gloves = [
         'price' => 149.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2075/9361/knox_oulton_mk2_gloves_750x750.jpg'
+        'image' => '/img/gloves/knox_oulton_mk2_gloves_black_750x750.jpg'
     ],
     [
         'id' => 61,
@@ -568,7 +568,7 @@ $gloves = [
         'price' => 149.99,
         'color' => 'Black/Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2075/9395/knox_oulton_mk2_gloves_750x750.jpg'
+        'image' => '/img/gloves/knox_oulton_mk2_gloves_red_750x750.jpg'
     ],
     [
         'id' => 62,
@@ -577,7 +577,7 @@ $gloves = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2076/7759/knox_handroid_pod_mk5_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/knox_handroid_pod_mk5_gloves_black_750x750.jpg'
     ],
     [
         'id' => 63,
@@ -586,7 +586,7 @@ $gloves = [
         'price' => 199.99,
         'color' => 'Black/Sand',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2513/4932/knox_handroid_pod_mk5_gloves_black_sand_750x750.jpg'
+        'image' => '/img/gloves/knox_handroid_pod_mk5_gloves_black_sand_750x750.jpg'
     ],
     
     // Sedici Gloves
@@ -597,7 +597,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black/White/Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2417/2061/sedici_misano2_gloves_750x750.jpg'
+        'image' => '/img/gloves/sedici_misano2_gloves_black_red_750x750.jpg'
     ],
     [
         'id' => 65,
@@ -606,7 +606,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2417/9150/sedici_misano2_gloves_black_white_750x750.jpg'
+        'image' => '/img/gloves/sedici_misano2_gloves_black_white_750x750.jpg'
     ],
     [
         'id' => 66,
@@ -615,7 +615,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black/Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2417/2078/sedici_misano2_gloves_750x750.jpg'
+        'image' => '/img/gloves/sedici_misano2_gloves_black_black_750x750.jpg'
     ],
     [
         'id' => 67,
@@ -624,7 +624,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2417/6260/sedici_corsa2_gloves_750x750.jpg'
+        'image' => '/img/gloves/sedici_corsa2_gloves_black_white_750x750.jpg'
     ],
     [
         'id' => 68,
@@ -633,7 +633,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Black/Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2417/6243/sedici_corsa2_gloves_750x750.jpg'
+        'image' => '/img/gloves/sedici_corsa2_gloves_black_black_750x750.jpg'
     ],
     [
         'id' => 69,
@@ -642,7 +642,7 @@ $gloves = [
         'price' => 79.99,
         'color' => 'Black/White/Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2417/6277/sedici_corsa2_gloves_750x750.jpg'
+        'image' => '/img/gloves/sedici_corsa2_gloves_black_red_750x750.jpg'
     ],
     
     // Gerbing Heated Gloves
@@ -653,7 +653,7 @@ $gloves = [
         'price' => 199.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2505/4716/gerbing12_v_hero_heated_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/gerbing12_v_hero_heated_gloves_black_750x750.jpg'
     ],
     [
         'id' => 71,
@@ -662,7 +662,7 @@ $gloves = [
         'price' => 129.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2357/8431/gerbing7_v_heated_glove_liners_750x750.jpg'
+        'image' => '/img/gloves/gerbing7_v_heated_glove_liners_750x750.jpg'
     ],
     
     // FXR Heated Gloves
@@ -673,7 +673,7 @@ $gloves = [
         'price' => 149.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1482/0572/fxr_heated_recon_glove_black_750x750.jpg'
+        'image' => '/img/gloves/fxr_heated_recon_glove_black_750x750.jpg'
     ],
     
     // Fly Racing Heated Gloves
@@ -684,7 +684,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1579/2581/fly_racing_dirt_title_heated_gloves_750x750.jpg'
+        'image' => '/img/gloves/fly_racing_dirt_title_heated_gloves_black_750x750.jpg'
     ],
     [
         'id' => 74,
@@ -693,7 +693,7 @@ $gloves = [
         'price' => 89.99,
         'color' => 'Black/Grey',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/1579/2615/fly_racing_dirt_title_heated_gloves_750x750.jpg'
+        'image' => '/img/gloves/fly_racing_dirt_title_heated_gloves_grey_750x750.jpg'
     ],
     
     // LS2 Gloves
@@ -704,7 +704,7 @@ $gloves = [
         'price' => 49.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2213/5708/ls2_swift_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/ls2_swift_gloves_black_750x750.jpg'
     ],
     [
         'id' => 76,
@@ -713,7 +713,7 @@ $gloves = [
         'price' => 49.99,
         'color' => 'Black/Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2213/5742/ls2_swift_gloves_black_red_750x750.jpg'
+        'image' => '/img/gloves/ls2_swift_gloves_black_red_750x750.jpg'
     ],
     [
         'id' => 77,
@@ -722,7 +722,7 @@ $gloves = [
         'price' => 49.99,
         'color' => 'Black/Hi-Viz Yellow',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2213/5776/ls2_swift_gloves_black_hi_viz_yellow_750x750.jpg'
+        'image' => '/img/gloves/ls2_swift_gloves_black_hi_viz_yellow_750x750.jpg'
     ],
     
     // Spidi Gloves
@@ -733,7 +733,7 @@ $gloves = [
         'price' => 159.99,
         'color' => 'Black',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2068/5536/spidi_str6_gloves_black_750x750.jpg'
+        'image' => '/img/gloves/spidi_str6_gloves_black_750x750.jpg'
     ],
     [
         'id' => 79,
@@ -742,7 +742,7 @@ $gloves = [
         'price' => 159.99,
         'color' => 'Black/White',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2068/5587/spidi_str6_gloves_black_white_750x750.jpg'
+        'image' => '/img/gloves/spidi_str6_gloves_white_750x750.jpg'
     ],
     [
         'id' => 80,
@@ -751,7 +751,7 @@ $gloves = [
         'price' => 159.99,
         'color' => 'Red',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2068/5638/spidi_str6_gloves_red_750x750.jpg'
+        'image' => '/img/gloves/spidi_str6_gloves_red_750x750.jpg'
     ],
     [
         'id' => 81,
@@ -760,7 +760,7 @@ $gloves = [
         'price' => 159.99,
         'color' => 'Yellow',
         'category' => 'gloves',
-        'image' => 'https://www.revzilla.com/product_images/2068/5689/spidi_str6_gloves_yellow_750x750.jpg'
+        'image' => '/img/gloves/spidi_str6_gloves_yellow_750x750.jpg'
     ]
 ];
 

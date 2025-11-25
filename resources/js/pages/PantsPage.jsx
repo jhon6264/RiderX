@@ -1,16 +1,15 @@
+// C:\Users\User\Desktop\RiderX\resources\js\pages\PantsPage.jsx
 import React from 'react';
-import Header from '../components/home/Header';
-import Footer from '../components/home/Footer';
+import ProductGrid from '../components/home/ProductGrid';
 
 const PantsPage = () => {
     return (
-        <div className="PantsPage">
-            <Header />
-            <div className="container mx-auto px-4 py-8">
-                <h1 className="text-3xl font-bold mb-6">Motorcycle Pants</h1>
-                <p>Pants page content coming soon...</p>
-            </div>
-            <Footer />
+        <div className="pants-page">
+            <main className="page-main">
+                <div className="page-container">
+                    <ProductGrid category="pants" showHeader={true} />
+                </div>
+            </main>
         </div>
     );
 };

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+
+// Customer Components
 import Header from './components/home/Header';
 import Hero from './components/home/Hero';
 import Partnership from './components/home/Partnership'; 
@@ -13,21 +15,36 @@ import BootsPage from './pages/BootsPage';
 import GlovesPage from './pages/GlovesPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import ProductGrid from './components/home/ProductGrid';
+import { AuthModalProvider, useAuthModal } from './AuthModalContext';
+import { CartProvider } from './contexts/CartContext';
+import CartPage from './pages/CartPage';
+import CheckoutPage from './pages/CheckoutPage';
+import OrderHistoryPage from './pages/OrderHistoryPage';
+import OrderDetailsPage from './pages/OrderDetailsPage';
 
+// Admin Components
+import AdminLayout from './admin/AdminLayout';
+import AdminLogin from './admin/AdminLogin';
+import AdminDashboard from './admin/AdminDashboard';
+import AdminOrders from './admin/AdminOrders';
+import AdminPayments from './admin/AdminPayments';
+import AdminProducts from './admin/AdminProducts';
+
+// ========== CUSTOMER APP ==========
 function HomePage() {
-    const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+    return (
+        <div className="HomePage">
+            <Hero />
+            <ProductGrid /> 
+            <Partnership /> 
+        </div>
+    );
+}
+
+function CustomerAppContent() {
+    const { isAuthModalOpen, closeAuthModal, openAuthModal } = useAuthModal();
     const [resetData, setResetData] = useState({ token: '', email: '' });
     const [verificationData, setVerificationData] = useState({ verified: false, email: '' });
-
-    const handleAuthModalOpen = () => {
-        setIsAuthModalOpen(true);
-    };
-
-    const handleAuthModalClose = () => {
-        setIsAuthModalOpen(false);
-        setResetData({ token: '', email: '' });
-        setVerificationData({ verified: false, email: '' });
-    };
 
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -42,7 +59,7 @@ function HomePage() {
                 token: token, 
                 email: decodeURIComponent(email) 
             });
-            setIsAuthModalOpen(true);
+            openAuthModal();
             window.history.replaceState({}, '', '/');
         } else if (verified === 'true') {
             const verifiedEmail = urlParams.get('email') || '';
@@ -50,22 +67,37 @@ function HomePage() {
                 verified: true, 
                 email: decodeURIComponent(verifiedEmail) 
             });
-            setIsAuthModalOpen(true);
+            openAuthModal();
             window.history.replaceState({}, '', '/');
         }
-    }, []);
+    }, [openAuthModal]);
 
     return (
-        <div className="HomePage">
-            <Header onAuthModalOpen={handleAuthModalOpen} />
-            <Hero />
-            <ProductGrid /> 
-            <Partnership /> 
+        <div className="customer-app">
+            {/* Header and Footer ONLY for customer app */}
+            <Header />
+            
+            <main className="customer-main">
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/helmets" element={<HelmetsPage />} />
+                    <Route path="/jackets" element={<JacketsPage />} />
+                    <Route path="/pants" element={<PantsPage />} />
+                    <Route path="/boots" element={<BootsPage />} />
+                    <Route path="/gloves" element={<GlovesPage />} />
+                    <Route path="/product/:id" element={<ProductDetailPage />} />
+                    <Route path="/cart" element={<CartPage />} />
+                    <Route path="/checkout" element={<CheckoutPage />} />
+                    <Route path="/orders" element={<OrderHistoryPage />} />
+                    <Route path="/orders/:id" element={<OrderDetailsPage />} />
+                </Routes>
+            </main>
+            
             <Footer />
             
             <AuthModal 
                 isOpen={isAuthModalOpen} 
-                onClose={handleAuthModalClose} 
+                onClose={closeAuthModal} 
                 resetData={resetData}
                 verificationData={verificationData} 
             />
@@ -73,20 +105,54 @@ function HomePage() {
     );
 }
 
-function App() {
+function CustomerApp() {
     return (
-        <Router>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/helmets" element={<HelmetsPage />} />
-                <Route path="/jackets" element={<JacketsPage />} />
-                <Route path="/pants" element={<PantsPage />} />
-                <Route path="/boots" element={<BootsPage />} />
-                <Route path="/gloves" element={<GlovesPage />} />
-                <Route path="/product/:id" element={<ProductDetailPage />} />
-            </Routes>
-        </Router>
+        <AuthModalProvider>
+            <CartProvider>
+                <Router>
+                    <CustomerAppContent />
+                </Router>
+            </CartProvider>
+        </AuthModalProvider>
     );
+}
+
+// ========== ADMIN APP ==========
+function AdminApp() {
+    return (
+        <div className="admin-app">
+            <Router>
+                <Routes>
+                    <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin" element={<AdminLayout />}>
+                        <Route index element={<Navigate to="/admin/dashboard" replace />} />
+                        <Route path="dashboard" element={<AdminDashboard />} />
+                        <Route path="orders" element={<AdminOrders />} />
+                        {/* Payment Routes - Redirect base /payments to /payments/all */}
+                        <Route path="payments" element={<Navigate to="/admin/payments/all" replace />} />
+                        <Route path="payments/all" element={<AdminPayments />} />
+                        <Route path="payments/pending" element={<AdminPayments />} />
+                        <Route path="payments/approved" element={<AdminPayments />} />
+                        <Route path="products" element={<AdminProducts />} />
+                    </Route>
+                    {/* Catch all admin routes to dashboard */}
+                    <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
+                </Routes>
+            </Router>
+        </div>
+    );
+}
+
+// ========== MAIN APP RENDERER ==========
+function App() {
+    // Check if we're in admin area - more robust check
+    const isAdminArea = window.location.pathname.startsWith('/admin');
+    
+    if (isAdminArea) {
+        return <AdminApp />;
+    } else {
+        return <CustomerApp />;
+    }
 }
 
 const container = document.getElementById('app');

@@ -1,7 +1,10 @@
+// C:\Users\User\Desktop\RiderX\resources\js\pages\ProductDetailPage.jsx
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import Header from '../components/home/Header';
-import Footer from '../components/home/Footer';
+import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useAuthModal } from '../AuthModalContext';
+import { useCart } from '../contexts/CartContext';
+import Loading from '../components/Loading';
+import { formatPrice } from '../utils/currencyFormatter';
 
 const ProductDetailPage = () => {
     const { id } = useParams();
@@ -16,6 +19,20 @@ const ProductDetailPage = () => {
     const [showSizeChart, setShowSizeChart] = useState(false);
     const [activeTab, setActiveTab] = useState('overview');
     const [verticalCarouselIndex, setVerticalCarouselIndex] = useState(0);
+    
+    // Use auth modal context
+    const { openAuthModal } = useAuthModal();
+    
+    // NEW: Use cart context and navigation
+    const { addItem } = useCart();
+    const navigate = useNavigate();
+    
+    // Separate loading states for each button
+    const [cartLoading, setCartLoading] = useState(false);
+    const [buyNowLoading, setBuyNowLoading] = useState(false);
+    
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [successMessage, setSuccessMessage] = useState('');
 
     // Size options by category
     const sizeOptions = {
@@ -228,24 +245,89 @@ const ProductDetailPage = () => {
         setSelectedSize(size);
     };
 
-    const handleAddToCart = () => {
-        console.log('Added to cart:', {
-            productId: product.id,
-            variantId: selectedVariant.id,
-            size: selectedSize,
-            quantity: quantity
-        });
-        alert(`${quantity} ${product.name} (${selectedVariant.color}, Size: ${selectedSize}) added to cart!`);
+    // UPDATED: Separate auth check functions for each button
+    const checkAuthAndAddToCart = async () => {
+        setCartLoading(true);
+        try {
+            const response = await fetch('/api/user');
+            const data = await response.json();
+            
+            if (data.authenticated) {
+                await handleAddToCart();
+            } else {
+                openAuthModal();
+            }
+        } catch (error) {
+            console.error('Auth check failed:', error);
+            alert('Error checking authentication. Please try again.');
+        } finally {
+            setCartLoading(false);
+        }
     };
 
-    const handleBuyNow = () => {
-        console.log('Buy now:', {
+    // UPDATED: Buy Now - redirects to cart page immediately
+    const checkAuthAndBuyNow = async () => {
+        setBuyNowLoading(true);
+        try {
+            const response = await fetch('/api/user');
+            const data = await response.json();
+            
+            if (data.authenticated) {
+                await handleBuyNow();
+            } else {
+                openAuthModal();
+            }
+        } catch (error) {
+            console.error('Auth check failed:', error);
+            alert('Error checking authentication. Please try again.');
+        } finally {
+            setBuyNowLoading(false);
+        }
+    };
+
+    // UPDATED: handleAddToCart - adds to cart and shows beautiful modal
+    const handleAddToCart = async () => {
+        if (!product || !selectedVariant) return;
+
+        const cartItem = {
             productId: product.id,
             variantId: selectedVariant.id,
             size: selectedSize,
-            quantity: quantity
-        });
-        alert(`Proceeding to checkout with ${quantity} ${product.name} (${selectedVariant.color}, Size: ${selectedSize})`);
+            quantity: quantity,
+            productName: product.name,
+            variantColor: selectedVariant.color,
+            price: selectedVariant?.price || product.base_price,
+            image: selectedVariant.image
+        };
+
+        // Add to cart using context
+        addItem(cartItem);
+        
+        // Show beautiful success modal
+        setSuccessMessage(`${quantity} ${product.name} (${selectedVariant.color}, Size: ${selectedSize}) added to cart!`);
+        setShowSuccessModal(true);
+    };
+
+    // UPDATED: handleBuyNow - adds to cart and redirects immediately
+    const handleBuyNow = async () => {
+        if (!product || !selectedVariant) return;
+
+        const cartItem = {
+            productId: product.id,
+            variantId: selectedVariant.id,
+            size: selectedSize,
+            quantity: quantity,
+            productName: product.name,
+            variantColor: selectedVariant.color,
+            price: selectedVariant?.price || product.base_price,
+            image: selectedVariant.image
+        };
+
+        // Add to cart using context
+        addItem(cartItem);
+        
+        // Immediately redirect to cart page
+        navigate('/cart');
     };
 
     const openSizeChart = () => {
@@ -255,6 +337,70 @@ const ProductDetailPage = () => {
     const closeSizeChart = () => {
         setShowSizeChart(false);
     };
+
+// UPDATED: Beautiful Center Success Confirmation Modal Component with Vertical Table
+const SuccessModal = () => {
+    if (!showSuccessModal || !product) return null;
+
+    return (
+        <div className="success-modal-overlay" onClick={() => setShowSuccessModal(false)}>
+            <div className="success-modal-center" onClick={(e) => e.stopPropagation()}>
+                <div className="success-modal-body">
+                    <div className="success-product-image">
+                        <img 
+                            src={selectedVariant?.image} 
+                            alt={product.name}
+                        />
+                    </div>
+                    
+                    <div className="success-product-info">
+                        <h4 className="success-product-name">{product.name}</h4>
+                        
+                        {/* VERTICAL TABLE STYLE */}
+                        <div className="success-product-details-table">
+                            <div className="detail-row">
+                                <span className="detail-label">Color:</span>
+                                <span className="detail-value">{selectedVariant?.color}</span>
+                            </div>
+                            <div className="detail-row">
+                                <span className="detail-label">Size:</span>
+                                <span className="detail-value">{selectedSize}</span>
+                            </div>
+                            <div className="detail-row">
+                                <span className="detail-label">Quantity:</span>
+                                <span className="detail-value">{quantity}</span>
+                            </div>
+                            <div className="detail-row price-row">
+                                <span className="detail-label">Price:</span>
+                                <span className="detail-value">
+                                    {formatPrice((selectedVariant?.price || product.base_price) * quantity)}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div className="success-modal-footer">
+                        <button 
+                            className="btn-continue-shopping"
+                            onClick={() => setShowSuccessModal(false)}
+                        >
+                            Continue Shopping
+                        </button>
+                        <button 
+                            className="btn-view-cart"
+                            onClick={() => {
+                                setShowSuccessModal(false);
+                                navigate('/cart');
+                            }}
+                        >
+                            View Cart
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
 
     // Vertical Carousel Component (Desktop only)
     const VerticalCarousel = () => {
@@ -293,7 +439,7 @@ const ProductDetailPage = () => {
                                 <div className="vertical-product-info">
                                     <h4>{relatedProduct.name}</h4>
                                     <p className="product-card-brand">{relatedProduct.brand}</p>
-                                    <div className="product-card-price">${relatedProduct.base_price}</div>
+                                    <div className="product-card-price">{formatPrice(relatedProduct.base_price)}</div>
                                 </div>
                             </Link>
                         ))}
@@ -312,7 +458,7 @@ const ProductDetailPage = () => {
         );
     };
 
-    // NEW: Related Products Section for Mobile (same design as random products)
+    // Related Products Section for Mobile (same design as random products)
     const RelatedProductsSection = () => {
         if (relatedProducts.length === 0) return null;
 
@@ -365,7 +511,7 @@ const ProductDetailPage = () => {
                                             )}
                                         </div>
                                         
-                                        <div className="product-card-price">${relatedProduct.base_price}</div>
+                                       <div className="product-card-price">{formatPrice(relatedProduct.base_price)}</div>
                                     </div>
                                 </Link>
                             );
@@ -429,7 +575,7 @@ const ProductDetailPage = () => {
                                             )}
                                         </div>
                                         
-                                        <div className="product-card-price">${randomProduct.base_price}</div>
+                                       <div className="product-card-price">{formatPrice(randomProduct.base_price)}</div>
                                     </div>
                                 </Link>
                             );
@@ -567,9 +713,13 @@ const ProductDetailPage = () => {
     if (loading) {
         return (
             <div className="product-detail-page">
-                <Header />
-                <div className="product-detail-loading">Loading product...</div>
-                <Footer />
+                <div className="product-detail-loading">
+                    <Loading 
+                        type="progress" 
+                        message="Gearing up your product..." 
+                        size="large" 
+                    />
+                </div>
             </div>
         );
     }
@@ -577,13 +727,11 @@ const ProductDetailPage = () => {
     if (error || !product) {
         return (
             <div className="product-detail-page">
-                <Header />
                 <div className="product-detail-error">
                     <h2>Product Not Found</h2>
                     <p>{error}</p>
                     <Link to="/" className="back-to-home">Back to Home</Link>
                 </div>
-                <Footer />
             </div>
         );
     }
@@ -592,14 +740,14 @@ const ProductDetailPage = () => {
 
     return (
         <div className="product-detail-page">
-            <Header />
-            
             <div className="product-detail-container">
                 {/* Breadcrumb Navigation */}
                 <nav className="breadcrumb">
                     <Link to="/">Home</Link>
                     <span> / </span>
-                    <Link to={`/${product.category}`}>{product.category}</Link>
+                    <Link to={`/${product.category}`}>
+                        {product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                    </Link>
                     <span> / </span>
                     <span>{product.name}</span>
                 </nav>
@@ -630,7 +778,7 @@ const ProductDetailPage = () => {
                                 <p className="product-brand">{product.brand}</p>
                                 
                                 <div className="product-price">
-                                    ${selectedVariant?.price || product.base_price}
+                                    {formatPrice(selectedVariant?.price || product.base_price)}
                                 </div>
 
                                 {/* Star Rating */}
@@ -693,7 +841,7 @@ const ProductDetailPage = () => {
                                     </div>
                                 )}
 
-                                {/* Action Buttons Row */}
+                                {/* UPDATED: Action Buttons with Independent Loading */}
                                 <div className="action-buttons-row">
                                     <div className="quantity-selector">
                                         <label htmlFor="quantity">Qty:</label>
@@ -709,17 +857,27 @@ const ProductDetailPage = () => {
                                     </div>
 
                                     <button 
-                                        className="add-to-cart-btn"
-                                        onClick={handleAddToCart}
+                                        className={`add-to-cart-btn ${cartLoading ? 'button-loading' : ''}`}
+                                        onClick={checkAuthAndAddToCart}
+                                        disabled={cartLoading || buyNowLoading}
                                     >
-                                        Add to Cart
+                                        {cartLoading ? (
+                                            <Loading type="dots" size="small" />
+                                        ) : (
+                                            'Add to Cart'
+                                        )}
                                     </button>
 
                                     <button 
-                                        className="buy-now-btn"
-                                        onClick={handleBuyNow}
+                                        className={`buy-now-btn ${buyNowLoading ? 'button-loading' : ''}`}
+                                        onClick={checkAuthAndBuyNow}
+                                        disabled={buyNowLoading || cartLoading}
                                     >
-                                        Buy Now
+                                        {buyNowLoading ? (
+                                            <Loading type="dots" size="small" />
+                                        ) : (
+                                            'Buy Now'
+                                        )}
                                     </button>
                                 </div>
                             </div>
@@ -740,7 +898,8 @@ const ProductDetailPage = () => {
             {/* Size Chart Modal */}
             <SizeChartModal />
 
-            <Footer />
+            {/* UPDATED: Beautiful Center Success Confirmation Modal */}
+            <SuccessModal />
         </div>
     );
 };

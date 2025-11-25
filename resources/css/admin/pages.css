@@ -1,0 +1,65 @@
+/* Admin Pages Styles */
+.admin-orders,
+.admin-products {
+    max-width: 1200px;
+}
+
+.page-header {
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    margin: 0 0 0.5rem 0;
+    color: var(--charcoal-black);
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 0;
+    color: var(--medium-gray);
+    font-size: 1rem;
+}
+
+.placeholder-content {
+    background: var(--pure-white);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.placeholder-icon {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+.placeholder-content h2 {
+    margin: 0 0 1rem 0;
+    color: var(--charcoal-black);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.placeholder-content p {
+    color: var(--medium-gray);
+    margin-bottom: 2rem;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.placeholder-features {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: left;
+    background: var(--light-gray);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-gray);
+}
+
+.feature-item {
+    color: var(--charcoal-black);
+    font-size: 0.9rem;
+}

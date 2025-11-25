@@ -1,8 +1,12 @@
+// C:\Users\User\Desktop\RiderX\resources\js\components\home\Header.jsx
 import React, { useState, useEffect } from 'react';
 import UserDropdown from '../../UserDropdown';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import { useAuthModal } from '../../AuthModalContext';
+import { useCart } from '../../contexts/CartContext';
+import CartModal from '../../contexts/CartModal';
 
-const Header = ({ onAuthModalOpen }) => {
+const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [currentPromo, setCurrentPromo] = useState(0);
     const [authState, setAuthState] = useState({
@@ -11,6 +15,14 @@ const Header = ({ onAuthModalOpen }) => {
         loading: true
     });
     const [showDropdown, setShowDropdown] = useState(false);
+    const [showCartModal, setShowCartModal] = useState(false); // NEW: Cart modal state
+    
+    // Get current location and auth modal context
+    const location = useLocation();
+    const { openAuthModal } = useAuthModal();
+
+    // NEW: Get cart count from CartContext
+    const { itemCount } = useCart();
 
     const promoMessages = [
         "Now we offer you to Pay in Gcash Directly! with Free Shipping!",
@@ -18,6 +30,14 @@ const Header = ({ onAuthModalOpen }) => {
         "New Arrivals Just Dropped - Shop Now!",
         "Free Returns Within 3 Days"
     ];
+
+    // Check if a link is active based on current path
+    const isActiveLink = (path) => {
+        if (path === '/') {
+            return location.pathname === '/';
+        }
+        return location.pathname.startsWith(path);
+    };
 
     // Check authentication status
     const checkAuthStatus = async () => {
@@ -40,10 +60,10 @@ const Header = ({ onAuthModalOpen }) => {
         }
     };
 
-    // Check auth on component mount
+    // Check auth on component mount AND when location changes
     useEffect(() => {
         checkAuthStatus();
-    }, []);
+    }, [location.pathname]); // Re-check when route changes
 
     // Close menu when resizing to desktop
     useEffect(() => {
@@ -73,15 +93,22 @@ const Header = ({ onAuthModalOpen }) => {
         setIsMenuOpen(false);
     };
 
+    // NEW: Cart modal handlers
+    const handleCartIconClick = () => {
+        setShowCartModal(true);
+    };
+
+    const handleCloseCartModal = () => {
+        setShowCartModal(false);
+    };
+
     const handleUserIconClick = () => {
         if (authState.authenticated) {
             // Show dropdown for logged-in users
             setShowDropdown(!showDropdown);
         } else {
-            // Show auth modal for logged-out users
-            if (onAuthModalOpen) {
-                onAuthModalOpen();
-            }
+            // Show auth modal for logged-out users using context
+            openAuthModal();
         }
     };
 
@@ -118,10 +145,9 @@ const Header = ({ onAuthModalOpen }) => {
         }
     };
 
-
     return (
         <>
-            {/* Promo Banner - NOT FIXED, scrolls away */}
+            {/* Promo Banner */}
             <div className="promo-banner">
                 <div className="promo-container">
                     <div className="promo-carousel">
@@ -165,26 +191,30 @@ const Header = ({ onAuthModalOpen }) => {
                         <div className="header-icons-group">
                             {/* Cart Icon - Only show when logged in */}
                             {authState.authenticated && (
-                                <button className="icon-btn cart-btn" aria-label="Shopping cart">
+                                <button 
+                                    className="icon-btn cart-btn" 
+                                    aria-label="Shopping cart"
+                                    onClick={handleCartIconClick} // NEW: Added click handler
+                                >
                                     <svg className="cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-  <circle cx="8" cy="21" r="1"/>
-  <circle cx="19" cy="21" r="1"/>
-  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
-</svg>
-                                    <span className="cart-count">0</span>
+                                        <circle cx="8" cy="21" r="1"/>
+                                        <circle cx="19" cy="21" r="1"/>
+                                        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/>
+                                    </svg>
+                                    <span className="cart-count">{itemCount}</span>
                                 </button>
                             )}
 
                             {/* Track Order Icon - Only show when logged in */}
                             {authState.authenticated && (
-                                <button className="icon-btn track-btn" aria-label="Track order">
-                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-  <path d="M12 3v6"/>
-  <path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/>
-  <path d="M3.054 9.013h17.893"/>
-</svg>
-                                </button>
-                            )}
+                            <Link to="/orders" className="icon-btn track-btn" aria-label="Track order">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+                                    <path d="M12 3v6"/>
+                                    <path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/>
+                                    <path d="M3.054 9.013h17.893"/>
+                                </svg>
+                            </Link>
+                        )}
 
                             {/* User Icon - Always visible */}
                             <div className="user-icon-container">
@@ -194,7 +224,7 @@ const Header = ({ onAuthModalOpen }) => {
                                     onClick={handleUserIconClick}
                                 >
                                     <svg className="user-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                                         <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
+                                        <path fillRule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clipRule="evenodd" />
                                     </svg>
                                 </button>
 
@@ -222,16 +252,46 @@ const Header = ({ onAuthModalOpen }) => {
                     </div>
                 </div>
 
-                {/* Rest of your header code remains the same */}
+                {/* Subheader with Category Navigation */}
                 <div className="subheader">
                     <div className="subheader-container">
                         <nav className="category-nav">
-                            <Link to="/" className="category-link active">Home</Link>
-                            <Link to="/helmets" className="category-link">Helmets</Link>
-                            <Link to="/jackets" className="category-link">Jackets</Link>
-                            <Link to="/pants" className="category-link">Pants</Link>
-                            <Link to="/boots" className="category-link">Boots</Link>
-                            <Link to="/gloves" className="category-link">Gloves</Link>
+                            <Link 
+                                to="/" 
+                                className={`category-link ${isActiveLink('/') ? 'active' : ''}`}
+                            >
+                                Home
+                            </Link>
+                            <Link 
+                                to="/helmets" 
+                                className={`category-link ${isActiveLink('/helmets') ? 'active' : ''}`}
+                            >
+                                Helmets
+                            </Link>
+                            <Link 
+                                to="/jackets" 
+                                className={`category-link ${isActiveLink('/jackets') ? 'active' : ''}`}
+                            >
+                                Jackets
+                            </Link>
+                            <Link 
+                                to="/pants" 
+                                className={`category-link ${isActiveLink('/pants') ? 'active' : ''}`}
+                            >
+                                Pants
+                            </Link>
+                            <Link 
+                                to="/boots" 
+                                className={`category-link ${isActiveLink('/boots') ? 'active' : ''}`}
+                            >
+                                Boots
+                            </Link>
+                            <Link 
+                                to="/gloves" 
+                                className={`category-link ${isActiveLink('/gloves') ? 'active' : ''}`}
+                            >
+                                Gloves
+                            </Link>
                         </nav>
                     </div>
                 </div>
@@ -260,34 +320,58 @@ const Header = ({ onAuthModalOpen }) => {
                     {/* Mobile Navigation List */}
                     <ul className="mobile-nav-menu">
                         <li>
-                            <a href="#" className="mobile-nav-link active" onClick={closeMenu}>
+                            <Link 
+                                to="/" 
+                                className={`mobile-nav-link ${isActiveLink('/') ? 'active' : ''}`}
+                                onClick={closeMenu}
+                            >
                                 Home
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="mobile-nav-link" onClick={closeMenu}>
+                            <Link 
+                                to="/helmets" 
+                                className={`mobile-nav-link ${isActiveLink('/helmets') ? 'active' : ''}`}
+                                onClick={closeMenu}
+                            >
                                 Helmets
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="mobile-nav-link" onClick={closeMenu}>
+                            <Link 
+                                to="/jackets" 
+                                className={`mobile-nav-link ${isActiveLink('/jackets') ? 'active' : ''}`}
+                                onClick={closeMenu}
+                            >
                                 Jackets
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="mobile-nav-link" onClick={closeMenu}>
+                            <Link 
+                                to="/pants" 
+                                className={`mobile-nav-link ${isActiveLink('/pants') ? 'active' : ''}`}
+                                onClick={closeMenu}
+                            >
                                 Pants
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="mobile-nav-link" onClick={closeMenu}>
+                            <Link 
+                                to="/boots" 
+                                className={`mobile-nav-link ${isActiveLink('/boots') ? 'active' : ''}`}
+                                onClick={closeMenu}
+                            >
                                 Boots
-                            </a>
+                            </Link>
                         </li>
                         <li>
-                            <a href="#" className="mobile-nav-link" onClick={closeMenu}>
+                            <Link 
+                                to="/gloves" 
+                                className={`mobile-nav-link ${isActiveLink('/gloves') ? 'active' : ''}`}
+                                onClick={closeMenu}
+                            >
                                 Gloves
-                            </a>
+                            </Link>
                         </li>
                     </ul>
                     
@@ -295,10 +379,10 @@ const Header = ({ onAuthModalOpen }) => {
                     <div className="mobile-nav-footer">
                         <div className="mobile-footer-item">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-  <path d="M12 3v6"/>
-  <path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/>
-  <path d="M3.054 9.013h17.893"/>
-</svg>
+                                <path d="M12 3v6"/>
+                                <path d="M16.76 3a2 2 0 0 1 1.8 1.1l2.23 4.479a2 2 0 0 1 .21.891V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9.472a2 2 0 0 1 .211-.894L5.45 4.1A2 2 0 0 1 7.24 3z"/>
+                                <path d="M3.054 9.013h17.893"/>
+                            </svg>
                             <span className="footer-text">Order</span>
                         </div>
                         <div className="mobile-footer-item">
@@ -310,6 +394,9 @@ const Header = ({ onAuthModalOpen }) => {
                     </div>
                 </div>
             </header>
+
+            {/* NEW: Cart Modal */}
+            <CartModal isOpen={showCartModal} onClose={handleCloseCartModal} />
         </>
     );
 };
