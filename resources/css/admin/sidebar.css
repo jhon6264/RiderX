@@ -1,0 +1,704 @@
+/* ============================================
+   RIDERX ADMIN SIDEBAR - PERFECT VERTICAL ALIGNMENT
+   FIXED: All icons centered 50%, perfect vertical line
+   ============================================ */
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+/* Sidebar Container */
+.admin-sidebar {
+    width: 280px;
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    color: #e2e8f0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+    border-right: 1px solid #334155;
+}
+
+.admin-sidebar.closed {
+    width: 80px;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    padding: 1.5rem 1.25rem;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.sidebar-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.admin-sidebar.closed .sidebar-brand {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.brand-primary {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--racing-red);
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, var(--racing-red) 0%, #e53e3e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.brand-secondary {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #f8fafc;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    opacity: 0.9;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-toggle {
+    background: #334155;
+    border: none;
+    color: #cbd5e1;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+}
+
+.sidebar-toggle:hover {
+    background: #475569;
+    color: #ffffff;
+    transform: rotate(180deg);
+}
+
+.sidebar-toggle svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    flex: 1;
+    padding: 1rem 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Hide scrollbar but keep functionality */
+.sidebar-nav::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+    background: var(--racing-red);
+    border-radius: 3px;
+}
+
+/* ============================================
+   NAVIGATION ITEMS - PERFECT VERTICAL ALIGNMENT
+   ============================================ */
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0.25rem 0.75rem;
+    border-radius: 10px;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* FIXED: Orange line only for open mode */
+.admin-sidebar.open .nav-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--racing-red);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* FIXED: Remove orange line completely in minimized mode */
+.admin-sidebar.closed .nav-item::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* FIXED: Hover effects for open mode */
+.admin-sidebar.open .nav-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.admin-sidebar.open .nav-item:hover::before {
+    transform: scaleY(1);
+}
+
+/* FIXED: Consistent hover effects for minimized mode - NO ORANGE LINE */
+.admin-sidebar.closed .nav-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-item.active {
+    background: rgba(230, 57, 70, 0.15);
+    color: #ffffff;
+    border-left: 3px solid var(--racing-red);
+}
+
+.nav-item.active::before {
+    transform: scaleY(1);
+}
+
+/* FIXED: Active icon color */
+.nav-item.active .nav-icon svg,
+.nav-dropdown.active .nav-icon svg {
+    color: var(--racing-red) !important;
+    stroke: var(--racing-red) !important;
+}
+
+/* ============================================
+   ICON STYLING - PERFECTLY CENTERED AT 50%
+   ============================================ */
+
+.nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    min-width: 28px;
+    /* FIXED: Perfect 50% horizontal centering for ALL icons */
+    position: relative;
+}
+
+/* FIXED: ALL ICONS PERFECTLY CENTERED AT 50% in minimized mode */
+.admin-sidebar.closed .nav-icon {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.nav-icon svg {
+    width: 22px;
+    height: 22px;
+    color: #94a3b8;
+    stroke: #94a3b8;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+}
+
+.nav-item:hover .nav-icon svg {
+    color: #ffffff;
+    stroke: #ffffff;
+}
+
+.nav-item.active .nav-icon svg,
+.nav-dropdown.active .nav-icon svg {
+    color: var(--racing-red);
+    stroke: var(--racing-red);
+}
+
+/* Text Styling */
+.nav-text {
+    font-size: 0.95rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    flex: 1;
+}
+
+.admin-sidebar.closed .nav-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* ============================================
+   DROPDOWN NAVIGATION - PERFECT VERTICAL ALIGNMENT
+   ============================================ */
+
+.nav-dropdown {
+    position: relative;
+}
+
+.nav-dropdown.active {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    margin: 0.25rem 0.75rem;
+}
+
+/* FIXED: Dropdown button with perfect icon alignment */
+.nav-dropdown-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.875rem 1.25rem;
+    background: none;
+    border: none;
+    color: #cbd5e1;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    gap: 0.75rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* FIXED: Orange line only for open mode (dropdown buttons) */
+.admin-sidebar.open .nav-dropdown-btn::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background: var(--racing-red);
+    transform: scaleY(0);
+    transition: transform 0.3s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+/* FIXED: Remove orange line completely in minimized mode */
+.admin-sidebar.closed .nav-dropdown-btn::before {
+    display: none !important;
+    content: none !important;
+}
+
+/* FIXED: Hover effects for dropdown buttons in open mode */
+.admin-sidebar.open .nav-dropdown-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    transform: translateX(4px);
+}
+
+.admin-sidebar.open .nav-dropdown-btn:hover::before {
+    transform: scaleY(1);
+}
+
+/* FIXED: Consistent hover effects for minimized mode - NO ORANGE LINE */
+.admin-sidebar.closed .nav-dropdown-btn:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+    transform: scale(1.08);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.nav-dropdown.active .nav-dropdown-btn {
+    color: #ffffff;
+}
+
+/* FIXED: Dropdown arrow positioned absolutely to not affect icon alignment */
+.dropdown-arrow {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    position: absolute;
+    right: 1.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.admin-sidebar.closed .dropdown-arrow {
+    display: none !important;
+}
+
+.dropdown-arrow.open {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.dropdown-arrow svg {
+    width: 16px;
+    height: 16px;
+    color: #94a3b8;
+    stroke: #94a3b8;
+}
+
+.nav-dropdown-btn:hover .dropdown-arrow svg {
+    color: #ffffff;
+    stroke: #ffffff;
+}
+
+.nav-dropdown.active .dropdown-arrow svg {
+    color: var(--racing-red);
+    stroke: var(--racing-red);
+}
+
+/* Dropdown Content */
+.nav-dropdown-content {
+    background: rgba(15, 23, 42, 0.9);
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 0;
+    padding-left: 1.5rem;
+    margin: 0 0.75rem;
+    border-radius: 0 0 10px 10px;
+}
+
+.nav-dropdown-content.open {
+    max-height: 300px;
+    padding-bottom: 0.5rem;
+}
+
+/* Hide dropdown content when sidebar is minimized */
+.admin-sidebar.closed .nav-dropdown-content {
+    display: none !important;
+    max-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.nav-subitem {
+    display: block;
+    padding: 0.625rem 1rem 0.625rem 2rem;
+    color: #94a3b8;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    border-radius: 6px;
+    margin: 0.125rem 0;
+    position: relative;
+}
+
+.nav-subitem::before {
+    content: '';
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: #475569;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.nav-subitem:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateX(4px);
+}
+
+.nav-subitem:hover::before {
+    background: var(--racing-red);
+}
+
+.nav-subitem.active {
+    color: var(--racing-red);
+    background: rgba(230, 57, 70, 0.1);
+    font-weight: 500;
+}
+
+.nav-subitem.active::before {
+    background: var(--racing-red);
+    width: 6px;
+    height: 6px;
+}
+
+.nav-subitem-text {
+    white-space: nowrap;
+    transition: all 0.3s ease;
+}
+
+.admin-sidebar.closed .nav-subitem-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+}
+
+/* ============================================
+   SIDEBAR FOOTER
+   ============================================ */
+
+.sidebar-footer {
+    padding: 1.25rem;
+    border-top: 1px solid #334155;
+    background: rgba(15, 23, 42, 0.95);
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 0.875rem 1.5rem;
+    background: linear-gradient(135deg, var(--racing-red) 0%, #d32f2f 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(230, 57, 70, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* FIXED: Scale hover effect for logout button in minimized mode */
+.admin-sidebar.open .logout-btn:hover {
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(230, 57, 70, 0.3);
+}
+
+.admin-sidebar.closed .logout-btn:hover {
+    background: linear-gradient(135deg, #d32f2f 0%, #c62828 100%);
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(230, 57, 70, 0.3);
+}
+
+.logout-btn:active {
+    transform: translateY(0) scale(1);
+}
+
+/* FIXED: Logout Icon - Perfectly centered in minimized mode */
+.logout-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.admin-sidebar.closed .logout-icon {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.admin-sidebar.open .logout-icon {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+}
+
+.logout-icon svg {
+    width: 22px;
+    height: 22px;
+    color: #ffffff;
+    stroke: #ffffff;
+    stroke-width: 2;
+}
+
+/* FIXED: Logout Text - Only visible in maximized mode */
+.logout-text {
+    transition: all 0.3s ease;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.admin-sidebar.open .logout-text {
+    opacity: 1;
+    width: auto;
+    transform: translateX(0);
+}
+
+.admin-sidebar.closed .logout-text {
+    opacity: 0;
+    width: 0;
+    overflow: hidden;
+    margin: 0;
+}
+
+/* ============================================
+   MAIN CONTENT AREA
+   ============================================ */
+
+.admin-main {
+    flex: 1;
+    margin-left: 280px;
+    transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    min-height: 100vh;
+    background: #f8fafc;
+}
+
+.admin-sidebar.closed ~ .admin-main {
+    margin-left: 80px;
+}
+
+.admin-content {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .admin-sidebar {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+    
+    .admin-sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .admin-sidebar.closed {
+        transform: translateX(-100%);
+        width: 280px;
+    }
+    
+    .admin-sidebar.closed.open {
+        transform: translateX(0);
+    }
+    
+    .admin-main {
+        margin-left: 0 !important;
+    }
+    
+    .admin-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-content {
+        padding: 1rem;
+    }
+    
+    .sidebar-header {
+        padding: 1.25rem 1rem;
+    }
+    
+    .nav-item,
+    .nav-dropdown-btn {
+        padding: 0.75rem 1rem;
+        margin: 0.125rem 0.5rem;
+    }
+    
+    .nav-dropdown-content {
+        margin: 0 0.5rem;
+        padding-left: 1rem;
+    }
+    
+    .nav-subitem {
+        padding: 0.5rem 0.75rem 0.5rem 1.5rem;
+    }
+}
+
+/* ============================================
+   TOOLTIPS FOR MINIMIZED MODE
+   ============================================ */
+
+.admin-sidebar.closed .nav-item:hover::after,
+.admin-sidebar.closed .nav-dropdown-btn:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0f172a;
+    color: #ffffff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #334155;
+    margin-left: 0.75rem;
+    pointer-events: none;
+}
+
+.admin-sidebar.closed .nav-item:hover::before,
+.admin-sidebar.closed .nav-dropdown-btn:hover::before {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 6px solid transparent;
+    border-right-color: #0f172a;
+    z-index: 1002;
+    margin-left: -0.75rem;
+    pointer-events: none;
+}
+
+/* FIXED: Remove tooltip arrow from logout button */
+.admin-sidebar.closed .logout-btn:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #0f172a;
+    color: #ffffff;
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    white-space: nowrap;
+    z-index: 1001;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border: 1px solid #334155;
+    margin-left: 0.75rem;
+    pointer-events: none;
+}
+
+.admin-sidebar.closed .logout-btn:hover::before {
+    display: none !important;
+    content: none !important;
+}

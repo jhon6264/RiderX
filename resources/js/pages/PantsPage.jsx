@@ -7,7 +7,7 @@ const PantsPage = () => {
         <div className="pants-page">
             <main className="page-main">
                 <div className="page-container">
-                    <ProductGrid category="pants" showHeader={true} />
+                    <ProductGrid category="pants" limit={null} />
                 </div>
             </main>
         </div>

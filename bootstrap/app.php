@@ -17,8 +17,11 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         $middleware->validateCsrfTokens(except: [
-            'api/*'
-        ]);
+        'api/*',
+        'admin/products*',
+        'admin/orders*', 
+        'admin/payments*'
+    ]);
 
         $middleware->web(append: [
             \App\Http\Middleware\SecurityHeaders::class,

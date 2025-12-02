@@ -8,7 +8,7 @@ use App\Models\Order;
 use App\Models\Payment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Log;
 class AdminOrderController extends Controller
 {
     /**
@@ -64,36 +64,53 @@ class AdminOrderController extends Controller
     /**
      * Get orders by status
      */
-    public function getOrdersByStatus($status)
-    {
-        try {
-            $validStatuses = ['pending', 'to_ship', 'shipped', 'delivered', 'cancelled'];
-            
-            if (!in_array($status, $validStatuses)) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Invalid status provided'
-                ], 422);
-            }
-            
-            $orders = Order::with(['user', 'items.variant.product', 'payment'])
-                         ->where('status', $status)
-                         ->orderBy('created_at', 'desc')
-                         ->get();
-            
-            return response()->json([
-                'success' => true,
-                'orders' => $orders,
-                'status' => $status
-            ]);
-            
-        } catch (\Exception $e) {
+    // In AdminOrderController.php - Update getOrdersByStatus method
+    // In AdminOrderController.php - Update getOrdersByStatus method
+public function getOrdersByStatus(Request $request)
+{
+    try {
+        // Get the current URL path to determine the status
+        $path = $request->path(); // Returns 'admin/orders/pending', 'admin/orders/to-ship', etc.
+        $statusFromUrl = last(explode('/', $path));
+        
+        // Map URL segments to database status values
+        $statusMap = [
+            'pending' => 'pending',
+            'to-ship' => 'to_ship',
+            'shipped' => 'shipped',
+            'delivered' => 'delivered',
+            'cancelled' => 'cancelled'
+        ];
+        
+        if (!array_key_exists($statusFromUrl, $statusMap)) {
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to fetch orders: ' . $e->getMessage()
-            ], 500);
+                'message' => 'Invalid status provided. Valid: ' . implode(', ', array_keys($statusMap))
+            ], 422);
         }
+        
+        $dbStatus = $statusMap[$statusFromUrl];
+        
+        $orders = Order::with(['user', 'items.variant.product', 'payment'])
+                     ->where('status', $dbStatus)
+                     ->orderBy('created_at', 'desc')
+                     ->get();
+        
+        return response()->json([
+            'success' => true,
+            'orders' => $orders,
+            'status' => $dbStatus,
+            'count' => $orders->count()
+        ]);
+        
+    } catch (\Exception $e) {
+        Log::error('Failed to fetch orders by status: ' . $e->getMessage());
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to fetch orders: ' . $e->getMessage()
+        ], 500);
     }
+}
 
     /**
      * Get single order details

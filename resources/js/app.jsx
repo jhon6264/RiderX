@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import ScrollToTop from './components/ScrollToTop';
 
 // Customer Components
 import Header from './components/home/Header';
@@ -29,6 +30,7 @@ import AdminDashboard from './admin/AdminDashboard';
 import AdminOrders from './admin/AdminOrders';
 import AdminPayments from './admin/AdminPayments';
 import AdminProducts from './admin/AdminProducts';
+import AdminManagement from './admin/AdminManagement';
 
 // ========== CUSTOMER APP ==========
 function HomePage() {
@@ -127,12 +129,23 @@ function AdminApp() {
                     <Route path="/admin" element={<AdminLayout />}>
                         <Route index element={<Navigate to="/admin/dashboard" replace />} />
                         <Route path="dashboard" element={<AdminDashboard />} />
-                        <Route path="orders" element={<AdminOrders />} />
+                        
+                        {/* Order Routes - Redirect base /orders to /orders/all */}
+                        <Route path="admins" element={<AdminManagement />} />
+                        <Route path="orders" element={<Navigate to="/admin/orders/all" replace />} />
+                        <Route path="orders/all" element={<AdminOrders />} />
+                        <Route path="orders/pending" element={<AdminOrders />} />
+                        <Route path="orders/to-ship" element={<AdminOrders />} />
+                        <Route path="orders/shipped" element={<AdminOrders />} />
+                        <Route path="orders/delivered" element={<AdminOrders />} />
+                        <Route path="orders/cancelled" element={<AdminOrders />} />
+                        
                         {/* Payment Routes - Redirect base /payments to /payments/all */}
                         <Route path="payments" element={<Navigate to="/admin/payments/all" replace />} />
                         <Route path="payments/all" element={<AdminPayments />} />
                         <Route path="payments/pending" element={<AdminPayments />} />
                         <Route path="payments/approved" element={<AdminPayments />} />
+                        
                         <Route path="products" element={<AdminProducts />} />
                     </Route>
                     {/* Catch all admin routes to dashboard */}

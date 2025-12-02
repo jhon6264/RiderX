@@ -7,7 +7,7 @@ const JacketsPage = () => {
         <div className="jackets-page">
             <main className="page-main">
                 <div className="page-container">
-                    <ProductGrid category="jackets" />
+                    <ProductGrid category="jackets" limit={null} />
                 </div>
             </main>
         </div>

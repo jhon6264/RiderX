@@ -448,8 +448,13 @@ body:has(.admin-app) {
 @import 'cart.css';
 @import 'checkout.css';
 @import 'orderhistory.css';
+@import 'orderdetail.css';
 @import 'admin/core.css';
 @import 'admin/login.css';
 @import 'admin/dashboard.css';
 @import 'admin/pages.css';
 @import 'admin/payments.css';
+@import 'admin/orders.css';
+@import 'admin/sidebar.css';  
+@import 'admin/products.css';
+@import 'admin/adminmanagement.css';

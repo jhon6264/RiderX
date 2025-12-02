@@ -84,40 +84,7 @@
     opacity: 0.7;
 }
 
-/* REMOVE DUPLICATE PAYMENT-STATS SECTION */
-/* .payment-stats {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
-    margin-bottom: 2rem;
-} */
-
-/* REMOVE DUPLICATE STAT-ITEM STYLES */
-/* .stat-item {
-    background: var(--pure-white);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    text-align: center;
-    border-left: 4px solid var(--racing-red);
-} */
-
-/* REMOVE DUPLICATE STAT-NUMBER STYLES */
-/* .stat-number {
-    display: block;
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--racing-red);
-    margin-bottom: 0.5rem;
-} */
-
-/* REMOVE DUPLICATE STAT-LABEL STYLES */
-/* .stat-label {
-    color: var(--medium-gray);
-    font-size: 0.9rem;
-} */
-
-/* Table Controls - UPDATED */
+/* Table Controls */
 .table-controls {
     display: flex;
     gap: 1rem;
@@ -785,7 +752,7 @@
     font-size: 1.1rem;
 }
 
-/* Status Badges */
+/* Payment Status Badges */
 .status-badge {
     padding: 0.35rem 0.75rem;
     border-radius: 20px;
@@ -1203,7 +1170,6 @@
     }
 }
 
-
 /* ===== AGGRESSIVE SEARCH INPUT OVERRIDE ===== */
 /* Completely reset and override any framework styles */
 .admin-payments .table-controls .search-box input[type="text"].search-input,
@@ -1288,4 +1254,601 @@
     background: var(--pure-white) !important;
     padding: 0.75rem 1rem !important;
     box-shadow: none !important;
+}
+
+/* ==================== */
+/* MODERN UI ADDITIONS  */
+/* ==================== */
+
+/* Modern Header */
+.admin-payments .modern-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--pure-white) 0%, #f8fafc 100%);
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.admin-payments .modern-header .header-content h1 {
+    margin: 0 0 0.5rem 0;
+    color: var(--charcoal-black);
+    font-size: 2.25rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--charcoal-black) 0%, #2d3748 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.admin-payments .modern-header .header-content p {
+    margin: 0;
+    color: var(--medium-gray);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* ENHANCED Stats Grid - Payment specific */
+.admin-payments .enhanced-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-payments .stat-card-enhanced {
+    background: var(--pure-white);
+    padding: 1.25rem;
+    border-radius: 12px;
+    border: 1px solid #e2e8f0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.admin-payments .stat-card-enhanced:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.admin-payments .stat-card-enhanced.active {
+    border-color: var(--racing-red);
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.1), 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Payment stat card type colors */
+.admin-payments .stat-card-enhanced.total {
+    border-top: 3px solid #6b7280;
+}
+
+.admin-payments .stat-card-enhanced.pending {
+    border-top: 3px solid #f59e0b;
+}
+
+.admin-payments .stat-card-enhanced.approved {
+    border-top: 3px solid #10b981;
+}
+
+.admin-payments .stat-card-enhanced.rejected {
+    border-top: 3px solid #ef4444;
+}
+
+.admin-payments .stat-card-enhanced.today {
+    border-top: 3px solid #3b82f6;
+}
+
+.admin-payments .stat-card-enhanced.time {
+    border-top: 3px solid #8b5cf6;
+}
+
+.admin-payments .stat-card-enhanced.priority {
+    border-top: 3px solid #ec4899;
+}
+
+.admin-payments .stat-card-enhanced.rate {
+    border-top: 3px solid #06b6d4;
+}
+
+.admin-payments .stat-card-enhanced.trend {
+    border-top: 3px solid #f97316;
+}
+
+.admin-payments .stat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.admin-payments .stat-title {
+    font-weight: 600;
+    color: var(--charcoal-black);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.admin-payments .health-indicator {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 12px;
+    min-width: 36px;
+    text-align: center;
+}
+
+.admin-payments .health-indicator.good {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.admin-payments .health-indicator.average {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+.admin-payments .health-indicator.poor {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.admin-payments .health-indicator.neutral {
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+
+.admin-payments .stat-number {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--charcoal-black);
+    margin-bottom: 0.75rem;
+    line-height: 1;
+}
+
+/* Progress Bars */
+.admin-payments .progress-container {
+    height: 6px;
+    background: #f1f5f9;
+    border-radius: 3px;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    position: relative;
+}
+
+.admin-payments .progress-bar {
+    height: 100%;
+    border-radius: 3px;
+    position: relative;
+    transition: width 0.5s ease;
+}
+
+.admin-payments .progress-bar.pending {
+    background: linear-gradient(90deg, #f59e0b, #fbbf24);
+}
+
+.admin-payments .progress-bar.approved {
+    background: linear-gradient(90deg, #10b981, #34d399);
+}
+
+.admin-payments .progress-bar.rejected {
+    background: linear-gradient(90deg, #ef4444, #f87171);
+}
+
+.admin-payments .progress-text {
+    position: absolute;
+    right: 8px;
+    top: -20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #6b7280;
+}
+
+/* Tooltip */
+.admin-payments .stat-tooltip {
+    font-size: 0.75rem;
+    color: #9ca3af;
+    opacity: 0;
+    transform: translateY(5px);
+    transition: all 0.3s ease;
+    position: absolute;
+    bottom: 8px;
+    left: 1.25rem;
+    right: 1.25rem;
+    background: var(--pure-white);
+    padding-top: 0.25rem;
+}
+
+.admin-payments .stat-card-enhanced:hover .stat-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stats Insights Bar */
+.admin-payments .stats-insights {
+    display: flex;
+    gap: 2rem;
+    background: #f8fafc;
+    padding: 1rem 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+}
+
+.admin-payments .insight-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.admin-payments .insight-label {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    font-weight: 500;
+}
+
+.admin-payments .insight-value {
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+}
+
+.admin-payments .insight-value.good {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.admin-payments .insight-value.average {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+.admin-payments .insight-value.poor {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+.admin-payments .insight-value.neutral {
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #d1d5db;
+}
+
+/* Modern Controls */
+.admin-payments .modern-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-payments .controls-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.admin-payments .search-modern {
+    position: relative;
+    max-width: 400px;
+}
+
+.admin-payments .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--medium-gray);
+    font-size: 1rem;
+}
+
+.admin-payments .search-input-modern {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    background: var(--pure-white);
+    transition: all 0.3s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.admin-payments .search-input-modern:focus {
+    outline: none;
+    border-color: var(--racing-red);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+.admin-payments .controls-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.admin-payments .filter-modern {
+    padding: 0.75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    background: var(--pure-white);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+}
+
+.admin-payments .filter-modern:focus {
+    outline: none;
+    border-color: var(--racing-red);
+    box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.1);
+}
+
+.admin-payments .results-modern {
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Results Counter for pending/approved pages */
+.admin-payments .results-counter {
+    background: #f8fafc;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+/* Modern Table Container */
+.admin-payments .modern-table-container {
+    background: var(--pure-white);
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    margin-bottom: 2rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Payments Table Wrapper */
+.admin-payments .payments-table-wrapper {
+    overflow-x: auto;
+}
+
+/* Modern Pagination */
+.admin-payments .pagination-modern {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.admin-payments .pagination-btn-modern {
+    padding: 0.5rem 1rem;
+    border: 1px solid #e2e8f0;
+    background: var(--pure-white);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    color: var(--charcoal-black);
+}
+
+.admin-payments .pagination-btn-modern:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: var(--racing-red);
+    color: var(--racing-red);
+}
+
+.admin-payments .pagination-btn-modern:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.admin-payments .pagination-numbers-modern {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.admin-payments .pagination-number-modern {
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    background: var(--pure-white);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    min-width: 40px;
+    transition: all 0.3s ease;
+    color: var(--charcoal-black);
+}
+
+.admin-payments .pagination-number-modern:hover {
+    background: #f8fafc;
+}
+
+.admin-payments .pagination-number-modern.active {
+    background: var(--racing-red);
+    color: var(--pure-white);
+    border-color: var(--racing-red);
+}
+
+/* Error Modern */
+.admin-payments .error-modern {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    background: #fef2f2;
+    border-radius: 12px;
+    margin: 1rem;
+}
+
+.admin-payments .error-icon {
+    font-size: 2rem;
+}
+
+.admin-payments .error-content h4 {
+    margin: 0 0 0.5rem 0;
+    color: #dc2626;
+}
+
+.admin-payments .error-content p {
+    margin: 0 0 1rem 0;
+    color: var(--medium-gray);
+}
+
+.admin-payments .btn-modern-secondary {
+    background: var(--pure-white);
+    color: var(--charcoal-black);
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.admin-payments .btn-modern-secondary:hover:not(:disabled) {
+    background: #f8fafc;
+    border-color: var(--racing-red);
+    color: var(--racing-red);
+}
+
+/* Empty Modern */
+.admin-payments .empty-modern {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.admin-payments .empty-modern .empty-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.admin-payments .empty-modern h3 {
+    margin: 0 0 1rem 0;
+    color: var(--charcoal-black);
+}
+
+.admin-payments .empty-modern p {
+    color: var(--medium-gray);
+    margin: 0 0 2rem 0;
+}
+
+/* Status badges - Update existing styles to match modern theme */
+.admin-payments .status-pending {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+
+.admin-payments .status-approved {
+    background: #d1fae5;
+    color: #065f46;
+    border: 1px solid #a7f3d0;
+}
+
+.admin-payments .status-rejected {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+}
+
+/* Responsive Design for Modern UI */
+@media (max-width: 1200px) {
+    .admin-payments .enhanced-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .admin-payments .modern-header {
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+    }
+    
+    .admin-payments .stats-insights {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-payments .modern-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .admin-payments .controls-left,
+    .admin-payments .controls-right {
+        width: 100%;
+    }
+    
+    .admin-payments .search-modern {
+        max-width: none;
+    }
+    
+    .admin-payments .enhanced-stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .admin-payments .stats-insights {
+        padding: 0.75rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-payments .modern-header {
+        padding: 1.5rem;
+    }
+    
+    .admin-payments .modern-header .header-content h1 {
+        font-size: 1.75rem;
+    }
+    
+    .admin-payments .stat-number {
+        font-size: 1.75rem;
+    }
+    
+    .admin-payments .pagination-modern {
+        flex-wrap: wrap;
+    }
+    
+    .admin-payments .pagination-numbers-modern {
+        order: -1;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Ensure existing payment table styles work with modern container */
+.admin-payments .modern-table-container .payments-table {
+    margin-bottom: 0;
+}
+
+.admin-payments .modern-table-container .payments-table th:first-child {
+    border-top-left-radius: 0;
+}
+
+.admin-payments .modern-table-container .payments-table th:last-child {
+    border-top-right-radius: 0;
 }

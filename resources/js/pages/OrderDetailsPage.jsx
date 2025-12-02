@@ -36,12 +36,12 @@ const OrderDetailsPage = () => {
 
     const getStatusColor = (status) => {
         const statusColors = {
-            pending: '#f59e0b',      // Yellow - To Pay
-            to_ship: '#3b82f6',      // Blue - To Ship
-            shipped: '#8b5cf6',      // Purple - Shipped
-            delivered: '#10b981',    // Green - Delivered
-            cancelled: '#ef4444',    // Red - Cancelled
-            rejected: '#dc2626'      // Dark Red - Rejected (Payment rejected)
+            pending: '#f59e0b',
+            to_ship: '#3b82f6', 
+            shipped: '#8b5cf6',
+            delivered: '#10b981',
+            cancelled: '#ef4444',
+            rejected: '#dc2626'
         };
         return statusColors[status] || '#6b7280';
     };
@@ -50,7 +50,7 @@ const OrderDetailsPage = () => {
         const statusText = {
             pending: 'To Pay',
             to_ship: 'To Ship',
-            shipped: 'Shipped',
+            shipped: 'Shipped', 
             delivered: 'Delivered',
             cancelled: 'Cancelled',
             rejected: 'Payment Rejected'
@@ -58,42 +58,29 @@ const OrderDetailsPage = () => {
         return statusText[status] || status;
     };
 
-    const getStatusDescription = (status) => {
-        const descriptions = {
-            pending: 'Waiting for payment confirmation',
-            to_ship: 'Payment verified. Preparing your order for shipment',
-            shipped: 'Your order is on the way',
-            delivered: 'Order delivered successfully',
-            cancelled: 'This order has been cancelled',
-            rejected: 'Your payment was rejected. Please check your payment details and try again.'
-        };
-        return descriptions[status] || 'Order processing';
-    };
-
     const getPaymentStatus = (order) => {
-        // Check if order has payment information
         if (order.payment) {
-            return order.payment.status; // 'pending', 'verified', 'rejected', 'failed'
+            return order.payment.status;
         }
-        return 'pending'; // Default if no payment info
+        return 'pending';
     };
 
     const getPaymentStatusText = (paymentStatus) => {
         const statusText = {
             pending: 'Pending Verification',
-            verified: 'Verified ✅',
-            rejected: 'Rejected ❌',
-            failed: 'Failed ❌'
+            verified: 'Payment Verified',
+            rejected: 'Payment Rejected',
+            failed: 'Payment Failed'
         };
         return statusText[paymentStatus] || 'Pending';
     };
 
     const getPaymentStatusColor = (paymentStatus) => {
         const statusColors = {
-            pending: '#f59e0b',    // Yellow
-            verified: '#10b981',   // Green
-            rejected: '#dc2626',   // Red
-            failed: '#dc2626'      // Red
+            pending: '#f59e0b',
+            verified: '#10b981',
+            rejected: '#dc2626', 
+            failed: '#dc2626'
         };
         return statusColors[paymentStatus] || '#6b7280';
     };
@@ -128,9 +115,6 @@ const OrderDetailsPage = () => {
                             <Link to="/orders" className="btn-primary">
                                 Back to Orders
                             </Link>
-                            <button onClick={fetchOrder} className="btn-secondary">
-                                Try Again
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -150,50 +134,57 @@ const OrderDetailsPage = () => {
                         ← Back to Orders
                     </Link>
                     <h1>Order #{order.id}</h1>
-                    <p>Placed on {formatDate(order.created_at)}</p>
+                    <p className="order-date">Placed on {formatDate(order.created_at)}</p>
+                    
+                    <div className="status-section">
+                        <div 
+                            className="status-badge"
+                            style={{ backgroundColor: getStatusColor(order.status) }}
+                        >
+                            {getStatusText(order.status)}
+                        </div>
+                        {isPaymentRejected && (
+                            <div className="payment-warning">
+                                Payment was not approved
+                            </div>
+                        )}
+                    </div>
                 </div>
 
-                <div className="order-details-content">
-                    {/* Left Column - Order Info */}
-                    <div className="order-info-column">
-                        {/* Status Card */}
-                        <div className="status-card">
-                            <div 
-                                className="status-badge-large"
-                                style={{ backgroundColor: getStatusColor(order.status) }}
-                            >
-                                {getStatusText(order.status)}
-                            </div>
-                            <p className="status-description">
-                                {getStatusDescription(order.status)}
-                            </p>
-
-                            {/* Payment Rejection Warning */}
-                            {isPaymentRejected && (
-                                <div className="rejection-warning">
-                                    <div className="warning-icon">⚠️</div>
-                                    <div className="warning-content">
-                                        <h4>Payment Issue</h4>
-                                        <p>Your payment was not approved. Please check the payment details below.</p>
-                                        {order.payment?.notes && (
-                                            <div className="rejection-reason">
-                                                <strong>Reason:</strong> {order.payment.notes}
-                                            </div>
-                                        )}
-                                        <div className="rejection-actions">
-                                            <Link to="/cart" className="btn-primary">
-                                                Try Again
-                                            </Link>
-                                            <button className="btn-secondary">
-                                                Contact Support
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
+                <div className="order-content">
+                    {/* Order Items */}
+                    <div className="order-items-section">
+                        <h2>Order Items</h2>
+                        <div className="order-items-list">
+                            {order.items && order.items.length > 0 ? (
+                                order.items.map((item, index) => (
+                                    <OrderItemRow key={index} item={item} />
+                                ))
+                            ) : (
+                                <div className="no-items">No items found</div>
                             )}
                         </div>
 
-                        {/* Shipping Info */}
+                        {/* Order Total */}
+                        <div className="order-total">
+                            <div className="total-row">
+                                <span>Subtotal:</span>
+                                <span>{formatPrice(order.total_amount)}</span>
+                            </div>
+                            <div className="total-row">
+                                <span>Shipping:</span>
+                                <span>Free</span>
+                            </div>
+                            <div className="total-row grand-total">
+                                <strong>Total:</strong>
+                                <strong>{formatPrice(order.total_amount)}</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Order Information */}
+                    <div className="order-info-section">
+                        {/* Shipping Information */}
                         <div className="info-card">
                             <h3>Shipping Information</h3>
                             <div className="info-content">
@@ -208,7 +199,7 @@ const OrderDetailsPage = () => {
                             </div>
                         </div>
 
-                        {/* Payment Info */}
+                        {/* Payment Information */}
                         <div className="info-card">
                             <h3>Payment Information</h3>
                             <div className="info-content">
@@ -235,71 +226,13 @@ const OrderDetailsPage = () => {
                                             <strong>GCash Number:</strong>
                                             <span>{order.payment.gcash_number || 'Not provided'}</span>
                                         </div>
-                                        <div className="info-row">
-                                            <strong>QR Code Used:</strong>
-                                            <span>#{order.payment.qr_number}</span>
-                                        </div>
                                     </>
                                 )}
-                                <div className="info-row">
-                                    <strong>Total Amount:</strong>
-                                    <span className="total-amount">{formatPrice(order.total_amount)}</span>
-                                </div>
-                                
-                                {/* Payment Notes (for rejected/failed payments) */}
                                 {order.payment?.notes && paymentStatus !== 'verified' && (
                                     <div className="info-row">
                                         <strong>Notes:</strong>
                                         <span className="payment-notes">{order.payment.notes}</span>
                                     </div>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Right Column - Order Items */}
-                    <div className="order-items-column">
-                        <div className="items-card">
-                            <h3>Order Items ({order.items ? order.items.length : 0})</h3>
-                            
-                            {order.items && order.items.length > 0 ? (
-                                <div className="order-items-list">
-                                    {order.items.map((item, index) => (
-                                        <OrderItemRow key={index} item={item} />
-                                    ))}
-                                    
-                                    {/* Order Total */}
-                                    <div className="order-total-section">
-                                        <div className="total-row">
-                                            <span>Subtotal:</span>
-                                            <span>{formatPrice(order.total_amount)}</span>
-                                        </div>
-                                        <div className="total-row">
-                                            <span>Shipping:</span>
-                                            <span>Free</span>
-                                        </div>
-                                        <div className="total-row grand-total">
-                                            <strong>Total:</strong>
-                                            <strong>{formatPrice(order.total_amount)}</strong>
-                                        </div>
-                                    </div>
-                                </div>
-                            ) : (
-                                <div className="no-items">No items found in this order</div>
-                            )}
-                        </div>
-
-                        {/* Help Section */}
-                        <div className="help-card">
-                            <h4>Need Help?</h4>
-                            <p>If you have any questions about your order, contact our support team.</p>
-                            <div className="help-actions">
-                                <button className="help-btn">Contact Support</button>
-                                {order.status === 'shipped' && (
-                                    <button className="help-btn">Track Package</button>
-                                )}
-                                {isPaymentRejected && (
-                                    <button className="help-btn primary">Repayment Help</button>
                                 )}
                             </div>
                         </div>

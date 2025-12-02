@@ -1,7 +1,6 @@
-// C:\Users\User\Desktop\RiderX\resources\js\components\Loading.jsx
 import React from 'react';
 
-const Loading = ({ type = 'dots', message = 'Loading...', size = 'medium', count = 3, className = '' }) => {
+const Loading = ({ type = 'dots', message = 'Loading...', size = 'medium', count = 30, className = '' }) => {
     // Progress Bar Loading
     if (type === 'progress') {
         return (
@@ -16,7 +15,7 @@ const Loading = ({ type = 'dots', message = 'Loading...', size = 'medium', count
         );
     }
 
-    // Skeleton Loading for product grids
+    // Skeleton Loading for product grids - UPDATED FOR MORE CARDS
     if (type === 'skeleton') {
         return (
             <div className={`loading-container loading-${size} ${className}`}>
@@ -27,7 +26,15 @@ const Loading = ({ type = 'dots', message = 'Loading...', size = 'medium', count
                             <div className="skeleton-content">
                                 <div className="skeleton-line skeleton-title"></div>
                                 <div className="skeleton-line skeleton-brand"></div>
-                                <div className="skeleton-line skeleton-price"></div>
+                                <div className="skeleton-colors">
+                                    <div className="skeleton-color"></div>
+                                    <div className="skeleton-color"></div>
+                                    <div className="skeleton-color"></div>
+                                </div>
+                                <div className="skeleton-footer">
+                                    <div className="skeleton-line skeleton-price"></div>
+                                    <div className="skeleton-rating"></div>
+                                </div>
                             </div>
                         </div>
                     ))}

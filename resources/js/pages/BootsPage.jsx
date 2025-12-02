@@ -7,7 +7,7 @@ const BootsPage = () => {
         <div className="boots-page">
             <main className="page-main">
                 <div className="page-container">
-                    <ProductGrid category="boots" showHeader={true} />
+                    <ProductGrid category="boots" limit={null} />
                 </div>
             </main>
         </div>

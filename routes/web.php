@@ -11,12 +11,16 @@ use Laravel\Fortify\Http\Controllers\NewPasswordController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\PaymentController;
+use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminProductController;
-use App\Http\Middleware\AdminMiddleware;
+
+// ========================
+// CUSTOMER ROUTES
+// ========================
 
 // Home route
 Route::get('/', function () {
@@ -75,7 +79,9 @@ Route::get('/email/verified', function () {
     return view('home')->with('message', 'Email verified successfully!');
 })->name('verification.notice');
 
-// API Routes with Rate Limiting
+// ========================
+// CUSTOMER API ROUTES
+// ========================
 Route::prefix('api')->group(function () {
     // Auth status check
     Route::get('/user', function (Request $request) {
@@ -86,7 +92,8 @@ Route::prefix('api')->group(function () {
                     'id' => $request->user()->id,
                     'name' => $request->user()->name,
                     'email' => $request->user()->email,
-                    'email_verified' => !is_null($request->user()->email_verified_at)
+                    'email_verified' => !is_null($request->user()->email_verified_at),
+                    'is_admin' => $request->user()->is_admin ?? false
                 ]
             ]);
         }
@@ -111,18 +118,19 @@ Route::prefix('api')->group(function () {
     Route::post('/logout', [AuthenticatedSessionController::class, 'destroy']);
 
     // Product API routes
-    Route::get('/products', [App\Http\Controllers\Api\ProductController::class, 'index']);
-    Route::get('/products/{category}', [App\Http\Controllers\Api\ProductController::class, 'getByCategory']);
-    Route::get('/products/item/{id}', [App\Http\Controllers\Api\ProductController::class, 'show']); 
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{category}', [ProductController::class, 'getByCategory']);
+    Route::get('/products/item/{id}', [ProductController::class, 'show']); 
 });
 
 // Rate limiting for Fortify routes (additional protection)
 Route::middleware('throttle:5,1')->group(function () {
-    // Fortify's built-in routes are already loaded above, but this adds extra protection
-    // for any additional auth routes you might add
+    // Fortify's built-in routes are already loaded above
 });
 
-// Order routes
+// ========================
+// CUSTOMER ORDER ROUTES
+// ========================
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/orders/create', [OrderController::class, 'create']);
     Route::get('/orders', [OrderController::class, 'index']);
@@ -130,8 +138,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/orders/update-status', [OrderController::class, 'updateStatus']);
 });
 
-// Payment routes (some public, some protected)
+// ========================
+// CUSTOMER PAYMENT ROUTES
+// ========================
 Route::post('/payments/generate-qr', [PaymentController::class, 'generateQR']);
+Route::post('/payments/another-qr', [PaymentController::class, 'getAnotherQR']);
+Route::post('/payments/upload-screenshot', [PaymentController::class, 'uploadScreenshot']);
 Route::get('/payments/status/{order_id}', [PaymentController::class, 'getPaymentStatus']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -140,7 +152,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 });
 
 // ========================
-// ADMIN ROUTES - UPDATED
+// ADMIN ROUTES
 // ========================
 Route::prefix('admin')->group(function () {
     // Auth routes (public)
@@ -148,49 +160,78 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminAuthController::class, 'login']);
     Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
-    // Protected admin routes - ALL API routes go here
+    // Protected admin routes - BOTH PAGES AND APIS
     Route::middleware(['auth', 'admin'])->group(function () {
-        // Admin API routes
-        Route::get('/dashboard', [AdminController::class, 'dashboard']);
-        Route::get('/payments/pending', [AdminPaymentController::class, 'getPendingPayments']);
-        Route::post('/payments/verify', [AdminPaymentController::class, 'verifyPayment']);
-        Route::get('/payments/stats', [AdminPaymentController::class, 'getPaymentStats']);
+        // ========== REACT PAGE ROUTES ==========
+        // These return the React admin app view for SPA routing
+        Route::get('/', function () {
+            return view('admin.app'); // Main admin dashboard
+        });
         
-        // React admin pages (these return the admin app view)
-        Route::get('/dashboard', function () {
-            return view('admin.app');
-        });
         Route::get('/orders', function () {
-            return view('admin.app');
+            return view('admin.app'); // Orders page
         });
+        
         Route::get('/payments', function () {
-            return view('admin.app');
+            return view('admin.app'); // Payments page
         });
+        
         Route::get('/products', function () {
-            return view('admin.app');
+            return view('admin.app'); // Products page
         });
+        
+        // NEW: Add Admin Management page route
+        Route::get('/admins', function () {
+            return view('admin.app'); // Admin Management page
+        });
+        
+        // ========== ADMIN API ROUTES ==========
+        
+        // Dashboard API
+        Route::get('/dashboard', [AdminController::class, 'dashboard']);
+        
+        // Orders API
+        Route::prefix('orders')->group(function () {
+            Route::get('/all', [AdminOrderController::class, 'getAllOrders']);
+            Route::get('/pending', [AdminOrderController::class, 'getOrdersByStatus']);
+            Route::get('/to-ship', [AdminOrderController::class, 'getOrdersByStatus']);
+            Route::get('/shipped', [AdminOrderController::class, 'getOrdersByStatus']);
+            Route::get('/delivered', [AdminOrderController::class, 'getOrdersByStatus']);
+            Route::get('/cancelled', [AdminOrderController::class, 'getOrdersByStatus']);
+            Route::get('/{id}', [AdminOrderController::class, 'getOrder']);
+            Route::put('/{id}/status', [AdminOrderController::class, 'updateStatus']);
+            Route::post('/{id}/cancel', [AdminOrderController::class, 'cancelOrder']);
+            Route::get('/stats/overview', [AdminOrderController::class, 'getOrderStats']);
+        });
+        
+        // Payments API
+        Route::prefix('payments')->group(function () {
+            Route::get('/all', [AdminPaymentController::class, 'getAllPayments']);
+            Route::get('/pending', [AdminPaymentController::class, 'getPendingPayments']);
+            Route::get('/approved', [AdminPaymentController::class, 'getApprovedPayments']);
+            Route::post('/verify', [AdminPaymentController::class, 'verifyPayment']);
+            Route::post('/reject', [AdminPaymentController::class, 'rejectPayment']);
+            Route::get('/stats', [AdminPaymentController::class, 'getPaymentStats']);
+        });
+        
+        // Products API
+        Route::prefix('products')->group(function () {
+            Route::get('/', [AdminProductController::class, 'index']);
+            Route::get('/categories', [AdminProductController::class, 'getCategories']);
+            Route::get('/{id}', [AdminProductController::class, 'show']);
+            Route::post('/', [AdminProductController::class, 'store']);
+            Route::put('/{id}', [AdminProductController::class, 'update']);
+            Route::delete('/{id}', [AdminProductController::class, 'destroy']);
+            Route::post('/{id}/restore', [AdminProductController::class, 'restore']);
+            Route::delete('/{id}/force', [AdminProductController::class, 'forceDestroy']);
+        });
+
+        // FIXED: Admin Management Routes - SIMPLIFIED
+        Route::get('/admin/users', [AdminController::class, 'getUsers']);
+        Route::put('/admin/users/{id}/toggle-admin', [AdminController::class, 'toggleAdminStatus']);
+        Route::get('/admin/users/status-updates', [AdminController::class, 'getUserStatusUpdates']);
     });
-
-    
 });
-
-// Payment routes (some public, some protected)
-Route::post('/payments/generate-qr', [PaymentController::class, 'generateQR']);
-Route::post('/payments/another-qr', [PaymentController::class, 'getAnotherQR']);
-Route::post('/payments/upload-screenshot', [PaymentController::class, 'uploadScreenshot']);
-Route::get('/payments/status/{order_id}', [PaymentController::class, 'getPaymentStatus']);
-
-
-// Admin Payment Routes
-Route::prefix('admin/payments')->middleware(['auth', 'admin'])->group(function () {
-    Route::get('/all', [AdminPaymentController::class, 'getAllPayments']);
-    Route::get('/pending', [AdminPaymentController::class, 'getPendingPayments']);
-    Route::get('/approved', [AdminPaymentController::class, 'getApprovedPayments']);
-    Route::post('/verify', [AdminPaymentController::class, 'verifyPayment']);
-    Route::post('/reject', [AdminPaymentController::class, 'rejectPayment']);
-    Route::get('/stats', [AdminPaymentController::class, 'getPaymentStats']);
-});
-
 
 // ========================
 // REACT ROUTER CATCH-ALL
