@@ -1,10 +1,11 @@
-// C:\Users\User\Desktop\RiderX\resources\js\pages\ProductDetailPage.jsx
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useAuthModal } from '../AuthModalContext';
 import { useCart } from '../contexts/CartContext';
 import Loading from '../components/Loading';
 import { formatPrice } from '../utils/currencyFormatter';
+import { motion, AnimatePresence } from 'framer-motion';
+import { createPortal } from 'react-dom'; // NEW: Import createPortal
 
 const ProductDetailPage = () => {
     const { id } = useParams();
@@ -18,7 +19,6 @@ const ProductDetailPage = () => {
     const [randomProducts, setRandomProducts] = useState([]);
     const [showSizeChart, setShowSizeChart] = useState(false);
     const [activeTab, setActiveTab] = useState('overview');
-    const [verticalCarouselIndex, setVerticalCarouselIndex] = useState(0);
     
     // Use auth modal context
     const { openAuthModal } = useAuthModal();
@@ -118,6 +118,43 @@ const ProductDetailPage = () => {
         }
     };
 
+    // Animation variants
+    const fadeIn = {
+        hidden: { opacity: 0 },
+        visible: { 
+            opacity: 1,
+            transition: { duration: 0.5 }
+        }
+    };
+
+    const slideUp = {
+        hidden: { opacity: 0, y: 20 },
+        visible: { 
+            opacity: 1, 
+            y: 0,
+            transition: { duration: 0.5, ease: "easeOut" }
+        }
+    };
+
+    const scaleUp = {
+        hidden: { opacity: 0, scale: 0.9 },
+        visible: { 
+            opacity: 1, 
+            scale: 1,
+            transition: { duration: 0.3 }
+        }
+    };
+
+    const buttonHover = {
+        scale: 1.05,
+        transition: { duration: 0.2 }
+    };
+
+    const buttonTap = {
+        scale: 0.95,
+        transition: { duration: 0.1 }
+    };
+
     // Scroll to top when component mounts AND when id changes
     useEffect(() => {
         window.scrollTo(0, 0);
@@ -148,7 +185,7 @@ const ProductDetailPage = () => {
         }
     };
 
-    // Fetch 8 related products (we'll show 6 at a time)
+    // Fetch 8 related products (we'll show 8 in grid)
     const fetchRelatedProducts = async (category) => {
         try {
             const response = await fetch(`/api/products/${category}`);
@@ -218,15 +255,6 @@ const ProductDetailPage = () => {
             return '#ffffff';
         } catch (error) {
             return '#e5e7eb';
-        }
-    };
-
-    // Vertical carousel navigation for 6 products
-    const handleVerticalScroll = (direction) => {
-        if (direction === 'up' && verticalCarouselIndex > 0) {
-            setVerticalCarouselIndex(verticalCarouselIndex - 1);
-        } else if (direction === 'down' && verticalCarouselIndex < relatedProducts.length - 6) {
-            setVerticalCarouselIndex(verticalCarouselIndex + 1);
         }
     };
 
@@ -338,123 +366,285 @@ const ProductDetailPage = () => {
         setShowSizeChart(false);
     };
 
-// UPDATED: Beautiful Center Success Confirmation Modal Component with Vertical Table
-const SuccessModal = () => {
-    if (!showSuccessModal || !product) return null;
+    // ===== SKELETON LOADING COMPONENTS =====
+    const SkeletonImage = () => (
+        <div className="skeleton-image">
+            <div className="skeleton-shimmer"></div>
+        </div>
+    );
 
-    return (
-        <div className="success-modal-overlay" onClick={() => setShowSuccessModal(false)}>
-            <div className="success-modal-center" onClick={(e) => e.stopPropagation()}>
-                <div className="success-modal-body">
-                    <div className="success-product-image">
-                        <img 
-                            src={selectedVariant?.image} 
-                            alt={product.name}
-                        />
-                    </div>
-                    
-                    <div className="success-product-info">
-                        <h4 className="success-product-name">{product.name}</h4>
-                        
-                        {/* VERTICAL TABLE STYLE */}
-                        <div className="success-product-details-table">
-                            <div className="detail-row">
-                                <span className="detail-label">Color:</span>
-                                <span className="detail-value">{selectedVariant?.color}</span>
-                            </div>
-                            <div className="detail-row">
-                                <span className="detail-label">Size:</span>
-                                <span className="detail-value">{selectedSize}</span>
-                            </div>
-                            <div className="detail-row">
-                                <span className="detail-label">Quantity:</span>
-                                <span className="detail-value">{quantity}</span>
-                            </div>
-                            <div className="detail-row price-row">
-                                <span className="detail-label">Price:</span>
-                                <span className="detail-value">
-                                    {formatPrice((selectedVariant?.price || product.base_price) * quantity)}
-                                </span>
-                            </div>
+    const SkeletonText = ({ width = '100%', height = '1rem' }) => (
+        <div className="skeleton-text" style={{ width, height }}>
+            <div className="skeleton-shimmer"></div>
+        </div>
+    );
+
+    const SkeletonButton = ({ width = '100px', height = '2.5rem' }) => (
+        <div className="skeleton-button" style={{ width, height }}>
+            <div className="skeleton-shimmer"></div>
+        </div>
+    );
+
+    const SkeletonVariant = () => (
+        <div className="skeleton-variant">
+            <div className="skeleton-shimmer"></div>
+        </div>
+    );
+
+    const SkeletonSize = () => (
+        <div className="skeleton-size">
+            <div className="skeleton-shimmer"></div>
+        </div>
+    );
+
+    const ProductSkeleton = () => (
+        <div className="product-detail-page">
+            <div className="product-detail-container">
+                {/* Breadcrumb Skeleton */}
+                <div className="breadcrumb skeleton">
+                    <SkeletonText width="60%" height="0.8rem" />
+                </div>
+
+                <div className="product-detail-content">
+                    {/* Vertical Carousel Skeleton */}
+                    <div className="vertical-carousel skeleton">
+                        <SkeletonText width="150px" height="1.1rem" />
+                        <div className="vertical-carousel-container">
+                            {[...Array(8)].map((_, i) => (
+                                <div key={i} className="vertical-product-card skeleton">
+                                    <SkeletonImage />
+                                    <div className="vertical-product-info">
+                                        <SkeletonText width="80%" height="0.8rem" />
+                                        <SkeletonText width="60%" height="0.7rem" />
+                                        <SkeletonText width="40%" height="0.9rem" />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
-                    
-                    <div className="success-modal-footer">
-                        <button 
-                            className="btn-continue-shopping"
-                            onClick={() => setShowSuccessModal(false)}
-                        >
-                            Continue Shopping
-                        </button>
-                        <button 
-                            className="btn-view-cart"
-                            onClick={() => {
-                                setShowSuccessModal(false);
-                                navigate('/cart');
-                            }}
-                        >
-                            View Cart
-                        </button>
+
+                    {/* Main Content Skeleton */}
+                    <div className="main-content-area">
+                        <div className="product-main-section">
+                            {/* Product Images Skeleton */}
+                            <div className="product-images">
+                                <div className="main-image skeleton">
+                                    <SkeletonImage />
+                                </div>
+                            </div>
+
+                            {/* Product Info Skeleton */}
+                            <div className="product-info skeleton">
+                                <SkeletonText width="80%" height="1.6rem" />
+                                <SkeletonText width="40%" height="0.9rem" />
+                                <SkeletonText width="30%" height="2.2rem" />
+                                
+                                {/* Star Rating Skeleton */}
+                                <div className="product-rating">
+                                    <SkeletonText width="100px" height="1.1rem" />
+                                </div>
+
+                                {/* Variant Gallery Skeleton */}
+                                <div className="variant-gallery">
+                                    <SkeletonText width="60px" height="0.9rem" />
+                                    <div className="variant-images">
+                                        {[...Array(4)].map((_, i) => (
+                                            <SkeletonVariant key={i} />
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Size Selector Skeleton */}
+                                <div className="size-selector">
+                                    <SkeletonText width="100px" height="0.9rem" />
+                                    <div className="size-options">
+                                        {[...Array(5)].map((_, i) => (
+                                            <SkeletonSize key={i} />
+                                        ))}
+                                    </div>
+                                </div>
+
+                                {/* Action Buttons Skeleton */}
+                                <div className="action-buttons-row">
+                                    <div className="quantity-selector">
+                                        <SkeletonText width="30px" height="0.9rem" />
+                                        <SkeletonText width="60px" height="2rem" />
+                                    </div>
+                                    <SkeletonButton width="120px" height="2.5rem" />
+                                    <SkeletonButton width="120px" height="2.5rem" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     );
-};
 
-    // Vertical Carousel Component (Desktop only)
-    const VerticalCarousel = () => {
+    // ===== UPDATED: Beautiful Center Success Confirmation Modal Component =====
+    const SuccessModal = () => {
+        if (!showSuccessModal || !product) return null;
+
+        // Use portal to render directly in body
+        return createPortal(
+            <AnimatePresence>
+                {showSuccessModal && (
+                    <motion.div 
+                        className="success-modal-overlay"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={() => setShowSuccessModal(false)}
+                    >
+                        <motion.div 
+                            className="success-modal-center"
+                            initial={{ scale: 0.9, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.9, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="success-modal-body">
+                                <motion.div 
+                                    className="success-product-image"
+                                    initial={{ scale: 0 }}
+                                    animate={{ scale: 1 }}
+                                    transition={{ delay: 0.1, type: "spring" }}
+                                >
+                                    <img 
+                                        src={selectedVariant?.image} 
+                                        alt={product.name}
+                                    />
+                                </motion.div>
+                                
+                                <motion.div 
+                                    className="success-product-info"
+                                    variants={fadeIn}
+                                    initial="hidden"
+                                    animate="visible"
+                                >
+                                    <h4 className="success-product-name">{product.name}</h4>
+                                    
+                                    {/* VERTICAL TABLE STYLE */}
+                                    <div className="success-product-details-table">
+                                        <motion.div 
+                                            className="detail-row"
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.2 }}
+                                        >
+                                            <span className="detail-label">Color:</span>
+                                            <span className="detail-value">{selectedVariant?.color}</span>
+                                        </motion.div>
+                                        <motion.div 
+                                            className="detail-row"
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.3 }}
+                                        >
+                                            <span className="detail-label">Size:</span>
+                                            <span className="detail-value">{selectedSize}</span>
+                                        </motion.div>
+                                        <motion.div 
+                                            className="detail-row"
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.4 }}
+                                        >
+                                            <span className="detail-label">Quantity:</span>
+                                            <span className="detail-value">{quantity}</span>
+                                        </motion.div>
+                                        <motion.div 
+                                            className="detail-row price-row"
+                                            initial={{ opacity: 0, x: -20 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ delay: 0.5 }}
+                                        >
+                                            <span className="detail-label">Price:</span>
+                                            <span className="detail-value">
+                                                {formatPrice((selectedVariant?.price || product.base_price) * quantity)}
+                                            </span>
+                                        </motion.div>
+                                    </div>
+                                </motion.div>
+                                
+                                <motion.div 
+                                    className="success-modal-footer"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.6 }}
+                                >
+                                    <motion.button 
+                                        className="btn-continue-shopping"
+                                        onClick={() => setShowSuccessModal(false)}
+                                        whileHover={buttonHover}
+                                        whileTap={buttonTap}
+                                    >
+                                        Continue Shopping
+                                    </motion.button>
+                                    <motion.button 
+                                        className="btn-view-cart"
+                                        onClick={() => {
+                                            setShowSuccessModal(false);
+                                            navigate('/cart');
+                                        }}
+                                        whileHover={buttonHover}
+                                        whileTap={buttonTap}
+                                    >
+                                        View Cart
+                                    </motion.button>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>,
+            document.body
+        );
+    };
+
+    // ===== UPDATED: Related Products Grid Component (Desktop only) =====
+    const RelatedProductsGrid = () => {
         if (relatedProducts.length === 0) return null;
 
-        const visibleProducts = relatedProducts.slice(verticalCarouselIndex, verticalCarouselIndex + 6);
-        const canScrollUp = verticalCarouselIndex > 0;
-        const canScrollDown = verticalCarouselIndex < relatedProducts.length - 6;
-
         return (
-            <div className="vertical-carousel">
-                <h3 className="vertical-carousel-title">Related Products</h3>
-                <div className="vertical-carousel-container">
-                    {/* Top Arrow */}
-                    <button 
-                        className="carousel-arrow"
-                        onClick={() => handleVerticalScroll('up')}
-                        disabled={!canScrollUp}
-                    >
-                        ↑
-                    </button>
-                    
-                    {/* Products */}
-                    <div className="vertical-carousel-items">
-                        {visibleProducts.map((relatedProduct) => (
+            <motion.div 
+                className="related-products-grid"
+                variants={slideUp}
+                initial="hidden"
+                animate="visible"
+            >
+                <h3 className="grid-title">Related Products</h3>
+                <div className="grid-container">
+                    {relatedProducts.map((relatedProduct, index) => (
+                        <motion.div
+                            key={relatedProduct.id}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: index * 0.05 }}
+                        >
                             <Link 
-                                key={relatedProduct.id} 
                                 to={`/product/${relatedProduct.id}`}
-                                className="vertical-product-card"
+                                className="grid-product-card"
                             >
-                                <img 
-                                    src={relatedProduct.variants[0]?.image} 
-                                    alt={relatedProduct.name}
-                                    className="vertical-product-image"
-                                />
-                                <div className="vertical-product-info">
-                                    <h4>{relatedProduct.name}</h4>
-                                    <p className="product-card-brand">{relatedProduct.brand}</p>
-                                    <div className="product-card-price">{formatPrice(relatedProduct.base_price)}</div>
+                                <div className="grid-product-image">
+                                    <img 
+                                        src={relatedProduct.variants[0]?.image} 
+                                        alt={relatedProduct.name}
+                                    />
+                                </div>
+                                <div className="grid-product-info">
+                                    <h4 className="grid-product-name">{relatedProduct.name}</h4>
+                                    <p className="grid-product-brand">{relatedProduct.brand}</p>
+                                    <div className="grid-product-price">
+                                        {formatPrice(relatedProduct.base_price)}
+                                    </div>
                                 </div>
                             </Link>
-                        ))}
-                    </div>
-                    
-                    {/* Bottom Arrow */}
-                    <button 
-                        className="carousel-arrow"
-                        onClick={() => handleVerticalScroll('down')}
-                        disabled={!canScrollDown}
-                    >
-                        ↓
-                    </button>
+                        </motion.div>
+                    ))}
                 </div>
-            </div>
+            </motion.div>
         );
     };
 
@@ -463,62 +653,73 @@ const SuccessModal = () => {
         if (relatedProducts.length === 0) return null;
 
         return (
-            <div className="related-products-section">
+            <motion.div 
+                className="related-products-section"
+                variants={slideUp}
+                initial="hidden"
+                animate="visible"
+            >
                 <h2>Related Products</h2>
                 <div className="horizontal-carousel">
                     <div className="horizontal-carousel-container">
-                        {relatedProducts.slice(0, 5).map((relatedProduct) => {
+                        {relatedProducts.slice(0, 5).map((relatedProduct, index) => {
                             const colorSwatches = getColorSwatches(relatedProduct.variants);
                             const hasMoreColors = relatedProduct.variants.length > 4;
                             
                             return (
-                                <Link 
-                                    key={relatedProduct.id} 
-                                    to={`/product/${relatedProduct.id}`}
-                                    className="horizontal-product-card"
+                                <motion.div
+                                    key={relatedProduct.id}
+                                    initial={{ opacity: 0, scale: 0.9 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: index * 0.1 }}
                                 >
-                                    <img 
-                                        src={relatedProduct.variants[0]?.image} 
-                                        alt={relatedProduct.name}
-                                        className="horizontal-product-image"
-                                    />
-                                    <div className="horizontal-product-content">
-                                        <h4>{relatedProduct.name}</h4>
-                                        <p className="product-card-brand">{relatedProduct.brand}</p>
-                                        
-                                        {/* Color Swatches */}
-                                        <div className="product-card-colors">
-                                            {colorSwatches.map((hexCode, index) => {
-                                                const variantWithThisColor = relatedProduct.variants.find(v => v.hex_code === hexCode);
-                                                const colorName = variantWithThisColor?.color || `Color ${index + 1}`;
-                                                
-                                                return (
-                                                    <div 
-                                                        key={index}
-                                                        className="color-swatch"
-                                                        style={{ 
-                                                            backgroundColor: hexCode || '#6b7280',
-                                                            borderColor: getBorderColor(hexCode)
-                                                        }}
-                                                        title={colorName}
-                                                    />
-                                                );
-                                            })}
-                                            {hasMoreColors && (
-                                                <div className="color-swatch-more" title={`+${relatedProduct.variants.length - 4} more colors`}>
-                                                    +
-                                                </div>
-                                            )}
+                                    <Link 
+                                        to={`/product/${relatedProduct.id}`}
+                                        className="horizontal-product-card"
+                                    >
+                                        <img 
+                                            src={relatedProduct.variants[0]?.image} 
+                                            alt={relatedProduct.name}
+                                            className="horizontal-product-image"
+                                        />
+                                        <div className="horizontal-product-content">
+                                            <h4>{relatedProduct.name}</h4>
+                                            <p className="product-card-brand">{relatedProduct.brand}</p>
+                                            
+                                            {/* Color Swatches */}
+                                            <div className="product-card-colors">
+                                                {colorSwatches.map((hexCode, colorIndex) => {
+                                                    const variantWithThisColor = relatedProduct.variants.find(v => v.hex_code === hexCode);
+                                                    const colorName = variantWithThisColor?.color || `Color ${colorIndex + 1}`;
+                                                    
+                                                    return (
+                                                        <div 
+                                                            key={colorIndex}
+                                                            className="color-swatch"
+                                                            style={{ 
+                                                                backgroundColor: hexCode || '#6b7280',
+                                                                borderColor: getBorderColor(hexCode)
+                                                            }}
+                                                            title={colorName}
+                                                        />
+                                                    );
+                                                })}
+                                                {hasMoreColors && (
+                                                    <div className="color-swatch-more" title={`+${relatedProduct.variants.length - 4} more colors`}>
+                                                        +
+                                                    </div>
+                                                )}
+                                            </div>
+                                            
+                                           <div className="product-card-price">{formatPrice(relatedProduct.base_price)}</div>
                                         </div>
-                                        
-                                       <div className="product-card-price">{formatPrice(relatedProduct.base_price)}</div>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                </motion.div>
                             );
                         })}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         );
     };
 
@@ -527,125 +728,154 @@ const SuccessModal = () => {
         if (randomProducts.length === 0) return null;
 
         return (
-            <div className="random-products-section">
+            <motion.div 
+                className="random-products-section"
+                variants={slideUp}
+                initial="hidden"
+                animate="visible"
+            >
                 <h2>You Might Also Like</h2>
                 <div className="horizontal-carousel">
                     <div className="horizontal-carousel-container">
-                        {randomProducts.map((randomProduct) => {
+                        {randomProducts.map((randomProduct, index) => {
                             const colorSwatches = getColorSwatches(randomProduct.variants);
                             const hasMoreColors = randomProduct.variants.length > 4;
                             
                             return (
-                                <Link 
-                                    key={randomProduct.id} 
-                                    to={`/product/${randomProduct.id}`}
-                                    className="horizontal-product-card"
+                                <motion.div
+                                    key={randomProduct.id}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
                                 >
-                                    <img 
-                                        src={randomProduct.variants[0]?.image} 
-                                        alt={randomProduct.name}
-                                        className="horizontal-product-image"
-                                    />
-                                    <div className="horizontal-product-content">
-                                        <h4>{randomProduct.name}</h4>
-                                        <p className="product-card-brand">{randomProduct.brand}</p>
-                                        
-                                        {/* Color Swatches */}
-                                        <div className="product-card-colors">
-                                            {colorSwatches.map((hexCode, index) => {
-                                                const variantWithThisColor = randomProduct.variants.find(v => v.hex_code === hexCode);
-                                                const colorName = variantWithThisColor?.color || `Color ${index + 1}`;
-                                                
-                                                return (
-                                                    <div 
-                                                        key={index}
-                                                        className="color-swatch"
-                                                        style={{ 
-                                                            backgroundColor: hexCode || '#6b7280',
-                                                            borderColor: getBorderColor(hexCode)
-                                                        }}
-                                                        title={colorName}
-                                                    />
-                                                );
-                                            })}
-                                            {hasMoreColors && (
-                                                <div className="color-swatch-more" title={`+${randomProduct.variants.length - 4} more colors`}>
-                                                    +
-                                                </div>
-                                            )}
+                                    <Link 
+                                        to={`/product/${randomProduct.id}`}
+                                        className="horizontal-product-card"
+                                    >
+                                        <img 
+                                            src={randomProduct.variants[0]?.image} 
+                                            alt={randomProduct.name}
+                                            className="horizontal-product-image"
+                                        />
+                                        <div className="horizontal-product-content">
+                                            <h4>{randomProduct.name}</h4>
+                                            <p className="product-card-brand">{randomProduct.brand}</p>
+                                            
+                                            {/* Color Swatches */}
+                                            <div className="product-card-colors">
+                                                {colorSwatches.map((hexCode, colorIndex) => {
+                                                    const variantWithThisColor = randomProduct.variants.find(v => v.hex_code === hexCode);
+                                                    const colorName = variantWithThisColor?.color || `Color ${colorIndex + 1}`;
+                                                    
+                                                    return (
+                                                        <div 
+                                                            key={colorIndex}
+                                                            className="color-swatch"
+                                                            style={{ 
+                                                                backgroundColor: hexCode || '#6b7280',
+                                                                borderColor: getBorderColor(hexCode)
+                                                            }}
+                                                            title={colorName}
+                                                        />
+                                                    );
+                                                })}
+                                                {hasMoreColors && (
+                                                    <div className="color-swatch-more" title={`+${randomProduct.variants.length - 4} more colors`}>
+                                                        +
+                                                    </div>
+                                                )}
+                                            </div>
+                                            
+                                           <div className="product-card-price">{formatPrice(randomProduct.base_price)}</div>
                                         </div>
-                                        
-                                       <div className="product-card-price">{formatPrice(randomProduct.base_price)}</div>
-                                    </div>
-                                </Link>
+                                    </Link>
+                                </motion.div>
                             );
                         })}
                     </div>
                 </div>
-            </div>
+            </motion.div>
         );
     };
 
     // Tabs Component
     const ProductTabs = () => (
-        <div className="product-tabs">
+        <motion.div 
+            className="product-tabs"
+            variants={slideUp}
+            initial="hidden"
+            animate="visible"
+        >
             <div className="tabs-header">
-                <button 
+                <motion.button 
                     className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
                     onClick={() => setActiveTab('overview')}
+                    whileHover={buttonHover}
+                    whileTap={buttonTap}
                 >
                     Overview
-                </button>
-                <button 
+                </motion.button>
+                <motion.button 
                     className={`tab-button ${activeTab === 'reviews' ? 'active' : ''}`}
                     onClick={() => setActiveTab('reviews')}
+                    whileHover={buttonHover}
+                    whileTap={buttonTap}
                 >
                     Reviews & Ratings
-                </button>
+                </motion.button>
             </div>
             
-            <div className="tabs-content">
-                <div className={`tab-content ${activeTab === 'overview' ? 'active' : ''}`}>
-                    <div className="product-description">
-                        <h3>Product Description</h3>
-                        <p>{product?.description}</p>
-                    </div>
-                    
-                    <div className="product-specifications">
-                        <h3>Specifications</h3>
-                        <div className="specs-grid">
-                            <div className="spec-item">
-                                <strong>Brand:</strong> {product?.brand}
+            <AnimatePresence mode="wait">
+                <motion.div
+                    key={activeTab}
+                    className={`tab-content ${activeTab === 'overview' ? 'active' : ''}`}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                >
+                    {activeTab === 'overview' ? (
+                        <>
+                            <div className="product-description">
+                                <h3>Product Description</h3>
+                                <p>{product?.description}</p>
                             </div>
-                            <div className="spec-item">
-                                <strong>Category:</strong> {product?.category}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div className={`tab-content ${activeTab === 'reviews' ? 'active' : ''}`}>
-                    <div className="reviews-section">
-                        <h3>Customer Reviews</h3>
-                        <div className="reviews-summary">
-                            <div className="overall-rating">
-                                <div className="rating-stars">
-                                    {'★'.repeat(5)}
+                            
+                            <div className="product-specifications">
+                                <h3>Specifications</h3>
+                                <div className="specs-grid">
+                                    <div className="spec-item">
+                                        <strong>Brand:</strong> {product?.brand}
+                                    </div>
+                                    <div className="spec-item">
+                                        <strong>Category:</strong> {product?.category}
+                                    </div>
                                 </div>
-                                <span className="rating-text">4.8 out of 5</span>
-                                <span className="review-count">(124 reviews)</span>
+                            </div>
+                        </>
+                    ) : (
+                        <div className="reviews-section">
+                            <h3>Customer Reviews</h3>
+                            <div className="reviews-summary">
+                                <div className="overall-rating">
+                                    <div className="rating-stars">
+                                        {'★'.repeat(5)}
+                                    </div>
+                                    <span className="rating-text">4.8 out of 5</span>
+                                    <span className="review-count">(124 reviews)</span>
+                                </div>
+                            </div>
+                            <div className="reviews-list">
+                                <p>No reviews yet. Be the first to review this product!</p>
                             </div>
                         </div>
-                        <div className="reviews-list">
-                            <p>No reviews yet. Be the first to review this product!</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    )}
+                </motion.div>
+            </AnimatePresence>
+        </motion.div>
     );
 
-    // Size Chart Modal Component
+    // ===== UPDATED: Size Chart Modal with Portal =====
     const SizeChartModal = () => {
         const [isVisible, setIsVisible] = useState(false);
         const [shouldRender, setShouldRender] = useState(false);
@@ -665,81 +895,111 @@ const SuccessModal = () => {
         const chart = sizeCharts[product.category];
         if (!chart) return null;
 
-        return (
-            <div className={`size-chart-overlay ${isVisible ? 'visible' : ''}`} onClick={closeSizeChart}>
-                <div className="size-chart-modal" onClick={(e) => e.stopPropagation()}>
-                    <div className="size-chart-header">
-                        <h2>{chart.title}</h2>
-                        <button className="close-button" onClick={closeSizeChart}>×</button>
-                    </div>
-                    <div className="size-chart-content">
-                        <p className="size-chart-instructions">{chart.instructions}</p>
-                        <div className="size-chart-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        {chart.columns.map((column, index) => (
-                                            <th key={index}>{column}</th>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {chart.data.map((row, index) => (
-                                        <tr key={index}>
-                                            {chart.columns.map((column, colIndex) => (
-                                                <td key={colIndex}>
-                                                    {row[column.toLowerCase().replace(/[^a-z]/g, '')] || row[Object.keys(row)[colIndex]]}
-                                                </td>
+        // Use portal to render directly in body
+        return createPortal(
+            <AnimatePresence>
+                {showSizeChart && (
+                    <motion.div 
+                        className={`size-chart-overlay ${isVisible ? 'visible' : ''}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        onClick={closeSizeChart}
+                    >
+                        <motion.div 
+                            className="size-chart-modal"
+                            initial={{ scale: 0.8, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.8, opacity: 0, y: 20 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            <div className="size-chart-header">
+                                <h2>{chart.title}</h2>
+                                <motion.button 
+                                    className="close-button"
+                                    onClick={closeSizeChart}
+                                    whileHover={{ rotate: 90, scale: 1.1 }}
+                                    whileTap={{ scale: 0.9 }}
+                                >
+                                    ×
+                                </motion.button>
+                            </div>
+                            <div className="size-chart-content">
+                                <p className="size-chart-instructions">{chart.instructions}</p>
+                                <div className="size-chart-table">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                {chart.columns.map((column, index) => (
+                                                    <th key={index}>{column}</th>
+                                                ))}
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {chart.data.map((row, index) => (
+                                                <motion.tr 
+                                                    key={index}
+                                                    initial={{ opacity: 0, x: -20 }}
+                                                    animate={{ opacity: 1, x: 0 }}
+                                                    transition={{ delay: index * 0.05 }}
+                                                >
+                                                    {chart.columns.map((column, colIndex) => (
+                                                        <td key={colIndex}>
+                                                            {row[column.toLowerCase().replace(/[^a-z]/g, '')] || row[Object.keys(row)[colIndex]]}
+                                                        </td>
+                                                    ))}
+                                                </motion.tr>
                                             ))}
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        </div>
-                        <div className="size-chart-tips">
-                            <h4>Fitting Tips:</h4>
-                            <ul>
-                                <li>Always measure yourself while wearing typical riding gear</li>
-                                <li>If between sizes, we recommend sizing up for comfort</li>
-                                <li>Consider the type of riding you'll be doing when choosing fit</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div className="size-chart-tips">
+                                    <h4>Fitting Tips:</h4>
+                                    <ul>
+                                        <li>Always measure yourself while wearing typical riding gear</li>
+                                        <li>If between sizes, we recommend sizing up for comfort</li>
+                                        <li>Consider the type of riding you'll be doing when choosing fit</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>,
+            document.body
         );
     };
 
     if (loading) {
-        return (
-            <div className="product-detail-page">
-                <div className="product-detail-loading">
-                    <Loading 
-                        type="progress" 
-                        message="Gearing up your product..." 
-                        size="large" 
-                    />
-                </div>
-            </div>
-        );
+        return <ProductSkeleton />;
     }
 
     if (error || !product) {
         return (
-            <div className="product-detail-page">
+            <motion.div 
+                className="product-detail-page"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+            >
                 <div className="product-detail-error">
                     <h2>Product Not Found</h2>
                     <p>{error}</p>
                     <Link to="/" className="back-to-home">Back to Home</Link>
                 </div>
-            </div>
+            </motion.div>
         );
     }
 
     const currentSizes = sizeOptions[product.category] || [];
 
     return (
-        <div className="product-detail-page">
+        <motion.div 
+            className="product-detail-page"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+        >
             <div className="product-detail-container">
                 {/* Breadcrumb Navigation */}
                 <nav className="breadcrumb">
@@ -754,134 +1014,198 @@ const SuccessModal = () => {
 
                 {/* NEW 2-COLUMN LAYOUT */}
                 <div className="product-detail-content">
-                    {/* Vertical Related Products Carousel - SEPARATE COLUMN (Desktop only) */}
-                    <VerticalCarousel />
+                    {/* UPDATED: Related Products Grid - SEPARATE COLUMN (Desktop only) */}
+                    <RelatedProductsGrid />
                     
                     {/* MAIN CONTENT AREA - VERTICAL STACK */}
                     <div className="main-content-area">
                         {/* Product Images and Info - SIDE BY SIDE */}
-                        <div className="product-main-section">
+                        <motion.div 
+                            className="product-main-section"
+                            variants={fadeIn}
+                            initial="hidden"
+                            animate="visible"
+                        >
                             {/* Product Images Section - LARGER */}
                             <div className="product-images">
-                                <div className="main-image">
-                                    <img 
-                                        src={selectedVariant?.image} 
-                                        alt={product.name}
-                                        className="product-main-image"
-                                    />
-                                </div>
+                                <motion.div 
+                                    className="main-image"
+                                    whileHover={{ scale: 1.02 }}
+                                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                                >
+                                    {/* FIXED: Isolated animation only on the main image */}
+                                    <AnimatePresence mode="wait">
+                                        <motion.img 
+                                            key={selectedVariant?.id}
+                                            src={selectedVariant?.image} 
+                                            alt={product.name}
+                                            className="product-main-image"
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: 0.3 }}
+                                        />
+                                    </AnimatePresence>
+                                </motion.div>
                             </div>
 
-                            {/* Product Info Section */}
-                            <div className="product-info">
-                                <h1 className="product-title">{product.name}</h1>
-                                <p className="product-brand">{product.brand}</p>
-                                
-                                <div className="product-price">
-                                    {formatPrice(selectedVariant?.price || product.base_price)}
-                                </div>
+                           {/* Product Info Section - UPDATED: Removed animations from dynamic elements */}
+<div className="product-info">
+    {/* Keep animation on title (static) */}
+    <motion.h1 
+        className="product-title"
+        variants={slideUp}
+    >
+        {product.name}
+    </motion.h1>
+    
+    {/* Keep animation on brand (static) */}
+    <motion.p 
+        className="product-brand"
+        variants={slideUp}
+        transition={{ delay: 0.1 }}
+    >
+        {product.brand}
+    </motion.p>
+    
+    {/* REMOVE animation from price (dynamic - changes with variant) */}
+    <div className="product-price">
+        {formatPrice(selectedVariant?.price || product.base_price)}
+    </div>
 
-                                {/* Star Rating */}
-                                <div className="product-rating">
-                                    <div className="stars">
-                                        {'★'.repeat(5)}
-                                        <span className="rating-text">(4.8) 124 Reviews</span>
-                                    </div>
-                                </div>
+    {/* Keep animation on rating container (static) */}
+    <motion.div 
+        className="product-rating"
+        variants={slideUp}
+        transition={{ delay: 0.3 }}
+    >
+        <div className="stars">
+            <span className="stars-icons">{'★'.repeat(5)}</span>
+            <span className="rating-text">(4.8) 124 Reviews</span>
+        </div>
+    </motion.div>
 
-                                {/* Variant Image Gallery */}
-                                <div className="variant-gallery">
-                                    <div className="color-indicator">
-                                        <strong>Color: </strong>
-                                        {selectedVariant?.color}
-                                    </div>
-                                    <div className="variant-images">
-                                        {product.variants.map((variant) => (
-                                            <div
-                                                key={variant.id}
-                                                className={`variant-image-box ${selectedVariant?.id === variant.id ? 'active' : ''}`}
-                                                onClick={() => handleVariantSelect(variant)}
-                                            >
-                                                <img 
-                                                    src={variant.image} 
-                                                    alt={variant.color}
-                                                    className="variant-thumbnail"
-                                                />
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
+    {/* Variant Image Gallery - Keep animation on container only */}
+    <motion.div 
+        className="variant-gallery"
+        variants={slideUp}
+        transition={{ delay: 0.4 }}
+    >
+        {/* REMOVE animation from color indicator (dynamic) */}
+        <div className="color-indicator">
+            <strong>Color: </strong>
+            {selectedVariant?.color}
+        </div>
+        <div className="variant-images">
+            {product.variants.map((variant) => (
+                <motion.div
+                    key={variant.id}
+                    className={`variant-image-box ${selectedVariant?.id === variant.id ? 'active' : ''}`}
+                    onClick={() => handleVariantSelect(variant)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.9 }}
+                    animate={selectedVariant?.id === variant.id ? { scale: 1.05 } : { scale: 1 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                >
+                    <motion.img 
+                        src={variant.image} 
+                        alt={variant.color}
+                        className="variant-thumbnail"
+                        whileHover={{ scale: 1.1 }}
+                    />
+                </motion.div>
+            ))}
+        </div>
+    </motion.div>
 
-                                {/* Size Selector */}
-                                {currentSizes.length > 0 && (
-                                    <div className="size-selector">
-                                        <div className="size-header">
-                                            <div className="size-indicator">
-                                                <strong>Size: </strong>
-                                                {selectedSize}
-                                            </div>
-                                            <button 
-                                                className="size-guide-link"
-                                                onClick={openSizeChart}
-                                            >
-                                                Size Guide
-                                            </button>
-                                        </div>
-                                        <div className="size-options">
-                                            {currentSizes.map((size) => (
-                                                <button
-                                                    key={size}
-                                                    className={`size-option ${selectedSize === size ? 'active' : ''}`}
-                                                    onClick={() => handleSizeSelect(size)}
-                                                >
-                                                    {size}
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
+    {/* Size Selector - Keep animation on container only */}
+    {currentSizes.length > 0 && (
+        <motion.div 
+            className="size-selector"
+            variants={slideUp}
+            transition={{ delay: 0.5 }}
+        >
+            <div className="size-header">
+                {/* REMOVE animation from size indicator (dynamic) */}
+                <div className="size-indicator">
+                    <strong>Size: </strong>
+                    {selectedSize}
+                </div>
+                <motion.button 
+                    className="size-guide-link"
+                    onClick={openSizeChart}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    Size Guide
+                </motion.button>
+            </div>
+            <div className="size-options">
+                {currentSizes.map((size) => (
+                    <motion.button
+                        key={size}
+                        className={`size-option ${selectedSize === size ? 'active' : ''}`}
+                        onClick={() => handleSizeSelect(size)}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                    >
+                        {size}
+                    </motion.button>
+                ))}
+            </div>
+        </motion.div>
+    )}
 
-                                {/* UPDATED: Action Buttons with Independent Loading */}
-                                <div className="action-buttons-row">
-                                    <div className="quantity-selector">
-                                        <label htmlFor="quantity">Qty:</label>
-                                        <select 
-                                            id="quantity"
-                                            value={quantity}
-                                            onChange={(e) => setQuantity(parseInt(e.target.value))}
-                                        >
-                                            {[1,2,3,4,5,6,7,8,9,10].map(num => (
-                                                <option key={num} value={num}>{num}</option>
-                                            ))}
-                                        </select>
-                                    </div>
+    {/* Action Buttons - Keep animation on container only */}
+    <motion.div 
+        className="action-buttons-row"
+        variants={slideUp}
+        transition={{ delay: 0.6 }}
+    >
+        <div className="quantity-selector">
+            <label htmlFor="quantity">Qty:</label>
+            <motion.select 
+                id="quantity"
+                value={quantity}
+                onChange={(e) => setQuantity(parseInt(e.target.value))}
+                whileFocus={{ scale: 1.02 }}
+            >
+                {[1,2,3,4,5,6,7,8,9,10].map(num => (
+                    <option key={num} value={num}>{num}</option>
+                ))}
+            </motion.select>
+        </div>
 
-                                    <button 
-                                        className={`add-to-cart-btn ${cartLoading ? 'button-loading' : ''}`}
-                                        onClick={checkAuthAndAddToCart}
-                                        disabled={cartLoading || buyNowLoading}
-                                    >
-                                        {cartLoading ? (
-                                            <Loading type="dots" size="small" />
-                                        ) : (
-                                            'Add to Cart'
-                                        )}
-                                    </button>
+        <motion.button 
+            className={`add-to-cart-btn ${cartLoading ? 'button-loading' : ''}`}
+            onClick={checkAuthAndAddToCart}
+            disabled={cartLoading || buyNowLoading}
+            whileHover={buttonHover}
+            whileTap={buttonTap}
+        >
+            {cartLoading ? (
+                <Loading type="dots" size="small" />
+            ) : (
+                'Add to Cart'
+            )}
+        </motion.button>
 
-                                    <button 
-                                        className={`buy-now-btn ${buyNowLoading ? 'button-loading' : ''}`}
-                                        onClick={checkAuthAndBuyNow}
-                                        disabled={buyNowLoading || cartLoading}
-                                    >
-                                        {buyNowLoading ? (
-                                            <Loading type="dots" size="small" />
-                                        ) : (
-                                            'Buy Now'
-                                        )}
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+        <motion.button 
+            className={`buy-now-btn ${buyNowLoading ? 'button-loading' : ''}`}
+            onClick={checkAuthAndBuyNow}
+            disabled={buyNowLoading || cartLoading}
+            whileHover={buttonHover}
+            whileTap={buttonTap}
+        >
+            {buyNowLoading ? (
+                <Loading type="dots" size="small" />
+            ) : (
+                'Buy Now'
+            )}
+        </motion.button>
+    </motion.div>
+</div>
+                        </motion.div>
 
                         {/* Tabs Section */}
                         <ProductTabs />
@@ -895,12 +1219,12 @@ const SuccessModal = () => {
                 </div>
             </div>
 
-            {/* Size Chart Modal */}
+            {/* Size Chart Modal - Now rendered via portal */}
             <SizeChartModal />
 
-            {/* UPDATED: Beautiful Center Success Confirmation Modal */}
+            {/* Success Modal - Now rendered via portal */}
             <SuccessModal />
-        </div>
+        </motion.div>
     );
 };
 

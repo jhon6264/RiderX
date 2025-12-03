@@ -1,324 +1,382 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Hero = () => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const canvasRef = useRef(null);
-    const [loading, setLoading] = useState(true);
-
-    // Product sets with optimized positioning and consistent sizing
-    const productSets = [
-        {
-            id: 1,
-            name: "Racing Pro Set",
-            items: [
-                {
-                    image: "/hero/helmet1.png",
-                    position: { x: 10, y: 20, rotation: -8 }
-                },
-                {
-                    image: "/hero/jackets1.png",
-                    position: { x: 70, y: 25, rotation: 5 }
-                },
-                {
-                    image: "/hero/gloves1.png",
-                    position: { x: 40, y: 65, rotation: -12 }
-                }
-            ],
-            description: "Professional racing gear for track performance"
-        },
-        {
-            id: 2,
-            name: "Adventure Touring Set",
-            items: [
-                {
-                    image: "/hero/helmet2.png",
-                    position: { x: 15, y: 25, rotation: 3 }
-                },
-                {
-                    image: "/hero/jackets2.png",
-                    position: { x: 75, y: 30, rotation: -4 }
-                },
-                {
-                    image: "/hero/boots1.png",
-                    position: { x: 45, y: 70, rotation: 8 }
-                }
-            ],
-            description: "All-weather gear for long-distance touring"
-        },
-        {
-            id: 3,
-            name: "Urban Street Set",
-            items: [
-                {
-                    image: "/hero/helmet1.png",
-                    position: { x: 20, y: 30, rotation: -3 }
-                },
-                {
-                    image: "/hero/jackets1.png",
-                    position: { x: 65, y: 35, rotation: 6 }
-                },
-                {
-                    image: "/hero/pants1.png",
-                    position: { x: 35, y: 65, rotation: -7 }
-                }
-            ],
-            description: "Stylish urban riding gear for city streets"
-        }
-    ];
-
-    // FIXED PARTICLE SYSTEM - Enhanced for visibility
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        let animationFrameId;
-
-        // Set canvas size
-        const resizeCanvas = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        };
-        
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        // Enhanced Particle class with better visibility
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1; // Larger particles
-                this.speedX = Math.random() * 0.8 - 0.4; // Faster movement
-                this.speedY = Math.random() * 0.8 - 0.4;
-                this.color = this.getRandomColor();
-                this.alpha = Math.random() * 0.8 + 0.4; // More opaque
-                this.wobble = Math.random() * 2;
-                this.wobbleSpeed = Math.random() * 0.03 + 0.01;
-                this.pulse = Math.random() * Math.PI * 2;
-                this.pulseSpeed = Math.random() * 0.05 + 0.02;
-            }
-
-            getRandomColor() {
-                const colors = [
-                    'rgba(230, 57, 70, 0.8)',    // Bright Racing Red
-                    'rgba(255, 107, 107, 0.7)',  // Lighter Red
-                    'rgba(248, 249, 250, 0.9)',  // Bright White
-                    'rgba(173, 181, 189, 0.7)',  // Light Gray
-                    'rgba(206, 212, 218, 0.8)',  // Medium Gray
-                    'rgba(233, 236, 239, 0.9)',  // Very Light Gray
-                    'rgba(255, 159, 67, 0.6)',   // Orange accent
-                    'rgba(116, 118, 255, 0.6)'   // Purple accent
-                ];
-                return colors[Math.floor(Math.random() * colors.length)];
-            }
-
-            update() {
-                // Pulsing size effect
-                this.pulse += this.pulseSpeed;
-                const pulseSize = Math.sin(this.pulse) * 0.3 + 1;
-                this.currentSize = this.size * pulseSize;
-
-                // Movement with wobble
-                this.x += this.speedX + Math.sin(this.wobble) * 0.5;
-                this.y += this.speedY + Math.cos(this.wobble) * 0.3;
-                this.wobble += this.wobbleSpeed;
-
-                // Reset particle if it goes off screen
-                if (this.x < -100 || this.x > canvas.width + 100 || 
-                    this.y < -100 || this.y > canvas.height + 100) {
-                    this.reset();
-                    // Start from edge for smoother flow
-                    if (Math.random() > 0.5) {
-                        this.x = Math.random() > 0.5 ? -50 : canvas.width + 50;
-                        this.y = Math.random() * canvas.height;
-                    } else {
-                        this.y = Math.random() > 0.5 ? -50 : canvas.height + 50;
-                        this.x = Math.random() * canvas.width;
-                    }
-                }
-            }
-
-            draw() {
-                ctx.save();
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = this.color;
-                
-                // Main particle
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.currentSize, 0, Math.PI * 2);
-                ctx.fill();
-                
-                // Enhanced glow effect for visibility
-                ctx.shadowBlur = 15;
-                ctx.shadowColor = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.currentSize * 1.5, 0, Math.PI * 2);
-                ctx.fill();
-                
-                ctx.restore();
-            }
-        }
-
-        // Create more particles for better visibility
-        const particles = [];
-        const particleCount = Math.min(150, Math.floor((canvas.width * canvas.height) / 8000));
-
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-
-        // FIXED Animation loop with proper clearing
-        const animate = () => {
-            // Clear with semi-transparent for trail effect
-            ctx.fillStyle = 'rgba(26, 26, 26, 0.1)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            // Update and draw particles
-            particles.forEach(particle => {
-                particle.update();
-                particle.draw();
-            });
-
-            animationFrameId = requestAnimationFrame(animate);
-        };
-
-        // Start animation
-        animate();
-
-        // Cleanup
-        return () => {
-            window.removeEventListener('resize', resizeCanvas);
-            cancelAnimationFrame(animationFrameId);
-        };
-    }, []);
-
-    // Auto-rotate carousel
-    useEffect(() => {
-        setLoading(false);
-        
-        const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % productSets.length);
-        }, 6000);
-
-        return () => clearInterval(interval);
-    }, [productSets.length]);
-
-    const scrollToProductGrid = () => {
-        const productGridSection = document.querySelector('.product-grid-section');
-        if (productGridSection) {
-            productGridSection.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
-    };
-
-    const handleImageError = (e) => {
-        console.log('Image failed to load:', e.target.src);
-        e.target.style.display = 'none';
-    };
-
-    const handleImageLoad = (e) => {
-        console.log('Image loaded successfully:', e.target.src);
-        e.target.style.opacity = '1';
-    };
-
-    if (loading) {
-        return (
-            <section className="hero-dust">
-                <div className="hero-loading">
-                    <div className="loading-spinner"></div>
-                </div>
-            </section>
-        );
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [allowPageScroll, setAllowPageScroll] = useState(false);
+  const [direction, setDirection] = useState(0); // -1 for left, 1 for right, 0 for initial
+  const scrollTimeoutRef = useRef(null);
+  const heroRef = useRef(null);
+  const lastScrollTimeRef = useRef(Date.now());
+  const prevSlideRef = useRef(0);
+  
+  // ========== HARDCODED HERO PRODUCTS ==========
+  const heroProducts = [
+    { 
+      id: 4, 
+      name: 'Alpinestars Supertech R10 Carbon Helmet', 
+      image: '/hero/helmet2.png', 
+      link: '/product/4',
+      category: 'Helmets'
+    },
+    { 
+      id: 37, 
+      name: 'Bell Rogue Open Face Helmet', 
+      image: '/hero/helmet1.png', 
+      link: '/product/37',
+      category: 'Helmets'
+    },
+    { 
+      id: 39, 
+      name: 'Sedici Podio2 Jacket', 
+      image: '/hero/jackets1.png', 
+      link: '/product/39',
+      category: 'Jackets'
+    },
+    { 
+      id: 53, 
+      name: 'Leatt Moto65 Pro Chest Protector', 
+      image: '/hero/jackets2.png', 
+      link: '/product/53',
+      category: 'Protection'
+    },
+    { 
+      id: 68, 
+      name: 'Dainese Drake Air ABS Luteshell Pants', 
+      image: '/hero/pants1.png', 
+      link: '/product/68',
+      category: 'Pants'
+    },
+    { 
+      id: 125, 
+      name: 'Forma Freccia Boots', 
+      image: '/hero/boots1.png', 
+      link: '/product/125',
+      category: 'Boots'
+    },
+    { 
+      id: 158, 
+      name: 'Icon Hypersport Short Gloves', 
+      image: '/hero/gloves1.png', 
+      link: '/product/158',
+      category: 'Gloves'
     }
+  ];
 
-    const currentSet = productSets[currentSlide];
+  const totalSlides = heroProducts.length;
+  const isLastSlide = currentSlide === totalSlides - 1;
 
-    return (
-        <section className="hero-dust">
-            {/* Enhanced Particle Background */}
-            <canvas 
-                ref={canvasRef}
-                className="particle-background"
-                style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '100%',
-                    zIndex: 1
-                }}
-            />
-            
-            {/* Product Showcase */}
-            <div className="hero-dust-container">
-                <div className="product-set-showcase">
-                    {/* Product Images */}
-                    <div className="product-images-container">
-                        {currentSet.items.map((item, index) => (
-                            <div 
-                                key={index}
-                                className="product-image-wrapper"
-                                style={{
-                                    left: `${item.position.x}%`,
-                                    top: `${item.position.y}%`,
-                                    transform: `rotate(${item.position.rotation}deg)`,
-                                    zIndex: 2
-                                }}
-                            >
-                                <img 
-                                    src={item.image}
-                                    alt=""
-                                    className="product-set-image"
-                                    onError={handleImageError}
-                                    onLoad={handleImageLoad}
-                                    style={{ opacity: 0 }}
-                                />
-                            </div>
-                        ))}
-                    </div>
+  // ========== SCROLL HANDLER ==========
+  const handleScroll = useCallback((e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (isAnimating) return;
+    
+    const now = Date.now();
+    const timeSinceLastScroll = now - lastScrollTimeRef.current;
+    
+    // Throttle scroll events
+    if (timeSinceLastScroll < 300) return;
+    
+    lastScrollTimeRef.current = now;
+    
+    // Get scroll direction
+    const deltaY = e.deltaY;
+    const isScrollingDown = deltaY > 0;
+    
+    // SPECIAL CASE: On last slide and scrolling DOWN
+    if (isLastSlide && isScrollingDown && !allowPageScroll) {
+      // First scroll on last slide: enable page scroll for next attempt
+      setAllowPageScroll(true);
+      return;
+    }
+    
+    // If page scroll is allowed, don't handle carousel navigation
+    if (allowPageScroll) {
+      return;
+    }
+    
+    // Handle carousel navigation
+    let newIndex;
+    if (isScrollingDown) {
+      newIndex = Math.min(currentSlide + 1, totalSlides - 1);
+      setDirection(1); // Moving forward (left slide)
+    } else {
+      newIndex = Math.max(currentSlide - 1, 0);
+      setDirection(-1); // Moving backward (right slide)
+    }
+    
+    // Only update if slide changes
+    if (newIndex !== currentSlide) {
+      setIsAnimating(true);
+      prevSlideRef.current = currentSlide;
+      setCurrentSlide(newIndex);
+      
+      // Reset animation flag after delay
+      setTimeout(() => {
+        setIsAnimating(false);
+      }, 500);
+    }
+  }, [currentSlide, totalSlides, isAnimating, isLastSlide, allowPageScroll]);
 
-                    {/* Set Info with Enhanced Animations */}
-                    <div className="set-info" style={{ zIndex: 2 }}>
-                        <div className="set-header-shimmer">
-                            <h1 className="set-name">
-                                {currentSet.name}
-                            </h1>
-                        </div>
-                        <p className="set-description">
-                            {currentSet.description}
-                        </p>
-                        <div className="set-actions">
-                            <button 
-                                onClick={scrollToProductGrid}
-                                className="btn-explore"
-                            >
-                                Explore Collection
-                                <span className="btn-shimmer"></span>
-                            </button>
-                        </div>
-                    </div>
+  // ========== SETUP SCROLL LISTENER ==========
+  useEffect(() => {
+    const heroElement = heroRef.current;
+    if (!heroElement) return;
+
+    const handleWheel = (e) => {
+      handleScroll(e);
+    };
+
+    // ALWAYS prevent default to control scrolling
+    heroElement.addEventListener('wheel', handleWheel, { passive: false });
+    
+    return () => {
+      if (heroElement) {
+        heroElement.removeEventListener('wheel', handleWheel);
+      }
+    };
+  }, [handleScroll]);
+
+  // ========== HANDLE PAGE SCROLL WHEN ALLOWED ==========
+  useEffect(() => {
+    if (allowPageScroll && isLastSlide) {
+      // Calculate scroll amount based on window height
+      const scrollAmount = window.innerHeight * 0.8;
+      
+      // Smooth scroll to next section
+      window.scrollTo({
+        top: window.pageYOffset + scrollAmount,
+        behavior: 'smooth'
+      });
+      
+      // Reset after scrolling
+      setTimeout(() => {
+        setAllowPageScroll(false);
+      }, 1000);
+    }
+  }, [allowPageScroll, isLastSlide]);
+
+  // ========== RESET ALLOW PAGE SCROLL WHEN SLIDE CHANGES ==========
+  useEffect(() => {
+    if (!isLastSlide) {
+      setAllowPageScroll(false);
+    }
+  }, [currentSlide, isLastSlide]);
+
+  // ========== HANDLE SCROLL FROM BELOW ==========
+  useEffect(() => {
+    const handleGlobalScroll = () => {
+      const heroElement = heroRef.current;
+      if (!heroElement) return;
+      
+      const rect = heroElement.getBoundingClientRect();
+      const heroBottom = rect.bottom;
+      const windowHeight = window.innerHeight;
+      
+      // If hero bottom is near top of viewport (scrolled up from below)
+      if (heroBottom < windowHeight * 0.3 && heroBottom > 0) {
+        // Set to last slide
+        setCurrentSlide(totalSlides - 1);
+        setAllowPageScroll(false);
+        setDirection(0); // Reset direction
+      }
+    };
+    
+    window.addEventListener('scroll', handleGlobalScroll);
+    return () => window.removeEventListener('scroll', handleGlobalScroll);
+  }, [totalSlides]);
+
+  // ========== PROGRESS BAR CALCULATIONS ==========
+  const progressPercentage = ((currentSlide + 1) / totalSlides) * 100;
+
+  // ========== CLICK TO JUMP ON PROGRESS BAR ==========
+  const goToSlide = (index) => {
+    if (index === currentSlide || isAnimating) return;
+    
+    // Determine direction based on slide index
+    if (index > currentSlide) {
+      setDirection(1); // Moving forward
+    } else {
+      setDirection(-1); // Moving backward
+    }
+    
+    setIsAnimating(true);
+    prevSlideRef.current = currentSlide;
+    setCurrentSlide(index);
+    setAllowPageScroll(false);
+    
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 500);
+  };
+
+  // ========== ANIMATION VARIANTS ==========
+  const slideVariants = {
+    // Initial state for entering slide
+    enter: (direction) => ({
+      x: direction > 0 ? "100%" : direction < 0 ? "-100%" : "0%",
+      opacity: 0
+    }),
+    // Animate to center
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        x: { type: "tween", duration: 0.5, ease: "easeOut" },
+        opacity: { duration: 0.4, ease: "easeOut" }
+      }
+    },
+    // Exit state for leaving slide
+    exit: (direction) => ({
+      x: direction > 0 ? "-100%" : direction < 0 ? "100%" : "0%",
+      opacity: 0,
+      transition: {
+        x: { type: "tween", duration: 0.5, ease: "easeOut" },
+        opacity: { duration: 0.3, ease: "easeOut" }
+      }
+    })
+  };
+
+  // Content animation variants
+  const contentVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { 
+      y: 0, 
+      opacity: 1,
+      transition: { duration: 0.5, ease: "easeOut" }
+    }
+  };
+
+  return (
+    <section 
+      ref={heroRef}
+      className="hero-scroll-carousel"
+    >
+      {/* ========== DARK BACKGROUND ========== */}
+      <div className="hero-bg"></div>
+
+      {/* ========== MAIN CONTENT ========== */}
+      <div className="hero-container">
+        <AnimatePresence mode="wait" custom={direction}>
+          {heroProducts.map((product, index) => (
+            index === currentSlide && (
+              <motion.div
+                key={product.id}
+                className="hero-slide"
+                custom={direction}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+              >
+                {/* ========== CONTENT GRID ========== */}
+                <div className="hero-content-grid">
+                  {/* LEFT COLUMN - TEXT (DESKTOP) / BELOW IMAGE (MOBILE) */}
+                  <div className="text-column">
+                    <motion.div
+                      className="category-badge"
+                      variants={contentVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.1 }}
+                    >
+                      {product.category}
+                    </motion.div>
+
+                    <motion.h1
+                      className="product-title"
+                      variants={contentVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.2 }}
+                    >
+                      {product.name}
+                    </motion.h1>
+
+                    <motion.div
+                      className="cta-container"
+                      variants={contentVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.3 }}
+                    >
+                      <motion.a
+                        href={product.link}
+                        className="view-details-btn"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        View Full Details
+                        <span className="btn-icon">→</span>
+                      </motion.a>
+                    </motion.div>
+                  </div>
+
+                  {/* RIGHT COLUMN - IMAGE (DESKTOP) / TOP (MOBILE) */}
+                  <div className="image-column">
+                    <motion.div
+                      className="image-container"
+                      variants={contentVariants}
+                      initial="hidden"
+                      animate="visible"
+                      transition={{ delay: 0.15 }}
+                    >
+                      <motion.img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-hero-image"
+                        animate={{
+                          y: [0, -8, 0],
+                        }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 3,
+                          ease: "easeInOut"
+                        }}
+                        onError={(e) => {
+                          console.error(`Failed to load: ${product.image}`);
+                          e.target.style.opacity = '0';
+                        }}
+                      />
+                      
+                      {/* Glow Effect */}
+                      <div className="image-glow"></div>
+                    </motion.div>
+                  </div>
                 </div>
-            </div>
+              </motion.div>
+            )
+          ))}
+        </AnimatePresence>
 
-            {/* Progress Indicator with Shimmer */}
-            <div className="carousel-progress-minimal">
-                <div 
-                    className="progress-bar-minimal" 
-                    style={{ 
-                        width: `${((currentSlide + 1) / productSets.length) * 100}%` 
-                    }}
-                />
-                <div className="progress-shimmer"></div>
-            </div>
-        </section>
-    );
+        {/* ========== PROGRESS BAR ========== */}
+        <div className="progress-bar-container">
+          <div 
+            className="progress-bar-track"
+            onClick={(e) => {
+              const rect = e.currentTarget.getBoundingClientRect();
+              const clickPosition = (e.clientX - rect.left) / rect.width;
+              const newIndex = Math.min(Math.floor(clickPosition * totalSlides), totalSlides - 1);
+              goToSlide(newIndex);
+            }}
+          >
+            <div 
+              className="progress-bar-fill"
+              style={{ width: `${progressPercentage}%` }}
+            />
+          </div>
+          
+          {/* Slide Counter */}
+          <div className="slide-counter">
+            {String(currentSlide + 1).padStart(2, '0')} / {String(totalSlides).padStart(2, '0')}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default Hero;
